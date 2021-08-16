@@ -1,5 +1,5 @@
 {
-  "name": "@campusdeck/root",
+  "name": "@cd/root",
   "private": true,
   "devDependencies": {
     "craco": "^0.0.3",
@@ -11,6 +11,6 @@
     ]
   },
   "scripts": {
-    "start": "lerna exec --scope @campusdeck/campus -- yarn start"
+    "start": "lerna exec --scope @cd/student -- yarn start"
   }
 }
