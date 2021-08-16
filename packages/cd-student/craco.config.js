@@ -2,8 +2,8 @@ const path = require("path");
 const { getLoader, loaderByName } = require("@craco/craco");
 
 const packages = [];
-packages.push(path.resolve(__dirname, "../campus-admin/src"));
-packages.push(path.resolve(__dirname, "../components/src"));
+// packages.push(path.resolve(__dirname, "../campus-admin/src"));
+packages.push(path.resolve(__dirname, "../cd-components/src"));
 
 module.exports = {
   webpack: {
