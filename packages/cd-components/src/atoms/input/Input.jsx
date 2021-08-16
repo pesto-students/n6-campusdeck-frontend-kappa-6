@@ -7,10 +7,12 @@ import INPUT_SIZE from "./constants/input.size";
 // styles
 import styles from "./input.module.css";
 
-const Input = ({ size, placeholder }) => {
+const Input = ({ size, placeholder, ...props }) => {
+  // TODO: move this to a helper
+  // dynamically generate class name
   const classNames = cx(styles.input, styles[size]);
 
-  return <input className={classNames} placeholder={placeholder} />;
+  return <input {...props} className={classNames} placeholder={placeholder} />;
 };
 
 Input.propTypes = {

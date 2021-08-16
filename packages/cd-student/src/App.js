@@ -1,10 +1,11 @@
 import "./App.css";
-import { Button } from "@cd/components";
+import { Button, Input } from "@cd/components";
 
 function App() {
   return (
     <div>
-      <Button text='Add a new post' type='add' />
+      {/* Buttons */}
+      {/* <Button text='Add a new post' type='add' />
       <Button text='Advice' type='label' />
       <Button
         text='Create'
@@ -12,7 +13,12 @@ function App() {
         // size='large'
         classes='test'
       />
-      <Button text='Upload' type='skeleton' />
+      <Button text='Upload' type='skeleton' /> */}
+
+      {/* Inputs */}
+      <Input size='small' placeholder='Option 1' />
+      <Input size='medium' placeholder='Search posts or spaces...' />
+      <Input size='large' placeholder='Post Title' />
     </div>
   );
 }
