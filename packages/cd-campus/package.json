@@ -1,5 +1,5 @@
 {
-  "name": "@campusdeck/campus-admin",
+  "name": "@cd/campus",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,7 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1",
-    "@campusdeck/components": "0.1.0"
+    "@cd/components": "0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
