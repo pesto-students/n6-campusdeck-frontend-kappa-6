@@ -1,5 +1,20 @@
+.container {
+  display: flex;
+  background-color: white;
+}
+
 .img {
-  width: 220px;
-  height: 30px;
-  margin: 16px 16px 16px 120px;
+  width: 100px;
+  height: 35px;
+  margin: 0 5px 0 120px;
+}
+
+.logo_text {
+  width: 120px;
+  height: 32px;
+  margin-top: 4px;
+}
+
+.hidden {
+  display: none;
 }
