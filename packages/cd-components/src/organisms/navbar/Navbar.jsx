@@ -8,12 +8,12 @@ import styles from "./navbar.module.css";
 
 const Navbar = () => {
   return (
-    <div className={styles.navbar}>
+    <nav className={styles.navbar}>
       <Logo />
       <SearchBox />
       <ActionIcons />
       <UserInfo userName='Pushpak Bhattacharya' />
-    </div>
+    </nav>
   );
 };
 
