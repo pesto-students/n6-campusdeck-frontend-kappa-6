@@ -1,13 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: white;
-}
-
 .container {
   display: flex;
   align-items: center;
+  background-color: white;
 }
 
 .profile_img {
@@ -20,4 +14,5 @@
   line-height: 20px;
   color: #8c8c8c;
   margin: 0 18px 0 6px;
+  background-color: white;
 }

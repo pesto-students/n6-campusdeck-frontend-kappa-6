@@ -2,13 +2,6 @@
   --main-color: rgba(61, 91, 240);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
-}
-
 .btn {
   background: var(--main-color);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
