@@ -1,6 +1,9 @@
 import cx from "classnames";
+
 import LogoImage from "./assets/logoImage.png";
 import LogoText from "./assets/logoText.png";
+
+import React, { useState } from "react";
 
 // utility
 import { isMobile } from "@cd/base";
