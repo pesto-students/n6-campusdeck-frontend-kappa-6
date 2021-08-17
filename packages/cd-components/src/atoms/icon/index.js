@@ -1,1 +1,1 @@
-export { Search, Mail, Bell } from "./Icon";
+export { Search, Mail, Bell, MessageSquare } from "./Icon";
