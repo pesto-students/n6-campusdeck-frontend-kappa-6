@@ -1,3 +1,3 @@
-import { Search } from "react-feather";
+import { Search, Mail, Bell } from "react-feather";
 
-export { Search };
+export { Search, Mail, Bell };

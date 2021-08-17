@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  background: rgb(255, 255, 255);
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: 10px;
+  margin: 0 5px;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+}

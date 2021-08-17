@@ -1,11 +1,10 @@
 .input {
   border: none;
   outline: none;
-  border-radius: 5px;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.6);
   padding: 14px 10px;
-  background-color: rgba(196, 196, 196, 0.35);
+  border-radius: 5px;
 }
 
 .small {
