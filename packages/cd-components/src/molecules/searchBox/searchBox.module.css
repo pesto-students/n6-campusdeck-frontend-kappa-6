@@ -4,8 +4,12 @@
 }
 
 .search {
-  height: 16px;
-  width: 16px;
-  color: rgba(0, 0, 0, 0.6);
+  background: rgba(196, 196, 196, 0.35);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-left: 9px;
+  height: 36px;
+  width: 24px;
+  color: rgba(0, 0, 0, 0.5);
   margin-left: 10px;
 }
