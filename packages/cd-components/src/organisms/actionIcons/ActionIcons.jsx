@@ -5,7 +5,7 @@ import styles from "./actionIcons.module.css";
 const ActionIcons = () => {
   return (
     <div className={styles.container}>
-      <MailIcon className={styles.icon} />
+      {/* <MailIcon className={styles.icon} /> */}
       <BellIcon className={styles.icon} />
     </div>
   );
