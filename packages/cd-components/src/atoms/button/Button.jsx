@@ -8,9 +8,9 @@ import BUTTON_SIZE from "./constants/button.size";
 // styles
 import styles from "./button.module.css";
 
-const Button = ({ text, type, size, classes, ...props }) => {
+const Button = ({ text, type, size, className, ...restProps }) => {
   // dynamically generating classnames based on the button type
-  const classNames = cx(styles.btn, styles[size], classes, {
+  const classStr = cx(styles.btn, styles[size], className, {
     [styles.label]: type === BUTTON_TYPES.LABEL,
     [styles.regular]: type === BUTTON_TYPES.REGULAR,
     [styles.add]: type === BUTTON_TYPES.ADD,
@@ -18,7 +18,7 @@ const Button = ({ text, type, size, classes, ...props }) => {
   });
 
   return (
-    <button {...props} className={classNames}>
+    <button {...restProps} className={classStr}>
       {text}
     </button>
   );

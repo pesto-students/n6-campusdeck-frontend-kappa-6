@@ -9,7 +9,7 @@ const SearchBox = () => {
   return (
     <div className={styles.container}>
       <SearchIcon className={styles.search} />
-      <Input size='large' placeholder='Search posts or space...' />
+      <Input size='medium' placeholder='Search posts or space...' />
     </div>
   );
 };
