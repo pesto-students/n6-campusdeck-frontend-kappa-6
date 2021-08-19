@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  padding: 2px;
+}
+
+.img {
+  width: 17px;
+  height: 18px;
+}
+
+.credit {
+  font-size: 14px;
+  margin-left: 6px;
+  margin-top: 3px;
+  color: rgba(0, 0, 0, 0.7);
+}

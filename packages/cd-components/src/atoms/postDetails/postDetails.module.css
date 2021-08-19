@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 33%;
+  height: 30px;
+}
+
+.comment,
+.time {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.7);
+}
