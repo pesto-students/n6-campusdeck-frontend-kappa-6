@@ -1,3 +1,27 @@
-import { Search, Mail, Bell, MessageSquare } from "react-feather";
+import {
+  Search,
+  Mail,
+  Bell,
+  MessageSquare,
+  Home,
+  Globe,
+  User,
+  Compass,
+  MoreVertical,
+  ArrowUp,
+  ArrowDown
+} from "react-feather";
 
-export { Search, Mail, Bell, MessageSquare };
+export {
+  Search,
+  Mail,
+  Bell,
+  MessageSquare,
+  Home,
+  Globe,
+  User,
+  Compass,
+  MoreVertical,
+  ArrowUp,
+  ArrowDown
+};
