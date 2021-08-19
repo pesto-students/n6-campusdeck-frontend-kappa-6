@@ -11,3 +11,6 @@ export { default as SuggestionCard } from "./molecules/suggestionCard/Suggestion
 // all organisms
 export { default as Navbar } from "./organisms/navbar/Navbar";
 export { default as Post } from "./organisms/post/Post";
+
+// all constants
+export { default as POST_TYPES } from "./organisms/post/constants/post.types";
