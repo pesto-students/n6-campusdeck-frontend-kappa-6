@@ -8,7 +8,15 @@ import BUTTON_SIZE from "./constants/button.size";
 // styles
 import styles from "./button.module.css";
 
-const Button = ({ text, type, size, className, ...restProps }) => {
+const Button = ({
+  text,
+  type,
+  size,
+  className,
+  onClick,
+  children,
+  ...restProps
+}) => {
   // dynamically generating classnames based on the button type
   const classStr = cx(styles.btn, styles[size], className, {
     [styles.label]: type === BUTTON_TYPES.LABEL,
@@ -18,8 +26,8 @@ const Button = ({ text, type, size, className, ...restProps }) => {
   });
 
   return (
-    <button {...restProps} className={classStr}>
-      {text}
+    <button {...restProps} className={classStr} onClick={onClick}>
+      {text || children}
     </button>
   );
 };
@@ -28,14 +36,18 @@ Button.propTypes = {
   text: PropTypes.string,
   type: PropTypes.string,
   size: PropTypes.string,
-  classes: PropTypes.string
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.string
 };
 
 Button.defaultProps = {
   text: undefined,
   type: BUTTON_TYPES.REGULAR,
   size: BUTTON_SIZE.MEDIUM,
-  classes: undefined
+  className: undefined,
+  onClick: undefined,
+  children: undefined
 };
 
 export default Button;
