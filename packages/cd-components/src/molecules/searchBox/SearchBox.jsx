@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import Input from "../../atoms/input/Input";
 // TODO: change this to a modular import
 import { Search as SearchIcon } from "../../atoms/icon";
@@ -13,5 +15,9 @@ const SearchBox = () => {
     </div>
   );
 };
+
+SearchBox.propTypes = {};
+
+SearchBox.defaultProps = {};
 
 export default SearchBox;

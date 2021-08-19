@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import SpaceImage from "./deleteThisLater/defaultProfile.jpg";
 // style
 import styles from "./listItem.module.css";
@@ -12,8 +14,16 @@ const ListItem = ({ image, name, metric }) => {
   );
 };
 
+ListItem.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  metric: PropTypes.string.isRequired
+};
+
 ListItem.defaultProps = {
-  image: SpaceImage
+  image: SpaceImage,
+  name: undefined,
+  metric: undefined
 };
 
 export default ListItem;

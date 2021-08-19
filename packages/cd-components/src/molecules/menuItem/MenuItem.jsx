@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import cx from "classnames";
 
 // styles
@@ -14,6 +15,19 @@ const MenuItem = ({ active, label, children, destination }) => {
       <div className={styles.label}>{label}</div>
     </div>
   );
+};
+
+MenuItem.propTypes = {
+  active: PropTypes.bool,
+  label: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  destination: PropTypes.string
+};
+
+MenuItem.defaultProps = {
+  active: false,
+  label: undefined,
+  destination: undefined
 };
 
 export default MenuItem;

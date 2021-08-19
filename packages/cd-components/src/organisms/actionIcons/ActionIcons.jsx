@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { Mail as MailIcon, Bell as BellIcon } from "../../atoms/icon";
 
 import styles from "./actionIcons.module.css";
@@ -10,5 +12,9 @@ const ActionIcons = () => {
     </div>
   );
 };
+
+ActionIcons.propTypes = {};
+
+ActionIcons.defaultProps = {};
 
 export default ActionIcons;
