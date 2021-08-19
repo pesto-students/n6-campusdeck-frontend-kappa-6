@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import ListItem from "../../atoms/listItem/ListItem";
 
 // style
@@ -15,6 +17,15 @@ const SuggestionCard = ({ heading, list }) => {
       </div>
     </div>
   );
+};
+
+SuggestionCard.propTypes = {
+  heading: PropTypes.string.isRequired,
+  list: PropTypes.array
+};
+
+SuggestionCard.defaultProps = {
+  list: PropTypes.array.isRequired
 };
 
 export default SuggestionCard;

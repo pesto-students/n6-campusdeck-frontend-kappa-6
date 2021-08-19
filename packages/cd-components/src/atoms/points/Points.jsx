@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { ArrowUp, ArrowDown } from "../../atoms/icon";
 
 //styles
@@ -11,6 +13,15 @@ const Points = ({ points }) => {
       <ArrowDown className={styles.arrow} size={28} strokeWidth={2.5} />
     </div>
   );
+};
+
+Points.propTypes = {
+  // points type is string because for larger numbers we need to use shorthand eg. 4.5k
+  points: PropTypes.string
+};
+
+Points.defaultProps = {
+  points: undefined
 };
 
 export default Points;

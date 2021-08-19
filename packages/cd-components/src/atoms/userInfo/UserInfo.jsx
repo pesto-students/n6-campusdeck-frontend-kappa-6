@@ -17,12 +17,12 @@ const UserInfo = ({ profileImg, userName }) => {
 
 UserInfo.propTypes = {
   profileImg: PropTypes.string,
-  userName: PropTypes.string
+  userName: PropTypes.string.isRequired
 };
 
 UserInfo.defaultProps = {
   profileImg: DefaultProfilePic,
-  userName: ""
+  userName: undefined
 };
 
 export default UserInfo;

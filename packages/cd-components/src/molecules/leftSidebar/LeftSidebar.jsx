@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 // icons
 import { Home, Globe, User, Compass } from "../../atoms/icon";
 
@@ -25,5 +27,9 @@ const LeftSidebar = () => {
     </div>
   );
 };
+
+LeftSidebar.propTypes = {};
+
+LeftSidebar.defaultProps = {};
 
 export default LeftSidebar;

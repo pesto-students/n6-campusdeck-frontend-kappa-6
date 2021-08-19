@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import Logo from "../../atoms/logo/Logo";
 import UserInfo from "../../atoms/userInfo/UserInfo";
 import SearchBox from "../../molecules/searchBox/SearchBox";
@@ -16,5 +18,9 @@ const Navbar = () => {
     </nav>
   );
 };
+
+Navbar.propTypes = {};
+
+Navbar.defaultProps = {};
 
 export default Navbar;

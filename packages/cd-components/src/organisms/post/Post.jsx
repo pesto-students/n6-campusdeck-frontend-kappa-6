@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { MoreVertical } from "../../atoms/icon/Icon";
 import Button from "../../atoms/button/Button";
 import Points from "../../atoms/points/Points";
@@ -39,6 +41,23 @@ const Post = ({
       </div>
     </div>
   );
+};
+
+Post.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  points: PropTypes.number.isRequired,
+  time: PropTypes.string.isRequired,
+  totalComments: PropTypes.number,
+  authorName: PropTypes.string.isRequired,
+  authorPic: PropTypes.string
+};
+
+Post.defaultProps = {
+  label: undefined,
+  totalComments: 0
 };
 
 export default Post;
