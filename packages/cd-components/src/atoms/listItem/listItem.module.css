@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  margin-top: 15px;
+}
+
+.name {
+  position: absolute;
+  left: 37px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3d5bf0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.metric {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+  padding-right: 15px;
+}
+
+.img {
+  height: 23px;
+  width: 23px;
+}

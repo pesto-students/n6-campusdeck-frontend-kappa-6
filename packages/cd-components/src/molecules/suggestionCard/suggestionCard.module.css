@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 260px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 1px 1px 18px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 40px 0;
+}
+
+.heading {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.stats {
+  width: 91%;
+  background-color: transparent;
+}
