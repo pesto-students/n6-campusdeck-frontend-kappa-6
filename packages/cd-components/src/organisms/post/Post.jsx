@@ -12,6 +12,7 @@ import PostDetails from "../../atoms/postDetails/PostDetails";
 const Post = ({
   id,
   title,
+  content,
   label,
   type,
   points,
@@ -33,7 +34,7 @@ const Post = ({
         </Button>
         <MoreVertical className={styles.more} />
       </div>
-      <div className={styles.post_body}>Post body</div>
+      <div className={styles.post_body}>{content}</div>
       <div className={styles.separator}></div>
       <div className={styles.post_footnote}>
         <AuthorDetails authorName={authorName} authorPic={authorPic} />
