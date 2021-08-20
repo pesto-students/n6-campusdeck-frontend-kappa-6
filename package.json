@@ -12,5 +12,8 @@
   },
   "scripts": {
     "start": "lerna exec --scope @cd/student -- yarn start"
+  },
+  "dependencies": {
+    "sass": "^1.38.0"
   }
 }

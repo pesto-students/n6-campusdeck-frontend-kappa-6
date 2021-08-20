@@ -6,7 +6,7 @@ import BUTTON_TYPES from "./constants/button.types";
 import BUTTON_SIZE from "./constants/button.size";
 
 // styles
-import styles from "./button.module.css";
+import styles from "./button.module.scss";
 
 const Button = ({
   text,
