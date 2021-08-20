@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import Button from "../../atoms/button/Button";
 import SpaceStats from "../../atoms/spaceStats/SpaceStats";
-import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
+import { ProfilePic } from "../..";
 
 // styles
 import styles from "./spaceDetails.module.css";
@@ -13,7 +13,8 @@ const SpaceDetails = ({
   numOfPosts,
   followers,
   numOfUsers,
-  creator,
+  creatorName,
+  creatorPic,
   createdAt
 }) => {
   return (
@@ -28,7 +29,15 @@ const SpaceDetails = ({
         followers={followers}
         numOfUsers={numOfUsers}
       />
-      <AuthorDetails />
+      <div className={styles.card_footer}>
+        <img className={styles.creator_img} src={creatorPic} />
+        <div className={styles.credit}>
+          Created by <span style={{ color: "blue" }}>{creatorName}</span>
+        </div>
+        <div className={styles.time}>
+          <span>{createdAt}</span>
+        </div>
+      </div>
     </div>
   );
 };
@@ -39,7 +48,8 @@ SpaceDetails.propTypes = {
   numOfPosts: PropTypes.number,
   followers: PropTypes.number,
   numOfUsers: PropTypes.number,
-  creator: PropTypes.string.isRequired,
+  creatorName: PropTypes.string.isRequired,
+  creatorPic: PropTypes.string,
   createdAt: PropTypes.string.isRequired
 };
 
@@ -47,7 +57,8 @@ SpaceDetails.defaultProps = {
   desc: undefined,
   numOfPosts: 0,
   followers: 0,
-  numOfUsers: 0
+  numOfUsers: 0,
+  creatorPic: ProfilePic
 };
 
 export default SpaceDetails;

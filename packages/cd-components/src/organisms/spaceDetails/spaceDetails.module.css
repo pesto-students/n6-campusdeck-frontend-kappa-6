@@ -6,8 +6,6 @@
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 1px 1px 18px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
-  /* remove the next line */
-  margin: 50px;
 }
 
 .card_header {
@@ -30,5 +28,29 @@
   margin-left: 14px;
   font-size: 12px;
   line-height: 18px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.card_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 96%;
+  height: 1.25rem;
+  margin: 1.5rem 0.25rem;
+}
+
+.creator_img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.credit {
+  font-size: 0.55rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.time {
+  font-size: 0.47rem;
   color: rgba(0, 0, 0, 0.7);
 }
