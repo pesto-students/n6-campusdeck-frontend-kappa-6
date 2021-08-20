@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 // styles
-import styles from "./postDetails.module.css";
+import styles from "./postDetails.module.scss";
 
 import { MessageSquare } from "../../atoms/icon/Icon";
 

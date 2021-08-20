@@ -1,5 +1,5 @@
 //styles
-import styles from "./authorDetails.module.css";
+import styles from "./authorDetails.module.scss";
 
 const AuthorDetails = ({ authorName, authorPic }) => {
   return (

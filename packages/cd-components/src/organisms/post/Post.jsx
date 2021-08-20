@@ -6,7 +6,7 @@ import Points from "../../atoms/points/Points";
 import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
 
 //styles
-import styles from "./post.module.css";
+import styles from "./post.module.scss";
 import PostDetails from "../../atoms/postDetails/PostDetails";
 
 const Post = ({
