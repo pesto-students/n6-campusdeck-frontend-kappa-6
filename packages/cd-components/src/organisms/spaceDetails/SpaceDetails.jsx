@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 import Button from "../../atoms/button/Button";
 import SpaceStats from "../../atoms/spaceStats/SpaceStats";
+import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
 
 // styles
 import styles from "./spaceDetails.module.css";
@@ -27,6 +28,7 @@ const SpaceDetails = ({
         followers={followers}
         numOfUsers={numOfUsers}
       />
+      <AuthorDetails />
     </div>
   );
 };

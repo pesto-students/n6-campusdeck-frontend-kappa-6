@@ -14,8 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 14px;
-  /* border: 1px solid black; */
+  padding: 0.78rem;
 }
 
 .name {
@@ -25,7 +24,6 @@
 }
 
 .space_desc {
-  /* border: 1px solid black; */
   height: 35%;
   width: 90%;
   margin-top: 8px;
