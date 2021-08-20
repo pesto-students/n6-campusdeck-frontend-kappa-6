@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 274px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 1px 1px 18px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  /* remove the next line */
+  margin: 50px;
+}
+
+.card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  /* border: 1px solid black; */
+}
+
+.name {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: 600;
+}
+
+.space_desc {
+  /* border: 1px solid black; */
+  height: 35%;
+  width: 90%;
+  margin-top: 8px;
+  margin-left: 14px;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, 0.7);
+}
