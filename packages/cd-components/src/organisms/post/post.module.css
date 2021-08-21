@@ -9,12 +9,10 @@
   /* remove the below 2 lines */
   margin-top: 16px;
   margin-left: 28px;
-  /* border: 1px solid black; */
 }
 
 .post_title {
   font-size: 20px;
-  /* change font font weight */
   font-weight: 600;
   color: rgba(0, 0, 0, 0.75);
   margin-top: 16px;
@@ -46,6 +44,13 @@
   top: 50px;
   width: 75%;
   height: 45%;
+  font-size: 15px;
+  line-height: 18px;
+  /* below properties will clip the text at line 7 and show ellipsis */
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .separator {
@@ -65,5 +70,4 @@
   align-items: center;
   left: 115px;
   bottom: 26px;
-  /* border: 1px solid black; */
 }
