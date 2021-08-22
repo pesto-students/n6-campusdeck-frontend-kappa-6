@@ -4,13 +4,16 @@ export { default as Input } from "./atoms/input/Input";
 export { default as Logo } from "./atoms/logo/Logo";
 export { default as UserInfo } from "./atoms/userInfo/UserInfo";
 export { default as ProfilePic } from "./atoms/userInfo/assets/defaultProfile.jpg";
+export { default as SpaceStats } from "./atoms/spaceStats/SpaceStats";
 
 // all molecules
 export { default as SuggestionCard } from "./molecules/suggestionCard/SuggestionCard";
+export { default as LeftSidebar } from "./molecules/leftSidebar/LeftSidebar";
 
 // all organisms
 export { default as Navbar } from "./organisms/navbar/Navbar";
 export { default as Post } from "./organisms/post/Post";
+export { default as SpaceDetails } from "./organisms/spaceDetails/SpaceDetails";
 
 // all constants
 export { default as POST_TYPES } from "./organisms/post/constants/post.types";

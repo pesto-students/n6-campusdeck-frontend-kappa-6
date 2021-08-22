@@ -9,7 +9,7 @@ const AuthorDetails = ({ authorName, authorPic }) => {
     <div className={styles.container}>
       <img className={styles.img} src={authorPic} />
       <div className={styles.credit}>
-        Posted by <span style={{ color: "blue" }}>{authorName}</span>
+        Created by <span style={{ color: "blue" }}>{authorName}</span>
       </div>
     </div>
   );
