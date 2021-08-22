@@ -6,7 +6,7 @@ import SearchBox from "../../molecules/searchBox/SearchBox";
 import ActionIcons from "../actionIcons/ActionIcons";
 
 // styles
-import styles from "./navbar.module.css";
+import styles from "./navbar.module.scss";
 
 const Navbar = () => {
   return (

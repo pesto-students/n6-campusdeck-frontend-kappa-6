@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ArrowUp, ArrowDown } from "../../atoms/icon";
 
 //styles
-import styles from "./points.module.css";
+import styles from "./points.module.scss";
 
 const Points = ({ points }) => {
   return (

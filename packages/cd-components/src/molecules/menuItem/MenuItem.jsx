@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 // styles
-import styles from "./menuItem.module.css";
+import styles from "./menuItem.module.scss";
 
 const MenuItem = ({ active, label, children, destination }) => {
   const className = cx(styles.container, {

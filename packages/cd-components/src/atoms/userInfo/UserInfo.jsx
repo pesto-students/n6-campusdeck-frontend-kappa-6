@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 // styles
-import styles from "./userinfo.module.css";
+import styles from "./userinfo.module.scss";
 
 // default profile picture
 import DefaultProfilePic from "./assets/defaultProfile.jpg";

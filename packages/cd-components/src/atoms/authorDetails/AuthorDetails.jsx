@@ -1,5 +1,8 @@
+import PropTypes from "prop-types";
+import { ProfilePic } from "../..";
+
 //styles
-import styles from "./authorDetails.module.css";
+import styles from "./authorDetails.module.scss";
 
 const AuthorDetails = ({ authorName, authorPic }) => {
   return (
@@ -10,6 +13,15 @@ const AuthorDetails = ({ authorName, authorPic }) => {
       </div>
     </div>
   );
+};
+
+AuthorDetails.propTypes = {
+  authorName: PropTypes.string.isRequired,
+  authorPic: PropTypes.string
+};
+
+AuthorDetails.defaultProps = {
+  authorPic: ProfilePic
 };
 
 export default AuthorDetails;

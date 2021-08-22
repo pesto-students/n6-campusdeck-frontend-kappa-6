@@ -6,25 +6,17 @@
 
 .container:hover {
   background-color: rgba(61, 91, 240, 0.15);
+  border-left: 0.38rem solid #3d5bf0;
   cursor: pointer;
 }
 
-.container:hover::before {
-  position: absolute;
-  content: "";
-  width: 7px;
-  height: 41px;
-  background-color: #3d5bf0;
-}
-
 .active {
-  width: 7px;
-  height: 41px;
-  background-color: #3d5bf0;
+  background-color: rgba(61, 91, 240, 0.15);
+  border-left: 0.38rem solid #3d5bf0;
 }
 
 .icon {
-  margin-left: 16px;
+  margin-left: 1rem;
   width: 20px;
   height: 20px;
 }

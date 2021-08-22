@@ -5,7 +5,7 @@ import Input from "../../atoms/input/Input";
 import { Search as SearchIcon } from "../../atoms/icon";
 
 // styles
-import styles from "./searchBox.module.css";
+import styles from "./searchBox.module.scss";
 
 const SearchBox = () => {
   return (

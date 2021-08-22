@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import SpaceImage from "./deleteThisLater/defaultProfile.jpg";
 // style
-import styles from "./listItem.module.css";
+import styles from "./listItem.module.scss";
 
 const ListItem = ({ image, name, metric }) => {
   return (

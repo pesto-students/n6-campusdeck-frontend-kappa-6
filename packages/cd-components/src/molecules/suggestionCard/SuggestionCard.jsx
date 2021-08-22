@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ListItem from "../../atoms/listItem/ListItem";
 
 // style
-import styles from "./suggestionCard.module.css";
+import styles from "./suggestionCard.module.scss";
 
 const SuggestionCard = ({ heading, list }) => {
   return (
