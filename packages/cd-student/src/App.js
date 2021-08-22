@@ -27,9 +27,9 @@ function App() {
       <Input size='medium' placeholder='Search posts or spaces...' />
       <Input size='large' placeholder='Post Title' /> */}
 
-      <LeftSidebar />
+      {/* <LeftSidebar /> */}
 
-      <SpaceDetails
+      {/* <SpaceDetails
         name='Announcements'
         desc='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam.'
         numOfPosts={120}
@@ -37,18 +37,20 @@ function App() {
         numOfUsers={100}
         creatorName='Pushpak Bhattacharya'
         createdAt='1 month ago'
-      />
+      /> */}
 
       <Post
         title='Lorem ipsum dolor sit amet?'
         label='Question'
+        rawContent='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. 
+        Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.'
         points='4723'
         time='2 days ago'
         totalComments='100+'
         authorName='Pushpak Bhattacharya'
       />
 
-      <SuggestionCard
+      {/* <SuggestionCard
         heading='Trending Spaces'
         list={[
           {
@@ -68,7 +70,7 @@ function App() {
             metric: "18k users"
           }
         ]}
-      />
+      /> */}
     </div>
   );
 }
