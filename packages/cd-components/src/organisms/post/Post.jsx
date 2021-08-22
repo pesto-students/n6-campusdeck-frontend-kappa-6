@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import cx from "classnames";
 import _truncate from "lodash/truncate";
 
 import { MoreVertical } from "../../atoms/icon/Icon";
@@ -33,10 +32,6 @@ const Post = ({
     setIsExpanded(prevIsExpanded => !prevIsExpanded);
   };
 
-  const bodyClassName = cx(styles.post_body, {
-    [styles.body_expanded]: isExpanded
-  });
-
   // if the post body is expanded then show the full content. Otherwise, truncate it to 500 characters
   const bodyContent = isExpanded
     ? rawContent
@@ -60,7 +55,7 @@ const Post = ({
         <MoreVertical className={styles.more} />
       </div>
       <div className={styles.content}>
-        <div className={bodyClassName} onClick={toggleBody}>
+        <div className={styles.post_body} onClick={toggleBody}>
           {bodyContent}
         </div>
         <div className={styles.separator}></div>
