@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { MoreVertical } from "../../atoms/icon/Icon";
+import { MoreOutlined } from "../../atoms/icon/Icon";
 import Button from "../../atoms/button/Button";
 import Points from "../../atoms/points/Points";
 import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
@@ -32,7 +32,7 @@ const Post = ({
         <Button className={styles.label} type='label'>
           {label}
         </Button>
-        <MoreVertical className={styles.more} />
+        <MoreOutlined className={styles.more} />
       </div>
       <div className={styles.post_body}>{content}</div>
       <div className={styles.separator}></div>

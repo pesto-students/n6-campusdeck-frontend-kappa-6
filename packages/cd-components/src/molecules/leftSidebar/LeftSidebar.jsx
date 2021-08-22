@@ -1,7 +1,12 @@
 import PropTypes from "prop-types";
 
 // icons
-import { Home, Globe, User, Compass } from "../../atoms/icon";
+import {
+  HomeFilled,
+  GlobalOutlined,
+  UserOutlined,
+  CompassFilled
+} from "../../atoms/icon";
 
 // components
 import MenuItem from "../menuItem/MenuItem";
@@ -13,16 +18,16 @@ const LeftSidebar = () => {
   return (
     <div className={styles.container}>
       <MenuItem active label='Home' destination='/'>
-        <Home />
+        <HomeFilled />
       </MenuItem>
       <MenuItem label='Global Feed' destination='/global'>
-        <Globe />
+        <GlobalOutlined />
       </MenuItem>
       <MenuItem label='My Profile' destination='/profile'>
-        <User />
+        <UserOutlined />
       </MenuItem>
       <MenuItem label='Explore' destination='/explore'>
-        <Compass />
+        <CompassFilled />
       </MenuItem>
     </div>
   );
