@@ -35,7 +35,7 @@ function App() {
         numOfPosts={120}
         followers={542}
         numOfUsers={100}
-        creator='Pushpak Bhattacharya'
+        creatorName='Pushpak Bhattacharya'
         createdAt='1 month ago'
       />
 
