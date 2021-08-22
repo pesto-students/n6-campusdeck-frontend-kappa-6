@@ -6,6 +6,7 @@ import { MoreOutlined } from "../../atoms/icon/Icon";
 import Button from "../../atoms/button/Button";
 import Points from "../../atoms/points/Points";
 import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
+import ContextMenu from "../../molecules/contextMenu/ContextMenu";
 
 //styles
 import styles from "./post.module.scss";
@@ -52,7 +53,9 @@ const Post = ({
         <Button className={styles.label} type='label'>
           {label}
         </Button>
-        <MoreOutlined className={styles.more} />
+        <ContextMenu>
+          <MoreOutlined className={styles.more} />
+        </ContextMenu>
       </div>
       <div className={styles.content}>
         <div className={styles.post_body} onClick={toggleBody}>
