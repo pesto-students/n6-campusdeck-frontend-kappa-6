@@ -7,7 +7,7 @@ import { Home, Globe, User, Compass } from "../../atoms/icon";
 import MenuItem from "../menuItem/MenuItem";
 
 // styles
-import styles from "./leftSidebar.module.css";
+import styles from "./leftSidebar.module.scss";
 
 const LeftSidebar = () => {
   return (

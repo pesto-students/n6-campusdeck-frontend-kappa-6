@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import { Mail as MailIcon, Bell as BellIcon } from "../../atoms/icon";
 
-import styles from "./actionIcons.module.css";
+import styles from "./actionIcons.module.scss";
 
 const ActionIcons = () => {
   return (

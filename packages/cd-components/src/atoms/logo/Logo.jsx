@@ -7,7 +7,7 @@ import LogoText from "./assets/logoText.png";
 import { isMobile } from "@cd/base";
 
 // styles
-import styles from "./logo.module.css";
+import styles from "./logo.module.scss";
 
 const Logo = () => {
   // hide the logo text if the user is on mobile

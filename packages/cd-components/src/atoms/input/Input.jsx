@@ -5,7 +5,7 @@ import cx from "classnames";
 import INPUT_SIZE from "./constants/input.size";
 
 // styles
-import styles from "./input.module.css";
+import styles from "./input.module.scss";
 
 const Input = ({ size, placeholder, ...props }) => {
   // TODO: move this to a helper
