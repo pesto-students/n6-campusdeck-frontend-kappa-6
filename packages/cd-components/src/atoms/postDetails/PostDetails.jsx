@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 // styles
 import styles from "./postDetails.module.scss";
 
-import { MessageSquare } from "../../atoms/icon/Icon";
+import { CommentOutlined } from "../../atoms/icon/Icon";
 
 const PostDetails = ({ time, totalComments }) => {
   return (
     <div className={styles.container}>
       <div className={styles.time}>{time}</div>
       <div className={styles.comment}>
-        <MessageSquare size={18} style={{ paddingTop: "2px" }} />
+        <CommentOutlined style={{ paddingRight: "0.3rem" }} />
         {totalComments}
       </div>
     </div>

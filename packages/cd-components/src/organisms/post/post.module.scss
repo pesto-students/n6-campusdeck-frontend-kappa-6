@@ -30,10 +30,15 @@
 
     .more {
       position: absolute;
-      color: rgb(70, 70, 70);
+      color: rgba(0, 0, 0, 0.7);
       cursor: pointer;
       margin-top: 0.8rem;
-      right: 0.8rem;
+      right: 18px;
+      border-radius: 50%;
+      }
+
+    .more:hover {
+      background-color: rgb(220, 220, 220);
     }
 
     .label {

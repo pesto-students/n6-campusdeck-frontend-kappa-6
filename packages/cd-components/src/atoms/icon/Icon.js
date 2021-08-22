@@ -1,27 +1,25 @@
 import {
-  Search,
-  Mail,
-  Bell,
-  MessageSquare,
-  Home,
-  Globe,
-  User,
-  Compass,
-  MoreVertical,
-  ArrowUp,
-  ArrowDown
-} from "react-feather";
+  SearchOutlined,
+  BellFilled,
+  CommentOutlined,
+  HomeFilled,
+  GlobalOutlined,
+  UserOutlined,
+  CompassFilled,
+  MoreOutlined,
+  ArrowUpOutlined,
+  ArrowDownOutlined
+} from "@ant-design/icons";
 
 export {
-  Search,
-  Mail,
-  Bell,
-  MessageSquare,
-  Home,
-  Globe,
-  User,
-  Compass,
-  MoreVertical,
-  ArrowUp,
-  ArrowDown
+  SearchOutlined,
+  BellFilled,
+  CommentOutlined,
+  HomeFilled,
+  GlobalOutlined,
+  UserOutlined,
+  CompassFilled,
+  MoreOutlined,
+  ArrowUpOutlined,
+  ArrowDownOutlined
 };

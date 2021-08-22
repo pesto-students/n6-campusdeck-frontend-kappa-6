@@ -4,7 +4,6 @@ import styles from "./spaceStats.module.css";
 import { useState } from "react";
 
 const SpaceStats = ({ numOfPosts, followers, numOfUsers }) => {
-  const [state, setState] = useState(123);
   return (
     <div className={styles.container}>
       <div className={styles.stat}>
