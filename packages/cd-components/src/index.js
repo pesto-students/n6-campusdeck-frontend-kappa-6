@@ -10,6 +10,7 @@ export { default as SpaceStats } from "./atoms/spaceStats/SpaceStats";
 export { default as SuggestionCard } from "./molecules/suggestionCard/SuggestionCard";
 export { default as LeftSidebar } from "./molecules/leftSidebar/LeftSidebar";
 export { default as ContextMenu } from "./molecules/contextMenu/ContextMenu";
+export { default as TabMenu } from "./molecules/tabMenu/TabMenu";
 
 // all organisms
 export { default as Navbar } from "./organisms/navbar/Navbar";
