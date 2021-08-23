@@ -1,13 +1,30 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Tabs } from "antd";
 const { TabPane } = Tabs;
 
+import ContextMenu from "../../molecules/contextMenu/ContextMenu";
+
 // styles
 import styles from "./tabMenu.module.scss";
 
-const TabMenu = ({ tabs, callback, centered }) => {
+const TabMenu = ({ tabs, callback, centered, extraContent }) => {
   return (
-    <Tabs defaultActiveKey='1' onChange={callback} centered={centered}>
+    <Tabs
+      defaultActiveKey='1'
+      onChange={callback}
+      centered={centered}
+      tabBarExtraContent={
+        extraContent.enabled ? (
+          <ContextMenu
+            items={extraContent.menuItems}
+            handler={extraContent.handler}
+          >
+            <div>{extraContent.text}</div>
+          </ContextMenu>
+        ) : null
+      }
+    >
       {tabs &&
         tabs.map((tab, idx) => (
           <TabPane tab={tab.label} disabled={tab.disabled} key={idx + 1}>
@@ -21,7 +38,8 @@ const TabMenu = ({ tabs, callback, centered }) => {
 TabMenu.propTypes = {
   tabs: PropTypes.array.isRequired,
   callback: PropTypes.func,
-  centered: PropTypes.bool
+  centered: PropTypes.bool,
+  extraContent: PropTypes.object
 };
 
 TabMenu.defaultProps = {
@@ -40,7 +58,10 @@ TabMenu.defaultProps = {
   callback: key => {
     console.log(`Tab clicked: ${key}`);
   },
-  centered: false
+  centered: false,
+  extraContent: {
+    enabled: false
+  }
 };
 
 export default TabMenu;
