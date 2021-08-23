@@ -8,5 +8,9 @@ export {
   CompassFilled,
   MoreOutlined,
   ArrowUpOutlined,
-  ArrowDownOutlined
+  ArrowDownOutlined,
+  ArrowLeftOutlined,
+  EditFilled,
+  Users,
+  MapPin
 } from "./Icon";
