@@ -5,7 +5,8 @@ import {
   LeftSidebar,
   Post,
   SpaceDetails,
-  SuggestionCard
+  SuggestionCard,
+  TabMenu
 } from "@cd/components";
 
 function App() {
@@ -21,14 +22,11 @@ function App() {
         classes='test'
       />
       <Button text='Upload' type='skeleton' /> */}
-
       {/* Inputs */}
       {/* <Input size='small' placeholder='Option 1' />
       <Input size='medium' placeholder='Search posts or spaces...' />
       <Input size='large' placeholder='Post Title' /> */}
-
       {/* <LeftSidebar /> */}
-
       {/* <SpaceDetails
         name='Announcements'
         desc='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam.'
@@ -38,8 +36,7 @@ function App() {
         creatorName='Pushpak Bhattacharya'
         createdAt='1 month ago'
       /> */}
-
-      <Post
+      {/* <Post
         title='Lorem ipsum dolor sit amet?'
         label='Question'
         rawContent='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. 
@@ -48,8 +45,7 @@ function App() {
         time='2 days ago'
         totalComments='100+'
         authorName='Pushpak Bhattacharya'
-      />
-
+      /> */}
       {/* <SuggestionCard
         heading='Trending Spaces'
         list={[
@@ -71,6 +67,30 @@ function App() {
           }
         ]}
       /> */}
+      <TabMenu
+        tabs={[
+          {
+            label: "Text",
+            disabled: false,
+            component: <Button type='label' text='Tab 1 button' />
+          },
+          {
+            label: "Media",
+            disabled: false,
+            component: <Button type='label' text='Tab 2 button' />
+          },
+          {
+            label: "Poll",
+            disabled: false,
+            component: <Button type='label' text='Tab 3 button' />
+          },
+          {
+            label: "Announcement",
+            disabled: false,
+            component: <Button type='label' text='Tab 4 button' />
+          }
+        ]}
+      />
     </div>
   );
 }
