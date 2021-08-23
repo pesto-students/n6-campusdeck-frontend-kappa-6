@@ -79,7 +79,7 @@ function App() {
           }
         ]}
       /> */}
-      {/* <UserProfile /> */}
+      <UserProfile />
 
       {/* <CreatePost /> */}
     </div>
