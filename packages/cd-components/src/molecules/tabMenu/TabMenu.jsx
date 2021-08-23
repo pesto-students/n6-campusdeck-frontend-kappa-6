@@ -11,7 +11,7 @@ const TabMenu = ({ tabs, callback, centered }) => {
       {tabs &&
         tabs.map((tab, idx) => (
           <TabPane tab={tab.label} disabled={tab.disabled} key={idx + 1}>
-            {tab.component}
+            {tab.content}
           </TabPane>
         ))}
     </Tabs>
