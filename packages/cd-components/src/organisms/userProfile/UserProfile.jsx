@@ -9,13 +9,16 @@ import {
   Users as UsersIcon
 } from "../../atoms/icon";
 import TabMenu from "../../molecules/tabMenu/TabMenu";
-import Post from "../../organisms/post/Post";
 
 // style
 import styles from "./userProfile.module.scss";
-import { completion } from "yargs";
 
 const UserProfile = () => {
+  // this function will fetch posts/comments/saved of user based on the key
+  const fetchContents = key => {
+    console.log(key);
+  };
+
   return (
     <div className={styles.container}>
       <ArrowLeftOutlined className={cx(styles.icon, styles.back_icon)} />
@@ -42,7 +45,34 @@ const UserProfile = () => {
         </div>
       </div>
 
-      <div className={styles.user_content}></div>
+      <div className={styles.user_content}>
+        <TabMenu
+          tabs={[
+            {
+              label: "Posts",
+              disabled: false,
+              content: <span>Posts</span>
+            },
+            {
+              label: "Comments",
+              disabled: false,
+              content: <span>Comments</span>
+            },
+            {
+              label: "Saved",
+              disabled: false,
+              content: <span>Saved</span>
+            }
+          ]}
+          callback={fetchContents}
+          extraContent={{
+            enabled: true,
+            text: "Sort by: ",
+            menuItems: ["Following", "Popular", "New"],
+            handler: ({ key }) => console.log("Handler called", key)
+          }}
+        />
+      </div>
     </div>
   );
 };
