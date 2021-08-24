@@ -7,10 +7,11 @@ import Button from "../../atoms/button/Button";
 import Points from "../../atoms/points/Points";
 import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
 import ContextMenu from "../../molecules/contextMenu/ContextMenu";
+import PostDetails from "../../atoms/postDetails/PostDetails";
+import { compactNumber } from "@cd/base";
 
 //styles
 import styles from "./post.module.scss";
-import PostDetails from "../../atoms/postDetails/PostDetails";
 
 const Post = ({
   title,
@@ -46,7 +47,7 @@ const Post = ({
         className={styles.sidebar}
         onLike={likePost}
         onDislike={dislikePost}
-        points={points}
+        points={compactNumber(points)}
       />
       <div className={styles.header}>
         <div className={styles.post_title}>{title}</div>
