@@ -101,7 +101,7 @@ const CreatePost = () => {
           {
             label: "Media",
             disabled: false,
-            content: TextComponent
+            content: <div>Media</div>
           },
           {
             label: "Poll",
