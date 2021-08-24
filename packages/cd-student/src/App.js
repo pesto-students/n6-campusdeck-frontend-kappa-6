@@ -1,5 +1,14 @@
-import "./App.css";
-import { TabMenu, UserProfile } from "@cd/components";
+import "./App.scss";
+import {
+  Button,
+  Input,
+  LeftSidebar,
+  Post,
+  SpaceDetails,
+  SuggestionCard,
+  TabMenu
+} from "@cd/components";
+import CreatePost from "./pages/createPost";
 
 function App() {
   return (
@@ -79,9 +88,9 @@ function App() {
           }
         ]}
       /> */}
-      <UserProfile />
+      <CreatePost />
 
-      {/* <CreatePost /> */}
+        <UserProfile />
     </div>
   );
 }

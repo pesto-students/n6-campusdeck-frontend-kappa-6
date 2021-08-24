@@ -1,0 +1,55 @@
+@import "./src/styles/variables/font";
+@import "./src/styles/variables/colors";
+@import "./src/styles/variables/general";
+
+.container {
+  // remove below line
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  height: 36.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 0.28rem;
+  padding: 0 0.8rem;
+
+  .title_section {
+    display: flex;
+    justify-content: center;
+    margin: 0.75rem 0;
+
+    .title_input {
+      border: none;
+      outline: none;
+      width: 28rem;
+      font-size: $medium;
+      background: $light-grey;
+      color: $dark-grey;
+      padding: 0.4rem 0.55rem;
+      border-top-left-radius: $normal-border-radius;
+      border-bottom-left-radius: $normal-border-radius;
+    }
+
+    .remaining_chars {
+      width: fit-content;
+      padding: 0.4rem 0.55rem;
+      background: $light-grey;
+      color: $dark-grey;
+      border-top-right-radius: $normal-border-radius;
+      border-bottom-right-radius: $normal-border-radius;
+    }
+  }
+
+  .body {
+    width: 31.65rem;
+    max-height: 18rem;
+    margin-top: 1.5rem;
+  }
+
+  .create_btn {
+    margin: 2rem 11.5rem;
+  }
+}

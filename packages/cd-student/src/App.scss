@@ -1,0 +1,12 @@
+@import "~antd/dist/antd.css";
+
+/* styles related to Quill */
+
+.ql-editor {
+  min-height: 14rem;
+}
+
+.ql-toolbar {
+  display: flex;
+  justify-content: center;
+}

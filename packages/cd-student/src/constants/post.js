@@ -1,0 +1,3 @@
+const POST_TITLE_LIMIT = 300;
+
+export { POST_TITLE_LIMIT };
