@@ -72,27 +72,25 @@ function App() {
         tabs={[
           {
             label: "Text",
-            disabled: false,
-            component: <Button type='label' text='Tab 1 button' />
+            disabled: false
           },
           {
             label: "Media",
-            disabled: false,
-            component: <Button type='label' text='Tab 2 button' />
+            disabled: false
           },
           {
             label: "Poll",
-            disabled: false,
-            component: <Button type='label' text='Tab 3 button' />
+            disabled: false
           },
           {
             label: "Announcement",
-            disabled: false,
-            component: <Button type='label' text='Tab 4 button' />
+            disabled: false
           }
         ]}
       /> */}
       <CreatePost />
+
+        <UserProfile />
     </div>
   );
 }

@@ -8,8 +8,12 @@ import {
   CompassFilled,
   MoreOutlined,
   ArrowUpOutlined,
-  ArrowDownOutlined
+  ArrowDownOutlined,
+  ArrowLeftOutlined,
+  EditFilled
 } from "@ant-design/icons";
+
+import { Users, MapPin } from "react-feather";
 
 export {
   SearchOutlined,
@@ -21,5 +25,9 @@ export {
   CompassFilled,
   MoreOutlined,
   ArrowUpOutlined,
-  ArrowDownOutlined
+  ArrowDownOutlined,
+  ArrowLeftOutlined,
+  EditFilled,
+  Users,
+  MapPin
 };
