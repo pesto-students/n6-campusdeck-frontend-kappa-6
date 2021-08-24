@@ -3,7 +3,12 @@
 @import "./src/styles/variables/general";
 
 .container {
+  // remove below line
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   width: 40%;
   height: 75vh;
   background: rgba(255, 255, 255, 0.85);
@@ -14,7 +19,7 @@
   .title_section {
     display: flex;
     justify-content: center;
-    margin-top: 0.75rem;
+    margin: 0.75rem 0;
 
     .title_input {
       border: none;
@@ -36,5 +41,11 @@
       border-top-right-radius: $normal-border-radius;
       border-bottom-right-radius: $normal-border-radius;
     }
+  }
+
+  .body {
+    width: 31.65rem;
+    max-height: 18rem;
+    margin-top: 1.5rem;
   }
 }

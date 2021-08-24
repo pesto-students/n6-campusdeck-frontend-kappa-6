@@ -43,7 +43,7 @@ const QuillEditor = ({ postData, setPostData }) => {
     };
   }, []);
 
-  return <div className={styles} ref={wrapper}></div>;
+  return <div className={styles.container} ref={wrapper}></div>;
 };
 
 export default QuillEditor;

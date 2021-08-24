@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { TabMenu } from "@cd/components";
 import { POST_TITLE_LIMIT } from "../../constants/post";
+import QuillEditor from "../../organisms/QuillEditor";
 
 // styles
 import styles from "./createPost.module.scss";
@@ -9,7 +10,8 @@ import styles from "./createPost.module.scss";
 const CreatePost = () => {
   const [remainingChars, setRemainingChars] = useState(POST_TITLE_LIMIT);
   const [postData, setPostData] = useState({
-    title: ""
+    title: "",
+    body: "Start typing..."
   });
 
   const validatePost = (val, field) => {
@@ -76,6 +78,13 @@ const CreatePost = () => {
         <div className={styles.remaining_chars}>
           {remainingChars}/{POST_TITLE_LIMIT}
         </div>
+      </div>
+      <div className={styles.body}>
+        <QuillEditor
+          className={styles.body_editor}
+          postData={postData}
+          setPostData={setPostData}
+        />
       </div>
     </div>
   );
