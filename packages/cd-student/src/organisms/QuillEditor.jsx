@@ -8,19 +8,10 @@ import styles from "./quillEditor.module.scss";
 import "quill/dist/quill.snow.css";
 
 const toolbarOptions = [
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-
   ["bold", "italic", "underline", "strike"], // toggled buttons
   [{ list: "ordered" }, { list: "bullet" }],
-  [{ direction: "rtl" }], // text direction
 
-  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  [{ font: [] }],
-  [{ align: [] }],
-
-  ["image", "blockquote", "code-block"],
-  ["clean"] // remove formatting button
+  ["blockquote", "code-block"]
 ];
 
 const QuillEditor = ({ postData, setPostData }) => {
