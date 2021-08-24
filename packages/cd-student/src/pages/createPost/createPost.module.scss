@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
   width: 40%;
-  height: 75vh;
+  height: 36.5rem;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
   border-radius: 0.28rem;
@@ -47,5 +47,9 @@
     width: 31.65rem;
     max-height: 18rem;
     margin-top: 1.5rem;
+  }
+
+  .create_btn {
+    margin: 2rem 11.5rem;
   }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TabMenu } from "@cd/components";
+import { Button, TabMenu } from "@cd/components";
 import { POST_TITLE_LIMIT } from "../../constants/post";
 import QuillEditor from "../../organisms/QuillEditor";
 
@@ -86,6 +86,7 @@ const CreatePost = () => {
           setPostData={setPostData}
         />
       </div>
+      <Button className={styles.create_btn} text='Create' />
     </div>
   );
   return (
@@ -99,7 +100,8 @@ const CreatePost = () => {
           },
           {
             label: "Media",
-            disabled: false
+            disabled: false,
+            component: TextComponent
           },
           {
             label: "Poll",
