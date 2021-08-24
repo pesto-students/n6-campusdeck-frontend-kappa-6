@@ -6,7 +6,8 @@ import {
   Post,
   SpaceDetails,
   SuggestionCard,
-  TabMenu
+  TabMenu,
+  UserProfile
 } from "@cd/components";
 import CreatePost from "./pages/createPost";
 
@@ -90,7 +91,7 @@ function App() {
       /> */}
       <CreatePost />
 
-        <UserProfile />
+      <UserProfile />
     </div>
   );
 }

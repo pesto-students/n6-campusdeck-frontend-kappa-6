@@ -96,12 +96,12 @@ const CreatePost = () => {
           {
             label: "Text",
             disabled: false,
-            component: TextComponent
+            content: TextComponent
           },
           {
             label: "Media",
             disabled: false,
-            component: TextComponent
+            content: TextComponent
           },
           {
             label: "Poll",
