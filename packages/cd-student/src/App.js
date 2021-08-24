@@ -8,6 +8,7 @@ import {
   SuggestionCard,
   TabMenu
 } from "@cd/components";
+import CreatePost from "./pages/createPost";
 
 function App() {
   return (
@@ -67,7 +68,7 @@ function App() {
           }
         ]}
       /> */}
-      <TabMenu
+      {/* <TabMenu
         tabs={[
           {
             label: "Text",
@@ -90,7 +91,8 @@ function App() {
             component: <Button type='label' text='Tab 4 button' />
           }
         ]}
-      />
+      /> */}
+      <CreatePost />
     </div>
   );
 }

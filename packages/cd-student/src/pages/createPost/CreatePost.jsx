@@ -1,6 +1,5 @@
 import { useState } from "react";
-import TabMenu from "../tabMenu/TabMenu";
-import Input from "../../atoms/input/Input";
+import { TabMenu, Input } from "@cd/components";
 
 // styles
 import styles from "./createPost.module.scss";
