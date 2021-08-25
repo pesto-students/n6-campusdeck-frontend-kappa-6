@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import Quill from "quill";
 
 // styles
@@ -43,7 +44,17 @@ const QuillEditor = ({ postData, setPostData }) => {
     };
   }, []);
 
-  return <div className={styles.container} ref={wrapper}></div>;
+  return <div className={styles.container} ref={wrapper} />;
+};
+
+QuillEditor.propTypes = {
+  postData: PropTypes.object,
+  setPostData: PropTypes.func
+};
+
+QuillEditor.defaultProps = {
+  postData: {},
+  setPostData: () => {}
 };
 
 export default QuillEditor;
