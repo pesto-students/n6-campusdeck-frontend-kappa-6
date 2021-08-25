@@ -36,12 +36,13 @@
           font-size: $large;
           color: $dark-grey;
           outline: none;
-          border: 0.05rem solid black;
+          border: 0.05rem solid $medium-grey;
           border-radius: $normal-border-radius;
 
           &:disabled {
             background-color: $light-grey;
             cursor: not-allowed;
+            border: none;
           }
         }
       }
@@ -54,6 +55,7 @@
         font-size: $large;
         color: $dark-grey;
         outline: none;
+        border: 0.05rem solid $medium-grey;
         border-radius: $normal-border-radius;
       }
 
