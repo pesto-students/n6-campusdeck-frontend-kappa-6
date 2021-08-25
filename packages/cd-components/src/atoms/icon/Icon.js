@@ -10,7 +10,8 @@ import {
   ArrowUpOutlined,
   ArrowDownOutlined,
   ArrowLeftOutlined,
-  EditFilled
+  EditFilled,
+  CheckOutlined
 } from "@ant-design/icons";
 
 import { Users, MapPin } from "react-feather";
@@ -29,5 +30,6 @@ export {
   ArrowLeftOutlined,
   EditFilled,
   Users,
-  MapPin
+  MapPin,
+  CheckOutlined
 };

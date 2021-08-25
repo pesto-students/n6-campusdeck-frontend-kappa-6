@@ -12,5 +12,6 @@ export {
   ArrowLeftOutlined,
   EditFilled,
   Users,
-  MapPin
+  MapPin,
+  CheckOutlined
 } from "./Icon";
