@@ -6,6 +6,7 @@ export { default as UserInfo } from "./atoms/userInfo/UserInfo";
 export { default as ProfilePic } from "./atoms/userInfo/assets/defaultProfile.jpg";
 export { default as SpaceStats } from "./atoms/spaceStats/SpaceStats";
 export { default as Banner } from "./atoms/banner/Banner";
+export { default as Footer } from "./atoms/footer/Footer";
 
 // all molecules
 export { default as SuggestionCard } from "./molecules/suggestionCard/SuggestionCard";
