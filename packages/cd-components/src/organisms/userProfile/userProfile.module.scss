@@ -64,9 +64,17 @@
     }
   }
 
+  .action_btns {
+    margin-top: 0.9rem;
+
+    .msg_btn {
+      margin-right: 0.75rem;
+    }
+  }
+
   .user_content {
     position: absolute;
-    top: 12rem;
+    top: 14rem;
     left: 3.5rem;
     width: 80%;
   }

@@ -9,6 +9,7 @@ import {
   Users as UsersIcon
 } from "../../atoms/icon";
 import TabMenu from "../../molecules/tabMenu/TabMenu";
+import Button from "../../atoms/button/Button";
 
 // style
 import styles from "./userProfile.module.scss";
@@ -41,6 +42,14 @@ const UserProfile = () => {
               <UsersIcon className={styles.big_icon} />
               250 Followers
             </span>
+          </div>
+          <div className={styles.action_btns}>
+            <Button className={styles.msg_btn} size='long'>
+              Send message
+            </Button>
+            <Button className={styles.follow_btn} type='skeleton'>
+              Follow
+            </Button>
           </div>
         </div>
       </div>
