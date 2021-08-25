@@ -27,7 +27,7 @@
   height: 50px;
   font-style: normal;
   font-size: 22px;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .label {
@@ -42,6 +42,18 @@
   height: 45px;
   width: 180px;
   font-size: 18px;
+}
+
+.medium {
+  width: 105px;
+  height: 36px;
+}
+
+.long {
+  width: fit-content;
+  height: 36px;
+  padding: 0 0.65rem;
+  font-size: 0.75rem;
 }
 
 .skeleton {
