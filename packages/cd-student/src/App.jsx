@@ -1,22 +1,31 @@
-import "./App.scss";
+import { Suspense, lazy } from "react";
 import {
-  Banner,
-  Button,
-  Input,
-  LeftSidebar,
-  Post,
-  SpaceDetails,
-  SuggestionCard,
-  TabMenu,
-  UserProfile,
-  CompactPost
-} from "@cd/components";
-// import Register from "./pages/register";
-import Login from "./pages/login";
-import CreatePost from "./pages/createPost";
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+
+// styles
+import "./App.scss";
+
+// lazy loading of pages
+const Login = lazy(() => import("./pages/login"));
+const Register = lazy(() => import("./pages/register"));
 
 function App() {
-  return <div>Hello, world</div>;
+  return (
+    <Router>
+      <Switch>
+        {/* TODO: change to a proper loading fallback */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <Route component={() => <Redirect to='/register' />} path='/' exact />
+          <Route component={Login} path='/login' exact />
+          <Route component={Register} path='/register' exact />
+        </Suspense>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
