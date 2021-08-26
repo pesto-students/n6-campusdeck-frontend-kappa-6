@@ -20,7 +20,7 @@ const Login = () => {
             type='password'
             placeholder='Password'
           />
-          <Button className={styles.login_btn} size='long'>
+          <Button className={styles.login_btn} size='large'>
             Login
           </Button>
         </form>

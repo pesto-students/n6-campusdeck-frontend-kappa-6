@@ -11,7 +11,11 @@
     ]
   },
   "scripts": {
-    "start": "lerna exec --scope @cd/student -- yarn start"
+    "start": "lerna exec --scope @cd/student -- yarn start",
+    "lint-student": "lerna exec --scope @cd/student -- yarn lint",
+    "test-student": "lerna exec --scope @cd/student -- yarn test",
+    "test-components": "lerna exec --scope @cd/components -- yarn test",
+    "test-base": "lerna exec --scope @cd/base -- yarn test"
   },
   "dependencies": {
     "sass": "^1.38.0"

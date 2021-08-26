@@ -17,25 +17,16 @@ const CreatePost = () => {
   const validatePost = (val, field) => {
     switch (field) {
       case "title":
-        {
-          if (val.length > POST_TITLE_LIMIT) return false;
-        }
+        if (val.length > POST_TITLE_LIMIT) return false;
         break;
       case "body":
-        {
-        }
         break;
       case "image":
-        {
-        }
         break;
       case "video":
-        {
-        }
         break;
-      default: {
-        // do nothing
-      }
+      default:
+      // do nothing
     }
     return true;
   };
@@ -60,7 +51,7 @@ const CreatePost = () => {
   };
 
   const submit = () => {
-    console.log(postData);
+    // console.log(postData);
   };
 
   const TextComponent = (
@@ -101,7 +92,7 @@ const CreatePost = () => {
           {
             label: "Media",
             disabled: false,
-            content: TextComponent
+            content: <div>Media</div>
           },
           {
             label: "Poll",
