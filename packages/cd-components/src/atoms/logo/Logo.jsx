@@ -18,6 +18,7 @@ const Logo = () => {
   return (
     <div className={styles.container}>
       <img className={styles.img} src={LogoImage} alt='' />
+      <img className={classNames} src={LogoText}></img>
     </div>
   );
 };
