@@ -26,11 +26,11 @@
 
       .input {
         margin: 0.75rem;
-        padding: 0.45rem 0.7rem;
+        padding: 0.45rem 0.65rem;
         font-size: $large;
         color: $dark-grey;
         outline: none;
-        border: 0.05rem solid black;
+        border: 0.05rem solid $medium-grey;
         border-radius: $normal-border-radius;
       }
 
