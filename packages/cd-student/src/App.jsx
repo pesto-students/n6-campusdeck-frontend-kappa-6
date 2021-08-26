@@ -5,7 +5,6 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { Navbar } from "@cd/components";
 
 // styles
 import "./App.scss";
@@ -20,7 +19,6 @@ const Register = lazy(() => import("./pages/register"));
 function App() {
   return (
     <Router>
-      <Navbar />
       <Switch>
         {/* TODO: change to a proper loading fallback */}
         <Suspense fallback={<div>Loading...</div>}>
