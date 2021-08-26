@@ -1,5 +1,6 @@
 import { BellFilled } from "../../atoms/icon";
 
+// styles
 import styles from "./actionIcons.module.scss";
 
 const ActionIcons = () => {
