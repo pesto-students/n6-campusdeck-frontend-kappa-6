@@ -1,12 +1,11 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import { Tabs } from "antd";
-const { TabPane } = Tabs;
-
-import ContextMenu from "../../molecules/contextMenu/ContextMenu";
+import ContextMenu from "../contextMenu/ContextMenu";
 
 // styles
 import styles from "./tabMenu.module.scss";
+
+const { TabPane } = Tabs;
 
 const TabMenu = ({ tabs, callback, centered, extraContent }) => {
   return (
@@ -36,7 +35,7 @@ const TabMenu = ({ tabs, callback, centered, extraContent }) => {
 };
 
 TabMenu.propTypes = {
-  tabs: PropTypes.array.isRequired,
+  tabs: PropTypes.array,
   callback: PropTypes.func,
   centered: PropTypes.bool,
   extraContent: PropTypes.object

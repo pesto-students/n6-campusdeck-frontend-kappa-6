@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { ProfilePic } from "../..";
 
-//styles
+// styles
 import styles from "./authorDetails.module.scss";
 
 const AuthorDetails = ({ authorName, authorPic }) => {
   return (
     <div className={styles.container}>
-      <img className={styles.img} src={authorPic} />
+      <img className={styles.img} src={authorPic} alt={authorName} />
       <div className={styles.credit}>
         Created by <span style={{ color: "blue" }}>{authorName}</span>
       </div>

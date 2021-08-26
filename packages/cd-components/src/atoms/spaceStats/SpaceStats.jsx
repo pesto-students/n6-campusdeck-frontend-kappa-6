@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
+
 // styles
 import styles from "./spaceStats.module.css";
-
-import { useState } from "react";
 
 const SpaceStats = ({ numOfPosts, followers, numOfUsers }) => {
   return (
@@ -21,5 +21,13 @@ const SpaceStats = ({ numOfPosts, followers, numOfUsers }) => {
     </div>
   );
 };
+
+SpaceStats.propTypes = {
+  numOfPosts: PropTypes.number.isRequired,
+  followers: PropTypes.number.isRequired,
+  numOfUsers: PropTypes.number.isRequired
+};
+
+SpaceStats.defaultProps = {};
 
 export default SpaceStats;

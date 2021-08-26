@@ -1,10 +1,10 @@
 import cx from "classnames";
 
-import LogoImage from "./assets/logoImage.png";
-import LogoText from "./assets/logoText.png";
-
 // utility
 import { isMobile } from "@cd/base";
+
+import LogoImage from "./assets/logoImage.png";
+import LogoText from "./assets/logoText.png";
 
 // styles
 import styles from "./logo.module.scss";
@@ -17,8 +17,7 @@ const Logo = () => {
 
   return (
     <div className={styles.container}>
-      <img className={styles.img} src={LogoImage}></img>
-      <img className={classNames} src={LogoText}></img>
+      <img className={styles.img} src={LogoImage} alt='' />
     </div>
   );
 };

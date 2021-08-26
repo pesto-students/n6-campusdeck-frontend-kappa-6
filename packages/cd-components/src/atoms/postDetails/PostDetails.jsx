@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // styles
 import styles from "./postDetails.module.scss";
 
-import { CommentOutlined } from "../../atoms/icon/Icon";
+import { CommentOutlined } from "../icon/Icon";
 
 const PostDetails = ({ time, totalComments }) => {
   return (
@@ -20,11 +20,6 @@ const PostDetails = ({ time, totalComments }) => {
 PostDetails.propTypes = {
   time: PropTypes.string.isRequired,
   totalComments: PropTypes.number.isRequired
-};
-
-PostDetails.defaultProps = {
-  time: undefined,
-  totalComments: 0
 };
 
 export default PostDetails;

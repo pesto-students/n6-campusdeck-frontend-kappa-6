@@ -30,7 +30,11 @@ const SpaceDetails = ({
         numOfUsers={numOfUsers}
       />
       <div className={styles.card_footer}>
-        <img className={styles.creator_img} src={creatorPic} />
+        <img
+          className={styles.creator_img}
+          src={creatorPic}
+          alt={creatorName}
+        />
         <div className={styles.credit}>
           Created by <span style={{ color: "blue" }}>{creatorName}</span>
         </div>

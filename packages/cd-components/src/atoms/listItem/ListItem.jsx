@@ -7,7 +7,7 @@ import styles from "./listItem.module.scss";
 const ListItem = ({ image, name, metric }) => {
   return (
     <div className={styles.container}>
-      <img className={styles.img} src={SpaceImage}></img>
+      <img className={styles.img} src={SpaceImage} alt={name} />
       <div className={styles.name}>{name}</div>
       <span className={styles.metric}>{metric}</span>
     </div>
@@ -21,9 +21,7 @@ ListItem.propTypes = {
 };
 
 ListItem.defaultProps = {
-  image: SpaceImage,
-  name: undefined,
-  metric: undefined
+  image: SpaceImage
 };
 
 export default ListItem;

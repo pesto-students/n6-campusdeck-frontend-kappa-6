@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
-import { ArrowUpOutlined, ArrowDownOutlined } from "../../atoms/icon";
+import { ArrowUpOutlined, ArrowDownOutlined } from "../icon";
 
-//styles
+// styles
 import styles from "./points.module.scss";
 
 const Points = ({ points }) => {

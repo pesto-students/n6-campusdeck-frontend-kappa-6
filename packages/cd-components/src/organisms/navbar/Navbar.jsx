@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import Logo from "../../atoms/logo/Logo";
 import UserInfo from "../../atoms/userInfo/UserInfo";
 import SearchBox from "../../molecules/searchBox/SearchBox";
