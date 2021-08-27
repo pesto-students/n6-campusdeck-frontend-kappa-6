@@ -10,6 +10,7 @@ import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
 import ContextMenu from "../../molecules/contextMenu/ContextMenu";
 import PostDetails from "../../atoms/postDetails/PostDetails";
 import { compactNumber } from "@cd/base";
+import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
 
 //styles
 import styles from "./post.module.scss";
@@ -40,7 +41,10 @@ const Post = ({
   const bodyContent = isExpanded
     ? rawContent
     : _truncate(rawContent, {
-        length: 500
+        length:
+          size === "full"
+            ? POST_LIMITS_BODY_TRUNCATE.FULL
+            : POST_LIMITS_BODY_TRUNCATE.COMPACT
       });
 
   const containerClassName = cx({

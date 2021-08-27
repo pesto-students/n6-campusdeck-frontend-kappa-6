@@ -11,6 +11,8 @@ import "./App.scss";
 
 // routes
 import Home from "./pages/home";
+import UserProfile from "./pages/userProfile/UserProfile";
+import Base from "./Base";
 
 // lazy loading of pages
 const Login = lazy(() => import("./pages/login"));
@@ -22,9 +24,26 @@ function App() {
       <Switch>
         {/* TODO: change to a proper loading fallback */}
         <Suspense fallback={<div>Loading...</div>}>
-          <Route component={Home} path='/' exact />
+          <Route
+            component={() => (
+              <Base>
+                <Home />
+              </Base>
+            )}
+            path='/'
+            exact
+          />
           <Route component={Login} path='/login' exact />
           <Route component={Register} path='/register' exact />
+          <Route
+            component={() => (
+              <Base>
+                <UserProfile />
+              </Base>
+            )}
+            path='/profile'
+            exact
+          />
         </Suspense>
       </Switch>
     </Router>

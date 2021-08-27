@@ -10,11 +10,12 @@ import {
 } from "../../atoms/icon";
 import TabMenu from "../../molecules/tabMenu/TabMenu";
 import Button from "../../atoms/button/Button";
+import Post from "../../organisms/post/Post";
 
 // style
-import styles from "./userProfile.module.scss";
+import styles from "./profileCard.module.scss";
 
-const UserProfile = () => {
+const ProfileCard = ({ postList, commentList, savedList }) => {
   // this function will fetch posts/comments/saved of user based on the key
   const fetchContents = key => {
     console.log(key);
@@ -60,7 +61,23 @@ const UserProfile = () => {
             {
               label: "Posts",
               disabled: false,
-              content: <span>Posts</span>
+              content: (
+                <div style={{ marginLeft: "-1.5rem" }}>
+                  {postList.length > 0 &&
+                    postList.map(post => (
+                      <Post
+                        title={post.title}
+                        label={post.label}
+                        rawContent={post.rawContent}
+                        points={post.points}
+                        time={post.time}
+                        totalComments={post.totalComments}
+                        authorName={post.authorName}
+                        size='compact'
+                      />
+                    ))}
+                </div>
+              )
             },
             {
               label: "Comments",
@@ -70,7 +87,23 @@ const UserProfile = () => {
             {
               label: "Saved",
               disabled: false,
-              content: <span>Saved</span>
+              content: (
+                <div style={{ marginLeft: "-1.5rem" }}>
+                  {savedList.length > 0 &&
+                    savedList.map(post => (
+                      <Post
+                        title={post.title}
+                        label={post.label}
+                        rawContent={post.rawContent}
+                        points={post.points}
+                        time={post.time}
+                        totalComments={post.totalComments}
+                        authorName={post.authorName}
+                        size='compact'
+                      />
+                    ))}
+                </div>
+              )
             }
           ]}
           callback={fetchContents}
@@ -86,4 +119,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default ProfileCard;

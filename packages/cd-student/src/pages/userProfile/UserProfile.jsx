@@ -1,19 +1,10 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import {
-  Button,
-  ContextMenu,
-  Footer,
-  LeftSidebar,
-  Post,
-  SuggestionCard,
-  Navbar
-} from "@cd/components";
+import { ProfileCard, Navbar, LeftSidebar } from "@cd/components";
 
 // styles
-import styles from "./home.module.scss";
+import styles from "./userProfile.module.scss";
 
-const Home = () => {
+const UserProfile = () => {
   const [posts, setPosts] = useState([
     {
       title: "Lorem ipsum dolor sit amet?",
@@ -23,7 +14,8 @@ const Home = () => {
       points: "4723",
       time: "2 days ago",
       totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
+      authorName: "Pushpak Bhattacharya",
+      size: "compact"
     },
     {
       title: "Lorem ipsum dolor sit amet?",
@@ -33,62 +25,33 @@ const Home = () => {
       points: "4723",
       time: "2 days ago",
       totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
-    },
-    {
-      title: "Lorem ipsum dolor sit amet?",
-      label: "Question",
-      rawContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
-      points: "4723",
-      time: "2 days ago",
-      totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
-    },
-    {
-      title: "Lorem ipsum dolor sit amet?",
-      label: "Question",
-      rawContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
-      points: "4723",
-      time: "2 days ago",
-      totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
+      authorName: "Pushpak Bhattacharya",
+      size: "compact"
     }
   ]);
-
-  const updatePosts = ({ key }) => {
-    alert(`post update handler: ${key}`);
-  };
-
+  const [comments, setComments] = useState([]);
+  const [savedItems, setSavedItems] = useState([
+    {
+      title: "Lorem ipsum dolor sit amet?",
+      label: "Question",
+      rawContent:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
+      points: "4723",
+      time: "2 days ago",
+      totalComments: "100+",
+      authorName: "Pushpak Bhattacharya",
+      size: "compact"
+    }
+  ]);
   return (
     <>
-      <div className={styles.main_section}>
-        <ContextMenu
-          items={["Following", "Popularity", "New"]}
-          handler={updatePosts}
-        >
-          <span className={styles.sort_option}>Sort by: </span>
-        </ContextMenu>
-        <div className={styles.post_container}>
-          {posts.length &&
-            posts.map((post, idx) => (
-              <div className={styles.post}>
-                <Post
-                  title={post.title}
-                  label={post.label}
-                  points={post.points}
-                  rawContent={post.rawContent}
-                  time={post.time}
-                  totalComments={post.totalComments}
-                  authorName={post.authorName}
-                />
-              </div>
-            ))}
-        </div>
-      </div>
+      <ProfileCard
+        postList={posts}
+        commentList={comments}
+        savedList={savedItems}
+      />
     </>
   );
 };
 
-export default Home;
+export default UserProfile;

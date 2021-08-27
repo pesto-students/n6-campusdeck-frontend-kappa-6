@@ -18,7 +18,7 @@ export { default as TabMenu } from "./molecules/tabMenu/TabMenu";
 export { default as Navbar } from "./organisms/navbar/Navbar";
 export { default as Post } from "./organisms/post/Post";
 export { default as SpaceDetails } from "./organisms/spaceDetails/SpaceDetails";
-export { default as UserProfile } from "./organisms/userProfile/UserProfile";
+export { default as ProfileCard } from "./organisms/profileCard/ProfileCard";
 
 // all constants
 export { default as POST_TYPES } from "./organisms/post/constants/post.types";
