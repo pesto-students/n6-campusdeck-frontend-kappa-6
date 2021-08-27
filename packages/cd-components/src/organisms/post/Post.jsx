@@ -22,7 +22,8 @@ const Post = ({
   time,
   totalComments,
   authorName,
-  authorPic
+  authorPic,
+  size
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -54,8 +55,11 @@ const Post = ({
         <Button className={styles.label} type='label'>
           {label}
         </Button>
-        <ContextMenu>
-          <MoreOutlined className={styles.more} />
+        <ContextMenu items={["Save", "Report", "Delete"]}>
+          <MoreOutlined
+            className={styles.more}
+            style={{ fontSize: "1.2rem" }}
+          />
         </ContextMenu>
       </div>
       <div className={styles.content}>
