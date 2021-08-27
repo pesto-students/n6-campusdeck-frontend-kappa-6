@@ -13,5 +13,6 @@ export {
   EditFilled,
   Users,
   MapPin,
-  CheckOutlined
+  CheckOutlined,
+  InfoCircleFilled
 } from "./Icon";

@@ -7,6 +7,24 @@ export { default as ProfilePic } from "./atoms/userInfo/assets/defaultProfile.jp
 export { default as SpaceStats } from "./atoms/spaceStats/SpaceStats";
 export { default as Banner } from "./atoms/banner/Banner";
 export { default as Footer } from "./atoms/footer/Footer";
+export {
+  SearchOutlined,
+  BellFilled,
+  CommentOutlined,
+  HomeFilled,
+  GlobalOutlined,
+  UserOutlined,
+  CompassFilled,
+  MoreOutlined,
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+  ArrowLeftOutlined,
+  EditFilled,
+  Users,
+  MapPin,
+  CheckOutlined,
+  InfoCircleFilled
+} from "./atoms/icon/Icon";
 
 // all molecules
 export { default as SuggestionCard } from "./molecules/suggestionCard/SuggestionCard";

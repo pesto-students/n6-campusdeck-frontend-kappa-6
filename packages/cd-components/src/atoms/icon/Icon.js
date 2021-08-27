@@ -11,7 +11,8 @@ import {
   ArrowDownOutlined,
   ArrowLeftOutlined,
   EditFilled,
-  CheckOutlined
+  CheckOutlined,
+  InfoCircleFilled
 } from "@ant-design/icons";
 
 import { Users, MapPin } from "react-feather";
@@ -31,5 +32,6 @@ export {
   EditFilled,
   Users,
   MapPin,
-  CheckOutlined
+  CheckOutlined,
+  InfoCircleFilled
 };
