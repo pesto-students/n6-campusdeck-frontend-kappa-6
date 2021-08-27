@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   ContextMenu,
@@ -56,6 +57,8 @@ const Home = () => {
     }
   ]);
 
+  const history = useHistory();
+
   const updatePosts = ({ key }) => {
     alert(`post update handler: ${key}`);
   };
@@ -65,7 +68,7 @@ const Home = () => {
       <Navbar />
       <div className={styles.container}>
         <div className={styles.left_sidebar}>
-          <LeftSidebar />
+          <LeftSidebar history={history} />
           <div className={styles.spaces_section}>
             <div className={styles.my_spaces_heading}>My Spaces</div>
             <div className={styles.spaces_list}>

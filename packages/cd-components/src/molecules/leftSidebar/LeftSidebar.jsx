@@ -12,19 +12,19 @@ import MenuItem from "../menuItem/MenuItem";
 // styles
 import styles from "./leftSidebar.module.scss";
 
-const LeftSidebar = () => {
+const LeftSidebar = ({ history }) => {
   return (
     <div className={styles.container}>
-      <MenuItem active label='Home' destination='/'>
+      <MenuItem active label='Home' destination='/' history={history}>
         <HomeFilled />
       </MenuItem>
-      <MenuItem label='Global Feed' destination='/global'>
+      <MenuItem label='Global Feed' destination='/global' history={history}>
         <GlobalOutlined />
       </MenuItem>
-      <MenuItem label='My Profile' destination='/profile'>
+      <MenuItem label='My Profile' destination='/profile' history={history}>
         <UserOutlined />
       </MenuItem>
-      <MenuItem label='Explore' destination='/explore'>
+      <MenuItem label='Explore' destination='/explore' history={history}>
         <CompassFilled />
       </MenuItem>
     </div>
