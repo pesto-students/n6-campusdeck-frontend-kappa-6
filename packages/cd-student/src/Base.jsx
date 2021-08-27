@@ -39,7 +39,12 @@ const Base = ({ children }) => {
 
         <div className={styles.right_sidebar}>
           <div className={styles.btns_container}>
-            <Button className={styles.btn} type='add' size='long'>
+            <Button
+              onClick={() => history.push("/create/post")}
+              className={styles.btn}
+              type='add'
+              size='long'
+            >
               Add a new post
             </Button>
             <Button className={styles.btn} type='add' size='long'>
