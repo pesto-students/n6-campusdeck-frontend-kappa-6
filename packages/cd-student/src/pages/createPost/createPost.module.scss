@@ -67,6 +67,22 @@
     margin-top: 1.5rem;
   }
 
+  .post_labels {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    .label {
+      margin-right: 2rem;
+    }
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    // border: 1px solid black;
+    padding: 0.35rem 0;
+  }
+
   .create_btn {
     margin: 2rem 11.5rem;
   }

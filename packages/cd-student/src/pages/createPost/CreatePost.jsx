@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Tooltip } from "antd";
 
-import { Button, TabMenu } from "@cd/components";
+import { Button, TabMenu, InfoCircleFilled } from "@cd/components";
 import { POST_TITLE_LIMIT } from "../../constants/post";
 import QuillEditor from "../../organisms/QuillEditor";
 
@@ -77,6 +78,25 @@ const CreatePost = () => {
           setPostData={setPostData}
         />
       </div>
+
+      <div className={styles.post_labels}>
+        <Button className={styles.label} text='Info' size='long' />
+        <Button className={styles.label} text='React' size='long' />
+        <Button className={styles.label} text='Urgent' size='long' />
+      </div>
+      <div className={styles.options}>
+        <label htmlFor='accessibility'>
+          <input type='checkbox' id='accessibility' />
+          <span style={{ marginLeft: "0.5rem" }}>Make this a public post?</span>
+        </label>
+        <Tooltip
+          title='Selecting this option will make this post visible to anyone who accesses the space.'
+          placement='right'
+          key='geekblue'
+        >
+          <InfoCircleFilled style={{ marginLeft: "0.3rem" }} />
+        </Tooltip>
+      </div>
       <Button className={styles.create_btn} text='Create' />
     </>
   );
@@ -86,6 +106,8 @@ const CreatePost = () => {
         <div className={styles.create_post_label}>Create Post</div>
         <select className={styles.space_selector}>
           <option>Choose a space</option>
+          <option>Fests</option>
+          <option>Random</option>
         </select>
       </div>
       <div className={styles.content}>
