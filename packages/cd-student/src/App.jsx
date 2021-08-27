@@ -11,7 +11,8 @@ import "./App.scss";
 
 // routes
 import Home from "./pages/home";
-import UserProfile from "./pages/userProfile/UserProfile";
+import UserProfile from "./pages/userProfile";
+import CreatePost from "./pages/createPost";
 import Base from "./Base";
 
 // lazy loading of pages
@@ -42,6 +43,15 @@ function App() {
               </Base>
             )}
             path='/profile'
+            exact
+          />
+          <Route
+            component={() => (
+              <Base>
+                <CreatePost />
+              </Base>
+            )}
+            path='/create/post'
             exact
           />
         </Suspense>

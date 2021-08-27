@@ -55,7 +55,7 @@ const CreatePost = () => {
   };
 
   const TextComponent = (
-    <div>
+    <>
       <div className={styles.title_section}>
         <input
           className={styles.title_input}
@@ -78,33 +78,41 @@ const CreatePost = () => {
         />
       </div>
       <Button className={styles.create_btn} text='Create' />
-    </div>
+    </>
   );
   return (
     <div className={styles.container}>
-      <TabMenu
-        tabs={[
-          {
-            label: "Text",
-            disabled: false,
-            content: TextComponent
-          },
-          {
-            label: "Media",
-            disabled: false,
-            content: <div>Media</div>
-          },
-          {
-            label: "Poll",
-            disabled: true
-          },
-          {
-            label: "Announcement",
-            disabled: true
-          }
-        ]}
-        centered={true}
-      />
+      <div className={styles.header}>
+        <div className={styles.create_post_label}>Create Post</div>
+        <select className={styles.space_selector}>
+          <option>Choose a space</option>
+        </select>
+      </div>
+      <div className={styles.content}>
+        <TabMenu
+          tabs={[
+            {
+              label: "Text",
+              disabled: false,
+              content: TextComponent
+            },
+            {
+              label: "Media",
+              disabled: false,
+              content: <div>Media</div>
+            },
+            {
+              label: "Poll",
+              disabled: true
+            },
+            {
+              label: "Announcement",
+              disabled: true
+            }
+          ]}
+          centered={true}
+        />
+      </div>
     </div>
   );
 };

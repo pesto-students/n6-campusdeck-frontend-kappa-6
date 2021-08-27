@@ -36,12 +36,6 @@ const QuillEditor = ({ postData, setPostData }) => {
 
     // set quill instance to the local state
     setQuill(q);
-
-    // before unmount
-    return () => {
-      // remove the quill editor
-      wrapper.current.innerHTML = "";
-    };
   }, []);
 
   return <div className={styles.container} ref={wrapper} />;

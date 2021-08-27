@@ -3,18 +3,36 @@
 @import "./src/styles/variables/general";
 
 .container {
-  // remove below line
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 40%;
-  height: 36.5rem;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
-  border-radius: 0.28rem;
-  padding: 0 0.8rem;
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 6.5rem;
+
+    .create_post_label {
+      font-size: $xl;
+      font-weight: 600;
+      color: $dark-grey;
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+    }
+    .space_selector {
+      padding: 0.5rem;
+    }
+  }
+
+  .content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 39.4rem;
+    height: 36.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 0.28rem;
+    padding: 0 0.8rem;
+  }
 
   .title_section {
     display: flex;
@@ -44,7 +62,7 @@
   }
 
   .body {
-    width: 31.65rem;
+    width: 32.2rem;
     max-height: 18rem;
     margin-top: 1.5rem;
   }
