@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import _truncate from "lodash/truncate";
+import cx from "classnames";
 
 import { MoreOutlined } from "../../atoms/icon/Icon";
 import Button from "../../atoms/button/Button";
@@ -42,34 +43,50 @@ const Post = ({
         length: 500
       });
 
+  const containerClassName = cx({
+    [styles.container]: size === "full",
+    [styles.compact_container]: size === "compact"
+  });
+
   return (
-    <div className={styles.container}>
-      <Points
-        className={styles.sidebar}
-        onLike={likePost}
-        onDislike={dislikePost}
-        points={compactNumber(points)}
-      />
-      <div className={styles.header}>
-        <div className={styles.post_title}>{title}</div>
-        <Button className={styles.label} type='label'>
-          {label}
-        </Button>
-        <ContextMenu items={["Save", "Report", "Delete"]}>
-          <MoreOutlined
-            className={styles.more}
-            style={{ fontSize: "1.2rem" }}
-          />
-        </ContextMenu>
+    <div className={containerClassName}>
+      <div className={styles.points}>
+        <Points
+          onLike={likePost}
+          onDislike={dislikePost}
+          points={compactNumber(points)}
+        />
       </div>
-      <div className={styles.content}>
-        <div className={styles.post_body} onClick={toggleBody}>
-          {bodyContent}
+      <div className={styles.body}>
+        <div className={styles.header}>
+          <div className={styles.post_title}>{title}</div>
+          <Button className={styles.label} type='label'>
+            {label}
+          </Button>
+          {size === "full" ? (
+            <ContextMenu items={["Save", "Report", "Delete"]}>
+              <MoreOutlined
+                className={styles.more}
+                style={{ fontSize: "1.2rem" }}
+              />
+            </ContextMenu>
+          ) : (
+            <PostDetails time={time} totalComments={totalComments} />
+          )}
         </div>
-        <div className={styles.separator}></div>
-        <div className={styles.footer}>
-          <AuthorDetails authorName={authorName} authorPic={authorPic} />
-          <PostDetails time={time} totalComments={totalComments} />
+        <div className={styles.content}>
+          <div className={styles.post_body} onClick={toggleBody}>
+            {bodyContent}
+          </div>
+          <div className={styles.separator}></div>
+          <div
+            className={cx(styles.footer, {
+              [styles.hidden]: size === "compact"
+            })}
+          >
+            <AuthorDetails authorName={authorName} authorPic={authorPic} />
+            <PostDetails time={time} totalComments={totalComments} />
+          </div>
         </div>
       </div>
     </div>
@@ -84,12 +101,14 @@ Post.propTypes = {
   time: PropTypes.string.isRequired,
   totalComments: PropTypes.number,
   authorName: PropTypes.string.isRequired,
-  authorPic: PropTypes.string
+  authorPic: PropTypes.string,
+  size: PropTypes.string
 };
 
 Post.defaultProps = {
   label: undefined,
-  totalComments: 0
+  totalComments: 0,
+  size: "full"
 };
 
 export default Post;
