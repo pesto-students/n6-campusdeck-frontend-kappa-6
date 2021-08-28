@@ -10,12 +10,13 @@ import {
   ArrowUpOutlined,
   ArrowDownOutlined,
   ArrowLeftOutlined,
+  ArrowRightOutlined,
   EditFilled,
   CheckOutlined,
   InfoCircleFilled
 } from "@ant-design/icons";
 
-import { Users, MapPin } from "react-feather";
+import { Users, MapPin, BarChart2 } from "react-feather";
 
 export {
   SearchOutlined,
@@ -29,9 +30,11 @@ export {
   ArrowUpOutlined,
   ArrowDownOutlined,
   ArrowLeftOutlined,
+  ArrowRightOutlined,
   EditFilled,
   Users,
   MapPin,
   CheckOutlined,
-  InfoCircleFilled
+  InfoCircleFilled,
+  BarChart2
 };
