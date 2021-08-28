@@ -1,16 +1,16 @@
 .container {
   display: flex;
-  padding: 2px;
+  align-items: center;
 }
 
 .img {
-  width: 17px;
-  height: 18px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .credit {
-  font-size: 14px;
-  margin-left: 6px;
-  margin-top: 3px;
+  font-size: 0.83rem;
+  margin-left: 0.4rem;
   color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
 }
