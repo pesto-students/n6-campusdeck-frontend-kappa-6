@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Base from "./Base";
 
+// pages
+import Spaces from "./pages/spaces";
+
 // styles
 import "./App.scss";
 
@@ -12,10 +15,10 @@ function App() {
         <Route
           component={() => (
             <Base>
-              <div>Hello, world</div>
+              <Spaces />
             </Base>
           )}
-          path='/'
+          path='/spaces'
           exact
         />
       </Switch>
