@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "lerna exec --scope @cd/student -- yarn start",
+    "start-campus": "lerna exec --scope @cd/campus -- yarn start",
     "lint-student": "lerna exec --scope @cd/student -- yarn lint",
     "lint-components": "lerna exec --scope @cd/components -- yarn lint",
     "lint-base": "lerna exec --scope @cd/base -- yarn lint",
