@@ -8,7 +8,11 @@ import {
   LeftSidebar,
   SuggestionCard,
   Navbar,
-  BUTTON_SIZE
+  BUTTON_SIZE,
+  HomeFilled,
+  GlobalOutlined,
+  UserOutlined,
+  CompassFilled
 } from "@cd/components";
 
 // styles
@@ -50,7 +54,35 @@ const Base = ({ children }) => {
       <Navbar />
       <div className={styles.container}>
         <div className={styles.left_sidebar}>
-          <LeftSidebar onClick={onClick} />
+          <LeftSidebar
+            onClick={onClick}
+            links={[
+              {
+                label: "Home",
+                destination: "/",
+                isActive: true,
+                icon: <HomeFilled />
+              },
+              {
+                label: "Global Feed",
+                destination: "/global",
+                isActive: false,
+                icon: <GlobalOutlined />
+              },
+              {
+                label: "My Profile",
+                destination: "/profile",
+                isActive: false,
+                icon: <UserOutlined />
+              },
+              {
+                label: "Explore",
+                destination: "/explore",
+                isActive: false,
+                icon: <CompassFilled />
+              }
+            ]}
+          />
           <div className={styles.spaces_section}>
             <div className={styles.my_spaces_heading}>My Spaces</div>
             <div className={styles.spaces_list}>
