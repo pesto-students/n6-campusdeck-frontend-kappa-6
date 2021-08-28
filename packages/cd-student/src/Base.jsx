@@ -17,12 +17,17 @@ import styles from "./Base.module.scss";
 const Base = ({ children }) => {
   const history = useHistory();
 
+  // navigate to given page
+  const onClick = destination => {
+    history.push(destination);
+  };
+
   return (
     <>
       <Navbar />
       <div className={styles.container}>
         <div className={styles.left_sidebar}>
-          <LeftSidebar history={history} />
+          <LeftSidebar onClick={onClick} />
           <div className={styles.spaces_section}>
             <div className={styles.my_spaces_heading}>My Spaces</div>
             <div className={styles.spaces_list}>
