@@ -1,3 +1,4 @@
+import { Tooltip } from "antd";
 import { BellFilled } from "../../atoms/icon";
 
 // styles
@@ -6,7 +7,9 @@ import styles from "./actionIcons.module.scss";
 const ActionIcons = () => {
   return (
     <div className={styles.container}>
-      <BellFilled className={styles.icon} />
+      <Tooltip placement='bottom' title='Notifications'>
+        <BellFilled className={styles.icon} />
+      </Tooltip>
     </div>
   );
 };

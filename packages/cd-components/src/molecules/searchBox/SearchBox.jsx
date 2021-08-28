@@ -1,7 +1,4 @@
-import PropTypes from "prop-types";
-
 import Input from "../../atoms/input/Input";
-// TODO: change this to a modular import
 import { SearchOutlined } from "../../atoms/icon";
 
 // styles
