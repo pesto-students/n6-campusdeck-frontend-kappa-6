@@ -40,3 +40,5 @@ export { default as ProfileCard } from "./organisms/profileCard/ProfileCard";
 
 // all constants
 export { default as POST_TYPES } from "./organisms/post/constants/post.types";
+export { default as BUTTON_SIZE } from "./atoms/button/constants/button.size";
+export { default as BUTTON_TYPE } from "./atoms/button/constants/button.types";

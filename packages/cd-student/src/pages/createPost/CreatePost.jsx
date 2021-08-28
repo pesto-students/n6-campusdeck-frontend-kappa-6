@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Tooltip } from "antd";
 
-import { Button, TabMenu, InfoCircleFilled } from "@cd/components";
+import { Button, TabMenu, InfoCircleFilled, BUTTON_SIZE } from "@cd/components";
 import { POST_TITLE_LIMIT } from "../../constants/post";
 import QuillEditor from "../../organisms/QuillEditor";
 
@@ -78,9 +78,21 @@ const CreatePost = () => {
       </div>
 
       <div className={styles.post_labels}>
-        <Button className={styles.label} text='Info' size='medium' />
-        <Button className={styles.label} text='React' size='medium' />
-        <Button className={styles.label} text='Urgent' size='medium' />
+        <Button
+          className={styles.label}
+          text='Info'
+          size={BUTTON_SIZE.MEDIUM}
+        />
+        <Button
+          className={styles.label}
+          text='React'
+          size={BUTTON_SIZE.MEDIUM}
+        />
+        <Button
+          className={styles.label}
+          text='Urgent'
+          size={BUTTON_SIZE.MEDIUM}
+        />
       </div>
       <div className={styles.options}>
         <label htmlFor='accessibility'>
@@ -95,7 +107,11 @@ const CreatePost = () => {
           <InfoCircleFilled style={{ marginLeft: "0.3rem" }} />
         </Tooltip>
       </div>
-      <Button className={styles.create_btn} text='Create' size='large' />
+      <Button
+        className={styles.create_btn}
+        text='Create'
+        size={BUTTON_SIZE.LARGE}
+      />
     </>
   );
   return (

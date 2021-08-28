@@ -1,4 +1,4 @@
-import { Banner, Button } from "@cd/components";
+import { Banner, Button, BUTTON_SIZE } from "@cd/components";
 
 // style
 import styles from "./register.module.scss";
@@ -36,7 +36,7 @@ const Register = () => {
             className={styles.about_me}
             placeholder='Write a bit about yourself'
           />
-          <Button className={styles.login_btn} size='large'>
+          <Button className={styles.login_btn} size={BUTTON_SIZE.LARGE}>
             Register
           </Button>
         </form>

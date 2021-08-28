@@ -11,6 +11,7 @@ import {
 import TabMenu from "../../molecules/tabMenu/TabMenu";
 import Button from "../../atoms/button/Button";
 import Post from "../../organisms/post/Post";
+import { BUTTON_TYPE } from "@cd/components";
 
 // style
 import styles from "./profileCard.module.scss";
@@ -45,10 +46,10 @@ const ProfileCard = ({ postList, commentList, savedList }) => {
             </span>
           </div>
           <div className={styles.action_btns}>
-            <Button className={styles.msg_btn} type='regular'>
+            <Button className={styles.msg_btn} type={BUTTON_TYPE.REGULAR}>
               Send message
             </Button>
-            <Button className={styles.follow_btn} type='skeleton'>
+            <Button className={styles.follow_btn} type={BUTTON_TYPE.SKELETON}>
               Follow
             </Button>
           </div>

@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 import { Modal } from "antd";
 import {
   Button,
-  ContextMenu,
   Footer,
   LeftSidebar,
-  Post,
   SuggestionCard,
-  Navbar
+  Navbar,
+  BUTTON_SIZE
 } from "@cd/components";
 
 // styles
@@ -71,12 +70,11 @@ const Base = ({ children }) => {
             <Button
               onClick={showModal}
               className={styles.btn}
-              type='regular'
-              size='xl'
+              size={BUTTON_SIZE.XL}
             >
               + Add a new post
             </Button>
-            <Button className={styles.btn} type='regular' size='xl'>
+            <Button className={styles.btn} size={BUTTON_SIZE.XL}>
               + Add a new space
             </Button>
           </div>

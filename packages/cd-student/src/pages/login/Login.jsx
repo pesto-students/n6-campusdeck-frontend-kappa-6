@@ -1,4 +1,4 @@
-import { Banner, Button } from "@cd/components";
+import { Banner, Button, BUTTON_SIZE } from "@cd/components";
 
 // styles
 import styles from "./login.module.scss";
@@ -20,7 +20,7 @@ const Login = () => {
             type='password'
             placeholder='Password'
           />
-          <Button className={styles.login_btn} size='large'>
+          <Button className={styles.login_btn} size={BUTTON_SIZE.LARGE}>
             Login
           </Button>
         </form>

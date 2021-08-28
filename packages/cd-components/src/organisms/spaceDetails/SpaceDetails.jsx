@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 import Button from "../../atoms/button/Button";
+import BUTTON_SIZE from "../../atoms/button/constants/button.size";
 import SpaceStats from "../../atoms/spaceStats/SpaceStats";
 import { ProfilePic } from "../..";
 
@@ -21,7 +22,7 @@ const SpaceDetails = ({
     <div className={styles.container}>
       <div className={styles.card_header}>
         <span className={styles.name}>{name}</span>
-        <Button size='small' text='+ Follow' />
+        <Button size={BUTTON_SIZE.SMALL} text='+ Follow' />
       </div>
       <div className={styles.space_desc}>{desc}</div>
       <SpaceStats
