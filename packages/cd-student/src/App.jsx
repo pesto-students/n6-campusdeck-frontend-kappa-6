@@ -45,15 +45,6 @@ function App() {
             path='/profile'
             exact
           />
-          <Route
-            component={() => (
-              <Base>
-                <CreatePost />
-              </Base>
-            )}
-            path='/create/post'
-            exact
-          />
         </Suspense>
       </Switch>
     </Router>
