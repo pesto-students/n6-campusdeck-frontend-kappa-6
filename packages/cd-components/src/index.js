@@ -19,11 +19,13 @@ export {
   ArrowUpOutlined,
   ArrowDownOutlined,
   ArrowLeftOutlined,
+  ArrowRightOutlined,
   EditFilled,
   Users,
   MapPin,
   CheckOutlined,
-  InfoCircleFilled
+  InfoCircleFilled,
+  BarChart2
 } from "./atoms/icon/Icon";
 
 // all molecules
