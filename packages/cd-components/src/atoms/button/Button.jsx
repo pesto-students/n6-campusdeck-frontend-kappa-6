@@ -19,21 +19,19 @@ const Button = ({
 }) => {
   // dynamically generating classnames based on the button type
   const classStr = cx(styles.btn, styles[size], className, {
-    [styles.label]: type === BUTTON_TYPES.LABEL,
     [styles.regular]: type === BUTTON_TYPES.REGULAR,
-    [styles.add]: type === BUTTON_TYPES.ADD,
     [styles.skeleton]: type === BUTTON_TYPES.SKELETON
   });
 
   return (
-    <button {...restProps} className={classStr} onClick={onClick}>
+    <button className={classStr} onClick={onClick} {...restProps}>
       {text || children}
     </button>
   );
 };
 
 Button.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
   type: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
@@ -42,11 +40,10 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  text: undefined,
   type: BUTTON_TYPES.REGULAR,
   size: BUTTON_SIZE.MEDIUM,
   className: undefined,
-  onClick: undefined,
+  onClick: () => console.log("Button clicked"),
   children: undefined
 };
 

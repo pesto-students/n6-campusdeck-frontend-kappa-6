@@ -21,7 +21,7 @@ const SpaceDetails = ({
     <div className={styles.container}>
       <div className={styles.card_header}>
         <span className={styles.name}>{name}</span>
-        <Button type='label' text='+ Follow' />
+        <Button size='small' text='+ Follow' />
       </div>
       <div className={styles.space_desc}>{desc}</div>
       <SpaceStats

@@ -25,6 +25,10 @@
         margin-top: 0.2rem;
         margin-left: 1rem;
       }
+
+      .label {
+        cursor: default;
+      }
     }
 
     .content {
@@ -64,6 +68,7 @@
   .header {
     grid-area: header;
     display: flex;
+    align-items: center;
 
     .post_title {
       font-size: 1.15rem;
@@ -88,8 +93,9 @@
     }
 
     .label {
-      margin-top: 0.8rem;
-      margin-left: 0.8rem;
+      cursor: default;
+      margin-left: 0.75rem;
+      margin-top: 0.5rem;
     }
   }
 

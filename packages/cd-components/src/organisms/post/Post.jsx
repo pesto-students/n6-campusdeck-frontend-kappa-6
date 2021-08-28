@@ -64,7 +64,7 @@ const Post = ({
       <div className={styles.body}>
         <div className={styles.header}>
           <div className={styles.post_title}>{title}</div>
-          <Button className={styles.label} type='label'>
+          <Button className={styles.label} size='small' type='regular'>
             {label}
           </Button>
           {size === "full" ? (

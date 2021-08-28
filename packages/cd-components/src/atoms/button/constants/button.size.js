@@ -1,13 +1,13 @@
 const SMALL = "small";
 const MEDIUM = "medium";
 const LARGE = "large";
-const LONG = "long";
+const XL = "XL";
 
 const BUTTON_SIZE = {
   SMALL,
   MEDIUM,
   LARGE,
-  LONG
+  XL
 };
 
 export default BUTTON_SIZE;

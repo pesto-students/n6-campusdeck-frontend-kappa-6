@@ -71,13 +71,13 @@ const Base = ({ children }) => {
             <Button
               onClick={showModal}
               className={styles.btn}
-              type='add'
-              size='long'
+              type='regular'
+              size='xl'
             >
-              Add a new post
+              + Add a new post
             </Button>
-            <Button className={styles.btn} type='add' size='long'>
-              Add a new space
+            <Button className={styles.btn} type='regular' size='xl'>
+              + Add a new space
             </Button>
           </div>
           <Modal

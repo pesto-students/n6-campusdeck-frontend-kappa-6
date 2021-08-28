@@ -45,7 +45,7 @@ const ProfileCard = ({ postList, commentList, savedList }) => {
             </span>
           </div>
           <div className={styles.action_btns}>
-            <Button className={styles.msg_btn} size='long'>
+            <Button className={styles.msg_btn} type='regular'>
               Send message
             </Button>
             <Button className={styles.follow_btn} type='skeleton'>

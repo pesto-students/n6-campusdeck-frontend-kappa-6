@@ -78,9 +78,9 @@ const CreatePost = () => {
       </div>
 
       <div className={styles.post_labels}>
-        <Button className={styles.label} text='Info' size='long' />
-        <Button className={styles.label} text='React' size='long' />
-        <Button className={styles.label} text='Urgent' size='long' />
+        <Button className={styles.label} text='Info' size='medium' />
+        <Button className={styles.label} text='React' size='medium' />
+        <Button className={styles.label} text='Urgent' size='medium' />
       </div>
       <div className={styles.options}>
         <label htmlFor='accessibility'>
@@ -95,7 +95,7 @@ const CreatePost = () => {
           <InfoCircleFilled style={{ marginLeft: "0.3rem" }} />
         </Tooltip>
       </div>
-      <Button className={styles.create_btn} text='Create' />
+      <Button className={styles.create_btn} text='Create' size='large' />
     </>
   );
   return (
