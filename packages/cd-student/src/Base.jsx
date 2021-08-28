@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Modal } from "antd";
+import { Modal, Button as AntButton } from "antd";
 import {
   Button,
   Footer,
@@ -119,6 +119,34 @@ const Base = ({ children }) => {
             onCancel={handleCancel}
             width={670}
             centered
+            footer={[
+              <AntButton
+                key='cancel'
+                onClick={handleCancel}
+                style={{
+                  borderRadius: "5px",
+                  border: "0.55px solid rgb(61, 110, 240)",
+                  fontWeight: "bold",
+                  color: "rgb(61, 110, 240)"
+                }}
+              >
+                Cancel
+              </AntButton>,
+              <AntButton
+                key='create'
+                type='primary'
+                loading={confirmLoading}
+                onClick={handleOk}
+                style={{
+                  borderRadius: "5px",
+                  backgroundColor: "rgb(61, 110, 240)",
+                  border: "none",
+                  fontWeight: "bold"
+                }}
+              >
+                Create
+              </AntButton>
+            ]}
           >
             <CreatePost />
           </Modal>
