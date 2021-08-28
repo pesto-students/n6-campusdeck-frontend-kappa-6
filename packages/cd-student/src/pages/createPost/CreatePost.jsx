@@ -107,20 +107,22 @@ const CreatePost = () => {
           <InfoCircleFilled style={{ marginLeft: "0.3rem" }} />
         </Tooltip>
       </div>
-      <Button
-        className={styles.create_btn}
-        text='Create'
-        size={BUTTON_SIZE.LARGE}
-      />
     </>
   );
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <select className={styles.space_selector}>
+        <select className={styles.selector}>
           <option>Choose a space</option>
           <option>Fests</option>
           <option>Random</option>
+          <option>React</option>
+        </select>
+        <select className={styles.selector}>
+          <option>Choose a campus</option>
+          <option>VIT, Vellore</option>
+          <option>XIME, Bangalore</option>
+          <option>IIIT Hyderabad</option>
         </select>
       </div>
       <div className={styles.content}>
