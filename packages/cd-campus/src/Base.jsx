@@ -31,7 +31,7 @@ const Base = ({ children }) => {
                 label: "Insights",
                 destination: "/insights",
                 isActive: true,
-                icon: <BarChart2 />
+                icon: <BarChart2 size={20} />
               },
               {
                 label: "Spaces",
@@ -43,7 +43,7 @@ const Base = ({ children }) => {
                 label: "Students",
                 destination: "/students",
                 isActive: false,
-                icon: <Users />
+                icon: <Users size={20} />
               }
             ]}
           />
