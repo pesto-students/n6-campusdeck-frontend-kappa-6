@@ -51,9 +51,7 @@ const CreatePost = () => {
     }
   };
 
-  const submit = () => {
-    // console.log(postData);
-  };
+  const submit = () => {};
 
   const TextComponent = (
     <>
@@ -103,7 +101,6 @@ const CreatePost = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div className={styles.create_post_label}>Create Post</div>
         <select className={styles.space_selector}>
           <option>Choose a space</option>
           <option>Fests</option>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Modal } from "antd";
 import {
   Button,
   ContextMenu,
@@ -13,13 +14,36 @@ import {
 
 // styles
 import styles from "./Base.module.scss";
+import CreatePost from "./pages/createPost/CreatePost";
 
 const Base = ({ children }) => {
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
   const history = useHistory();
 
   // navigate to given page
   const onClick = destination => {
     history.push(destination);
+  };
+
+  // opens the create post modal
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setConfirmLoading(true);
+
+    // the below line will be replaced by dispatching an action to save the post
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  // closes the create post modal
+  const handleCancel = () => {
+    setVisible(false);
   };
 
   return (
@@ -45,7 +69,7 @@ const Base = ({ children }) => {
         <div className={styles.right_sidebar}>
           <div className={styles.btns_container}>
             <Button
-              onClick={() => history.push("/create/post")}
+              onClick={showModal}
               className={styles.btn}
               type='add'
               size='long'
@@ -56,6 +80,17 @@ const Base = ({ children }) => {
               Add a new space
             </Button>
           </div>
+          <Modal
+            title='Create Post'
+            visible={visible}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            onCancel={handleCancel}
+            width={670}
+            centered
+          >
+            <CreatePost />
+          </Modal>
           <div className={styles.card_list}>
             <div className={styles.card}>
               <SuggestionCard
