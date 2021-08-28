@@ -13,7 +13,7 @@
     width: 70%;
 
     .heading {
-      font-size: 1.2rem;
+      font-size: $xl;
       font-weight: 600;
       color: $dark-grey;
       margin: 1.5rem 0;
@@ -32,7 +32,7 @@
 
         .input {
           margin: 0.75rem;
-          padding: 0.3rem 0.65rem;
+          padding: 0.6rem 0.75rem;
           font-size: $large;
           color: $dark-grey;
           outline: none;
@@ -57,6 +57,7 @@
         outline: none;
         border: 0.05rem solid $medium-grey;
         border-radius: $normal-border-radius;
+        resize: none;
       }
 
       .login_btn {
