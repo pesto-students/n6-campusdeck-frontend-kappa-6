@@ -1,65 +1,44 @@
 @import "../../styles/variables/colors";
 
 .btn {
-  background: $primary-blue;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   font-weight: bold;
-  color: #ffffff;
+  font-size: 0.78rem;
   border: none;
   cursor: pointer;
-}
 
-.add {
-  width: 260px;
-  height: 47px;
-  font-size: 19px;
-}
+  &.regular {
+    background: $primary-blue;
+    color: #ffffff;
+  }
 
-.add::before {
-  content: "+ ";
-  font-weight: normal;
-  font-size: 25px;
-}
+  &.skeleton {
+    background: #ffffff;
+    border: 0.55px solid $primary-blue;
+    color: $primary-blue;
+  }
 
-.regular {
-  width: 130px;
-  height: 50px;
-  font-style: normal;
-  font-size: 22px;
-  border-radius: 5px;
-}
+  &.small {
+    padding: 0.2rem 0.45rem;
+  }
 
-.label {
-  width: 65px;
-  height: 22px;
-  font-style: normal;
-  font-size: 13px;
-  cursor: default;
-}
+  &.medium {
+    width: fit-content;
+    height: 36px;
+    padding: 0 0.65rem;
+  }
 
-.large {
-  height: 45px;
-  width: 180px;
-  font-size: 18px;
-}
+  &.large {
+    height: 45px;
+    width: 9rem;
+    font-size: 1.15rem;
+  }
 
-.medium {
-  width: 105px;
-  height: 36px;
-}
-
-.long {
-  width: fit-content;
-  height: 36px;
-  padding: 0 0.65rem;
-  font-size: 0.75rem;
-}
-
-.skeleton {
-  width: 105px;
-  height: 36px;
-  background: #ffffff;
-  border: 0.55px solid $primary-blue;
-  color: $primary-blue;
+  &.xl {
+    width: 16.5rem;
+    height: 3.15rem;
+    font-style: normal;
+    font-size: 1.28rem;
+  }
 }
