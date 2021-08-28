@@ -1,7 +1,7 @@
 const SMALL = "small";
 const MEDIUM = "medium";
 const LARGE = "large";
-const XL = "XL";
+const XL = "xl";
 
 const BUTTON_SIZE = {
   SMALL,

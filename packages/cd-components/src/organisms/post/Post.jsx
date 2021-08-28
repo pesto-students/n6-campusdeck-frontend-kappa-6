@@ -11,6 +11,7 @@ import ContextMenu from "../../molecules/contextMenu/ContextMenu";
 import PostDetails from "../../atoms/postDetails/PostDetails";
 import { compactNumber } from "@cd/base";
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
+import { BUTTON_TYPE, BUTTON_SIZE } from "@cd/components";
 
 //styles
 import styles from "./post.module.scss";
@@ -64,7 +65,11 @@ const Post = ({
       <div className={styles.body}>
         <div className={styles.header}>
           <div className={styles.post_title}>{title}</div>
-          <Button className={styles.label} size='small' type='regular'>
+          <Button
+            className={styles.label}
+            size={BUTTON_SIZE.SMALL}
+            type={BUTTON_TYPE.REGULAR}
+          >
             {label}
           </Button>
           {size === "full" ? (
