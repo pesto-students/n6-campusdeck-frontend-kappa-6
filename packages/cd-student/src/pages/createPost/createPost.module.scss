@@ -13,6 +13,7 @@
       width: 40%;
       background-color: $light-grey;
       border: 5px solid transparent;
+      outline: none;
       border-radius: $normal-border-radius;
     }
   }
@@ -23,7 +24,7 @@
     flex-direction: column;
     align-items: center;
     width: 39.4rem;
-    height: 36.5rem;
+    height: 32rem;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 0.28rem;
     padding: 0 0.8rem;

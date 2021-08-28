@@ -113,16 +113,16 @@ const CreatePost = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <select className={styles.selector}>
-          <option>Choose a space</option>
-          <option>Fests</option>
-          <option>Random</option>
-          <option>React</option>
-        </select>
-        <select className={styles.selector}>
           <option>Choose a campus</option>
           <option>VIT, Vellore</option>
           <option>XIME, Bangalore</option>
           <option>IIIT Hyderabad</option>
+        </select>
+        <select className={styles.selector}>
+          <option>Choose a space</option>
+          <option>Fests</option>
+          <option>Random</option>
+          <option>React</option>
         </select>
       </div>
       <div className={styles.content}>
