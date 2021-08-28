@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Modal } from "antd";
 import {
@@ -23,6 +23,7 @@ const Base = ({ children }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const history = useHistory();
+  const location = useLocation();
 
   // navigate to given page
   const onClick = destination => {
@@ -60,25 +61,25 @@ const Base = ({ children }) => {
               {
                 label: "Home",
                 destination: "/",
-                isActive: true,
+                isActive: location.pathname === "/",
                 icon: <HomeFilled />
               },
               {
                 label: "Global Feed",
                 destination: "/global",
-                isActive: false,
+                isActive: location.pathname === "/global",
                 icon: <GlobalOutlined />
               },
               {
                 label: "My Profile",
                 destination: "/profile",
-                isActive: false,
+                isActive: location.pathname === "/profile",
                 icon: <UserOutlined />
               },
               {
                 label: "Explore",
                 destination: "/explore",
-                isActive: false,
+                isActive: location.pathname === "/explore",
                 icon: <CompassFilled />
               }
             ]}

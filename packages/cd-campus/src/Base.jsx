@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import {
   Navbar,
   LeftSidebar,
@@ -13,6 +13,7 @@ import styles from "./base.module.scss";
 
 const Base = ({ children }) => {
   const history = useHistory();
+  const location = useLocation();
 
   // navigate to given page
   const onClick = destination => {
@@ -30,19 +31,19 @@ const Base = ({ children }) => {
               {
                 label: "Insights",
                 destination: "/insights",
-                isActive: true,
+                isActive: location.pathname === "/insights",
                 icon: <BarChart2 size={20} />
               },
               {
                 label: "Spaces",
-                destination: "/global",
-                isActive: false,
+                destination: "/spaces",
+                isActive: location.pathname === "/spaces",
                 icon: <GlobalOutlined />
               },
               {
                 label: "Students",
                 destination: "/students",
-                isActive: false,
+                isActive: location.pathname === "/students",
                 icon: <Users size={20} />
               }
             ]}
