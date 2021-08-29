@@ -1,14 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import {
-  Button,
-  ContextMenu,
-  Footer,
-  LeftSidebar,
-  Post,
-  SuggestionCard,
-  Navbar
-} from "@cd/components";
+import { ContextMenu, Post } from "@cd/components";
 
 // styles
 import styles from "./home.module.scss";
@@ -23,7 +14,51 @@ const Home = () => {
       points: "4723",
       time: "2 days ago",
       totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
+      authorName: "Pushpak Bhattacharya",
+      comments: [
+        {
+          author: "Sai Chaitanya",
+          content:
+            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+          datetime: "2021-08-27 14:48:00"
+        },
+        {
+          author: "Rashi Gaikwad",
+          content:
+            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+          datetime: "2021-08-28 4:50:23"
+        },
+        {
+          author: "Pushpak Bhattacharya",
+          content:
+            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+          datetime: "2021-08-29 12:02:12"
+        }
+      ]
+    },
+    {
+      title: "Lorem ipsum dolor sit amet?",
+      label: "Question",
+      rawContent:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
+      points: "4723",
+      time: "2 days ago",
+      totalComments: "100+",
+      authorName: "Pushpak Bhattacharya",
+      comments: [
+        {
+          author: "Sai Chaitanya",
+          content:
+            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+          datetime: "2021-08-27 14:48:00"
+        },
+        {
+          author: "Pushpak Bhattacharya",
+          content:
+            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+          datetime: "2021-08-29 12:02:12"
+        }
+      ]
     },
     {
       title: "Lorem ipsum dolor sit amet?",
@@ -43,17 +78,15 @@ const Home = () => {
       points: "4723",
       time: "2 days ago",
       totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
-    },
-    {
-      title: "Lorem ipsum dolor sit amet?",
-      label: "Question",
-      rawContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
-      points: "4723",
-      time: "2 days ago",
-      totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
+      authorName: "Pushpak Bhattacharya",
+      comments: [
+        {
+          author: "Sai Chaitanya",
+          content:
+            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+          datetime: "2021-08-27 14:48:00"
+        }
+      ]
     }
   ]);
 
@@ -82,6 +115,7 @@ const Home = () => {
                   time={post.time}
                   totalComments={post.totalComments}
                   authorName={post.authorName}
+                  comments={post.comments}
                 />
               </div>
             ))}
