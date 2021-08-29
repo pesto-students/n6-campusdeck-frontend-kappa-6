@@ -54,145 +54,149 @@ const Base = ({ children }) => {
     <>
       <Navbar />
       <div className={styles.container}>
-        <div className={styles.left_sidebar}>
-          <LeftSidebar
-            onClick={onClick}
-            links={[
-              {
-                label: "Home",
-                destination: "/",
-                isActive: location.pathname === "/",
-                icon: <HomeFilled />
-              },
-              {
-                label: "Global Feed",
-                destination: "/global",
-                isActive: location.pathname === "/global",
-                icon: <GlobalOutlined />
-              },
-              {
-                label: "My Profile",
-                destination: "/profile",
-                isActive: location.pathname === "/profile",
-                icon: <UserOutlined />
-              },
-              {
-                label: "Explore",
-                destination: "/explore",
-                isActive: location.pathname === "/explore",
-                icon: <CompassFilled />
-              }
-            ]}
-          />
-          <div className={styles.spaces_section}>
-            <div className={styles.my_spaces_heading}>My Spaces</div>
-            <div className={styles.spaces_list}>
-              <div className={styles.space_name}>
-                Announcements in VIT, Vellore
+        <div className={styles.content}>
+          <div className={styles.left_sidebar}>
+            <LeftSidebar
+              onClick={onClick}
+              links={[
+                {
+                  label: "Home",
+                  destination: "/",
+                  isActive: location.pathname === "/",
+                  icon: <HomeFilled />
+                },
+                {
+                  label: "Global Feed",
+                  destination: "/global",
+                  isActive: location.pathname === "/global",
+                  icon: <GlobalOutlined />
+                },
+                {
+                  label: "My Profile",
+                  destination: "/profile",
+                  isActive: location.pathname === "/profile",
+                  icon: <UserOutlined />
+                },
+                {
+                  label: "Explore",
+                  destination: "/explore",
+                  isActive: location.pathname === "/explore",
+                  icon: <CompassFilled />
+                }
+              ]}
+            />
+            <div className={styles.spaces_section}>
+              <div className={styles.my_spaces_heading}>My Spaces</div>
+              <div className={styles.spaces_list}>
+                <div className={styles.space_name}>
+                  Announcements in VIT, Vellore
+                </div>
+                <div className={styles.space_name}>Fests in NIT, Warangal</div>
+                <div className={styles.space_name}>
+                  Random in IIIT Hyderabad
+                </div>
               </div>
-              <div className={styles.space_name}>Fests in NIT, Warangal</div>
-              <div className={styles.space_name}>Random in IIIT Hyderabad</div>
             </div>
           </div>
-        </div>
 
-        {children}
+          {children}
 
-        <div className={styles.right_sidebar}>
-          <div className={styles.btns_container}>
-            <Button
-              onClick={showModal}
-              className={styles.btn}
-              size={BUTTON_SIZE.XL}
+          <div className={styles.right_sidebar}>
+            <div className={styles.btns_container}>
+              <Button
+                onClick={showModal}
+                className={styles.btn}
+                size={BUTTON_SIZE.XL}
+              >
+                + Add a new post
+              </Button>
+              <Button className={styles.btn} size={BUTTON_SIZE.XL}>
+                + Add a new space
+              </Button>
+            </div>
+            <Modal
+              title='Create Post'
+              visible={visible}
+              onOk={handleOk}
+              confirmLoading={confirmLoading}
+              onCancel={handleCancel}
+              width={670}
+              centered
+              footer={[
+                <AntButton
+                  key='cancel'
+                  onClick={handleCancel}
+                  style={{
+                    borderRadius: "5px",
+                    border: "0.55px solid rgb(61, 110, 240)",
+                    fontWeight: "bold",
+                    color: "rgb(61, 110, 240)"
+                  }}
+                >
+                  Cancel
+                </AntButton>,
+                <AntButton
+                  key='create'
+                  type='primary'
+                  loading={confirmLoading}
+                  onClick={handleOk}
+                  style={{
+                    borderRadius: "5px",
+                    backgroundColor: "rgb(61, 110, 240)",
+                    border: "none",
+                    fontWeight: "bold"
+                  }}
+                >
+                  Create
+                </AntButton>
+              ]}
             >
-              + Add a new post
-            </Button>
-            <Button className={styles.btn} size={BUTTON_SIZE.XL}>
-              + Add a new space
-            </Button>
-          </div>
-          <Modal
-            title='Create Post'
-            visible={visible}
-            onOk={handleOk}
-            confirmLoading={confirmLoading}
-            onCancel={handleCancel}
-            width={670}
-            centered
-            footer={[
-              <AntButton
-                key='cancel'
-                onClick={handleCancel}
-                style={{
-                  borderRadius: "5px",
-                  border: "0.55px solid rgb(61, 110, 240)",
-                  fontWeight: "bold",
-                  color: "rgb(61, 110, 240)"
-                }}
-              >
-                Cancel
-              </AntButton>,
-              <AntButton
-                key='create'
-                type='primary'
-                loading={confirmLoading}
-                onClick={handleOk}
-                style={{
-                  borderRadius: "5px",
-                  backgroundColor: "rgb(61, 110, 240)",
-                  border: "none",
-                  fontWeight: "bold"
-                }}
-              >
-                Create
-              </AntButton>
-            ]}
-          >
-            <CreatePost />
-          </Modal>
-          <div className={styles.card_list}>
-            <div className={styles.card}>
-              <SuggestionCard
-                heading='Trending Spaces'
-                list={[
-                  {
-                    name: "Announcements",
-                    metric: "31k users"
-                  },
-                  {
-                    name: "WebDev",
-                    metric: "25k users"
-                  },
-                  {
-                    name: "QnA",
-                    metric: "21k users"
-                  },
-                  {
-                    name: "Fests",
-                    metric: "18k users"
-                  }
-                ]}
-              />
-            </div>
+              <CreatePost />
+            </Modal>
+            <div className={styles.card_list}>
+              <div className={styles.card}>
+                <SuggestionCard
+                  heading='Trending Spaces'
+                  list={[
+                    {
+                      name: "Announcements",
+                      metric: "31k users"
+                    },
+                    {
+                      name: "WebDev",
+                      metric: "25k users"
+                    },
+                    {
+                      name: "QnA",
+                      metric: "21k users"
+                    },
+                    {
+                      name: "Fests",
+                      metric: "18k users"
+                    }
+                  ]}
+                />
+              </div>
 
-            <div className={styles.card}>
-              <SuggestionCard
-                heading='Popular Campuses'
-                list={[
-                  {
-                    name: "VIT, Vellore",
-                    metric: "150 spaces"
-                  },
-                  {
-                    name: "IIIT Hyderabad",
-                    metric: "110 spaces"
-                  }
-                ]}
-              />
+              <div className={styles.card}>
+                <SuggestionCard
+                  heading='Popular Campuses'
+                  list={[
+                    {
+                      name: "VIT, Vellore",
+                      metric: "150 spaces"
+                    },
+                    {
+                      name: "IIIT Hyderabad",
+                      metric: "110 spaces"
+                    }
+                  ]}
+                />
+              </div>
             </div>
-          </div>
-          <div>
-            <Footer />
+            <div>
+              <Footer />
+            </div>
           </div>
         </div>
       </div>
