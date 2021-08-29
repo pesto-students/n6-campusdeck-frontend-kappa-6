@@ -33,6 +33,7 @@ export { default as SuggestionCard } from "./molecules/suggestionCard/Suggestion
 export { default as LeftSidebar } from "./molecules/leftSidebar/LeftSidebar";
 export { default as ContextMenu } from "./molecules/contextMenu/ContextMenu";
 export { default as TabMenu } from "./molecules/tabMenu/TabMenu";
+export { default as Comments } from "./molecules/comments/Comments";
 
 // all organisms
 export { default as Navbar } from "./organisms/navbar/Navbar";
