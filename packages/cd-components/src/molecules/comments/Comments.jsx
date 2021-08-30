@@ -1,19 +1,77 @@
-import { Comment, Tooltip, List } from "antd";
+import { useState } from "react";
+import { Comment, Tooltip, List, Modal, Button as AntButton } from "antd";
 import moment from "moment";
 
-import { ProfilePic } from "../..";
 import {
   Button,
+  BUTTON_SIZE,
   DislikeOutlined,
   LikeOutlined,
   DislikeFilled,
-  LikeFilled
+  LikeFilled,
+  CommentEditor
 } from "@cd/components";
+
+import { ProfilePic } from "../..";
 
 // styles
 import styles from "./comments.module.scss";
 
 const Comments = ({ comments, authorName }) => {
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [newComment, setNewComment] = useState("");
+
+  // opens the comment modal
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setConfirmLoading(true);
+
+    // the below line will be replaced by dispatching an action to save the comment
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  // closes the comment modal
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
+  const handleChange = e => {
+    const value = e.target.value;
+    setNewComment(value);
+  };
+
+  // handles addition of new comment
+  const handleSubmit = () => {
+    if (!newComment) {
+      return;
+    }
+
+    setConfirmLoading(true);
+
+    setTimeout(() => {
+      setConfirmLoading(false);
+      setNewComment("");
+
+      // dispatch action to save new comment
+      // setComments([
+      //   ...comments,
+      //   {
+      //     author: JSON.parse(localStorage.getItem(user)).name,
+      //     avatar: JSON.parse(localStorage.getItem(user)).profile,
+      //     content: <p>{newComment}</p>,
+      //     datetime: moment().fromNow()
+      //   }
+      // ]);
+    }, 1000);
+  };
+
   // dispatch action to like a comment
   const likeComment = () => {};
   // dispatch action to dislike a comment
@@ -38,14 +96,27 @@ const Comments = ({ comments, authorName }) => {
         <span className='comment-action'>0</span>
       </span>
     </Tooltip>,
-    <span key='comment-basic-reply-to'>Reply</span>
+    <span key='comment-basic-reply-to' onClick={showModal}>
+      Reply
+    </span>
   ];
 
   return (
-    <div>
+    <>
       <List
         className='comment-list'
-        header={`Comments (${comments.length})`}
+        header={
+          <div>
+            {`Comments (${comments.length})`}
+            <Button
+              className={styles.comment_btn}
+              size={BUTTON_SIZE.SMALL}
+              onClick={showModal}
+            >
+              New Comment
+            </Button>
+          </div>
+        }
         itemLayout='horizontal'
         dataSource={comments}
         renderItem={comment => (
@@ -122,7 +193,50 @@ const Comments = ({ comments, authorName }) => {
           </Comment>
         )}
       />
-    </div>
+      <Modal
+        title='Add new comment'
+        visible={visible}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+        centered
+        footer={[
+          <AntButton
+            key='cancel'
+            onClick={handleCancel}
+            style={{
+              borderRadius: "5px",
+              border: "0.55px solid rgb(61, 110, 240)",
+              fontWeight: "bold",
+              color: "rgb(61, 110, 240)"
+            }}
+          >
+            Cancel
+          </AntButton>,
+          <AntButton
+            key='create'
+            type='primary'
+            loading={confirmLoading}
+            onClick={handleOk}
+            style={{
+              borderRadius: "5px",
+              backgroundColor: "rgb(61, 110, 240)",
+              border: "none",
+              fontWeight: "bold"
+            }}
+          >
+            Save
+          </AntButton>
+        ]}
+      >
+        <CommentEditor
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          submitting={confirmLoading}
+          value={newComment}
+        />
+      </Modal>
+    </>
   );
 };
 

@@ -38,6 +38,7 @@ export { default as LeftSidebar } from "./molecules/leftSidebar/LeftSidebar";
 export { default as ContextMenu } from "./molecules/contextMenu/ContextMenu";
 export { default as TabMenu } from "./molecules/tabMenu/TabMenu";
 export { default as Comments } from "./molecules/comments/Comments";
+export { default as CommentEditor } from "./molecules/commentEditor/CommentEditor";
 
 // all organisms
 export { default as Navbar } from "./organisms/navbar/Navbar";
