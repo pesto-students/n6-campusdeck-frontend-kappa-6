@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Tooltip } from "antd";
+import { useState, useEffect } from "react";
+import { Tooltip, Tag } from "antd";
 
 import { Button, TabMenu, InfoCircleFilled, BUTTON_SIZE } from "@cd/components";
 import { POST_TITLE_LIMIT } from "../../constants/post";
@@ -8,11 +8,18 @@ import QuillEditor from "../../organisms/QuillEditor";
 // styles
 import styles from "./createPost.module.scss";
 
+const { CheckableTag } = Tag;
+
 const CreatePost = () => {
   const [remainingChars, setRemainingChars] = useState(POST_TITLE_LIMIT);
   const [postData, setPostData] = useState({
     title: "",
-    body: "Start typing..."
+    body: "Start typing...",
+    tag: ""
+  });
+  const [space, setSpace] = useState({
+    name: "Random",
+    tags: ["Info", "Urgent", "Advice", "Question"]
   });
 
   const validatePost = (val, field) => {
@@ -51,7 +58,26 @@ const CreatePost = () => {
     }
   };
 
-  const submit = () => {};
+  const submit = () => {
+    console.log(postData);
+  };
+
+  // this function will remove the tag associated to the post
+  const removeTag = () => {
+    console.log("tag removed");
+  };
+
+  // this function is called when a tag is selected to associate the tag to the post
+  const handleTagSelect = (tag, checked) => {
+    setPostData({
+      ...postData,
+      tag
+    });
+  };
+
+  useEffect(() => {
+    console.log(postData);
+  }, [postData]);
 
   const TextComponent = (
     <>
@@ -63,7 +89,6 @@ const CreatePost = () => {
           value={postData.title}
           name='title'
           onChange={handleInput}
-          onBlur={submit}
         />
         <div className={styles.remaining_chars}>
           {remainingChars}/{POST_TITLE_LIMIT}
@@ -78,21 +103,19 @@ const CreatePost = () => {
       </div>
 
       <div className={styles.post_labels}>
-        <Button
-          className={styles.label}
-          text='Info'
-          size={BUTTON_SIZE.MEDIUM}
-        />
-        <Button
-          className={styles.label}
-          text='React'
-          size={BUTTON_SIZE.MEDIUM}
-        />
-        <Button
-          className={styles.label}
-          text='Urgent'
-          size={BUTTON_SIZE.MEDIUM}
-        />
+        <div className={styles.tag_title}>Select a tag:</div>
+        {space &&
+          space.tags &&
+          space.tags.map(tag => (
+            <CheckableTag
+              className={styles.label}
+              key={tag}
+              checked={tag === postData.tag}
+              onChange={checked => handleTagSelect(tag, checked)}
+            >
+              {tag}
+            </CheckableTag>
+          ))}
       </div>
       <div className={styles.options}>
         <label htmlFor='accessibility'>
@@ -104,7 +127,7 @@ const CreatePost = () => {
           placement='right'
           key='geekblue'
         >
-          <InfoCircleFilled style={{ marginLeft: "0.3rem" }} />
+          <InfoCircleFilled style={{ marginLeft: "0.5rem" }} />
         </Tooltip>
       </div>
     </>
