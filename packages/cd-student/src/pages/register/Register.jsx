@@ -10,7 +10,13 @@ const Register = () => {
 
   return (
     <div className={styles.container}>
-      <Banner />
+      <Banner
+        items={[
+          "Quick and easy registration process",
+          "Find and interact with your friends from college",
+          "Spread the word about an event to different campuses"
+        ]}
+      />
       <div className={styles.content}>
         <div className={styles.heading}>Complete your account</div>
         <form className={styles.form} onSubmit={submitForm}>

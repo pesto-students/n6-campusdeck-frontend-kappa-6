@@ -1,40 +1,36 @@
+import PropTypes from "prop-types";
 import { CheckOutlined } from "../icon/Icon";
 
 // style
 import styles from "./banner.module.scss";
 
-const Banner = () => {
+const Banner = ({
+  items = [
+    "Quick and easy registration process",
+    "Find and interact with your friends from college",
+    "Spread the word about an event to different campuses"
+  ]
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.brand}>CampusDeck</div>
       <div className={styles.feature_list}>
-        <div className={styles.feature}>
-          <div className={styles.check}>
-            <CheckOutlined />
-          </div>
-          <div className={styles.text}>Quick and easy registration process</div>
-        </div>
-
-        <div className={styles.feature}>
-          <div className={styles.check}>
-            <CheckOutlined />
-          </div>
-          <div className={styles.text}>
-            Find and interact with your friends from college
-          </div>
-        </div>
-
-        <div className={styles.feature}>
-          <div className={styles.check}>
-            <CheckOutlined />
-          </div>
-          <div className={styles.text}>
-            Spread the word about an event to different campuses
-          </div>
-        </div>
+        {items.length > 0 &&
+          items.map((item, idx) => (
+            <div className={styles.feature} key={idx}>
+              <div className={styles.check}>
+                <CheckOutlined />
+              </div>
+              <div className={styles.text}>{item}</div>
+            </div>
+          ))}
       </div>
     </div>
   );
+};
+
+Banner.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default Banner;
