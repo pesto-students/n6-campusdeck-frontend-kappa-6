@@ -44,13 +44,13 @@ const UserProfile = () => {
     }
   ]);
   return (
-    <>
+    <div className={styles.container}>
       <ProfileCard
         postList={posts}
         commentList={comments}
         savedList={savedItems}
       />
-    </>
+    </div>
   );
 };
 

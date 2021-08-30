@@ -1,7 +1,7 @@
 .container {
   margin: 0.5rem;
   position: relative;
-  width: 38.5rem;
+  width: 47rem;
   height: 85vh;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
@@ -24,13 +24,13 @@
     cursor: pointer;
 
     &.back_icon {
-      left: 0;
-      margin-left: 0.75rem;
+      top: 0.3rem;
+      left: 1rem;
     }
 
     &.edit_icon {
-      right: 0;
-      margin-right: 0.75rem;
+      top: 0.3rem;
+      right: 1rem;
       color: #524f4f;
     }
   }
