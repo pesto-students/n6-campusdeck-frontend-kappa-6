@@ -102,7 +102,7 @@ const Comments = ({ comments, authorName }) => {
   ];
 
   return (
-    <>
+    <div className={styles.container}>
       <List
         className='comment-list'
         header={
@@ -236,7 +236,7 @@ const Comments = ({ comments, authorName }) => {
           value={newComment}
         />
       </Modal>
-    </>
+    </div>
   );
 };
 
