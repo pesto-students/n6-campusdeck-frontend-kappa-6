@@ -1,0 +1,36 @@
+@import "./src/styles/variables/font";
+@import "./src/styles/variables/colors";
+@import "./src/styles/variables/general";
+
+.container {
+  .body {
+    width: 32.2rem;
+    max-height: 18rem;
+    margin-top: 1.5rem;
+  }
+
+  .post_labels {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+
+    .tag_title {
+      font-size: 0.9rem;
+      color: $dark-grey;
+      font-weight: 600;
+    }
+    .label {
+      margin: 0 0.5rem;
+      padding: 0.15rem 0.7rem;
+      font-size: 0.9rem;
+      border-radius: $normal-border-radius;
+    }
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    padding: 0.35rem 0;
+  }
+}

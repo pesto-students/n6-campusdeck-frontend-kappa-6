@@ -17,7 +17,7 @@ import {
 
 // styles
 import styles from "./Base.module.scss";
-import CreatePost from "./organisms/createPost/CreatePost";
+import CreatePost from "./organisms/createPost";
 
 const Base = ({ children }) => {
   const [visible, setVisible] = useState(false);

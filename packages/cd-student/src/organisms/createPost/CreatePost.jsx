@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { TabMenu } from "@cd/components";
-import TextPost from "../textPost/TextPost";
+import TextPost from "../textPost";
+import MediaPost from "../mediaPost";
 
 // styles
 import styles from "./createPost.module.scss";
@@ -74,7 +75,7 @@ const CreatePost = () => {
               label: "Media",
               disabled: false,
               content: (
-                <TextPost
+                <MediaPost
                   postData={postData}
                   setPostData={setPostData}
                   space={space}
