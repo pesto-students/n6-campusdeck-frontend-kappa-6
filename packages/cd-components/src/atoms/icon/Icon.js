@@ -13,7 +13,11 @@ import {
   ArrowRightOutlined,
   EditFilled,
   CheckOutlined,
-  InfoCircleFilled
+  InfoCircleFilled,
+  DislikeOutlined,
+  LikeOutlined,
+  DislikeFilled,
+  LikeFilled
 } from "@ant-design/icons";
 
 import { Users, MapPin, BarChart2 } from "react-feather";
@@ -36,5 +40,9 @@ export {
   MapPin,
   CheckOutlined,
   InfoCircleFilled,
-  BarChart2
+  BarChart2,
+  DislikeOutlined,
+  LikeOutlined,
+  DislikeFilled,
+  LikeFilled
 };

@@ -1,14 +1,46 @@
-import { Comment, Tooltip, List } from "antd";
+import { Comment, Tooltip } from "antd";
 import moment from "moment";
 
 import { ProfilePic } from "../..";
-import { Button } from "@cd/components";
+import {
+  Button,
+  DislikeOutlined,
+  LikeOutlined,
+  DislikeFilled,
+  LikeFilled
+} from "@cd/components";
 
 // styles
 import styles from "./comments.module.scss";
 
 const Comments = ({ comments, authorName }) => {
-  console.log(comments);
+  // dispatch action to like a comment
+  const likeComment = () => {};
+  // dispatch action to dislike a comment
+  const dislikeComment = () => {};
+  // this function will return a boolean based on whether the current logged in user has liked a comment
+  const hasUserLiked = () => {
+    return false;
+  };
+
+  // TODO: actions need to dynamic for a particular comment
+  // actions available for a comment
+  const actions = [
+    <Tooltip key='comment-basic-like' title='Like'>
+      <span onClick={likeComment}>
+        {hasUserLiked() ? <LikeFilled /> : <LikeOutlined />}
+        <span className='comment-action'>1</span>
+      </span>
+    </Tooltip>,
+    <Tooltip key='comment-basic-dislike' title='Dislike'>
+      <span onClick={dislikeComment}>
+        {hasUserLiked() ? <DislikeFilled /> : <DislikeOutlined />}
+        <span className='comment-action'>0</span>
+      </span>
+    </Tooltip>,
+    <span key='comment-basic-reply-to'>Reply</span>
+  ];
+
   return (
     <div>
       <div className={styles.comments_container}>
@@ -16,7 +48,7 @@ const Comments = ({ comments, authorName }) => {
           {comments.length > 0 &&
             comments.map((comment, idx) => (
               <Comment
-                actions={[<span key='comment-list-reply-to-0'>Reply</span>]}
+                actions={actions}
                 author={
                   <>
                     {comment.author}
@@ -53,6 +85,7 @@ const Comments = ({ comments, authorName }) => {
                   comment.replies.length > 0 &&
                   comment.replies.map((reply, idx) => (
                     <Comment
+                      actions={actions}
                       author={
                         <>
                           {reply.author}

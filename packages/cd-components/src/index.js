@@ -25,7 +25,11 @@ export {
   MapPin,
   CheckOutlined,
   InfoCircleFilled,
-  BarChart2
+  BarChart2,
+  DislikeOutlined,
+  LikeOutlined,
+  DislikeFilled,
+  LikeFilled
 } from "./atoms/icon/Icon";
 
 // all molecules
