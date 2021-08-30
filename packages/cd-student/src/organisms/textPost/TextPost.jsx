@@ -5,6 +5,7 @@ import { Tooltip, Tag } from "antd";
 import { InfoCircleFilled } from "@cd/components";
 import QuillEditor from "../quillEditor/QuillEditor";
 import { POST_TITLE_LIMIT } from "../../constants/post";
+import TitleInput from "../titleInput/TitleInput";
 
 // styles
 import styles from "./textPost.module.scss";
@@ -18,59 +19,40 @@ const TextPost = ({
   removeTag,
   handleTagSelect
 }) => {
-  const [remainingChars, setRemainingChars] = useState(POST_TITLE_LIMIT);
+  // const validatePost = (val, field) => {
+  //   switch (field) {
+  //     case "title":
+  //       if (val.length > POST_TITLE_LIMIT) return false;
+  //       break;
+  //     case "body":
+  //       break;
+  //     case "image":
+  //       break;
+  //     case "video":
+  //       break;
+  //     default:
+  //     // do nothing
+  //   }
+  //   return true;
+  // };
 
-  const validatePost = (val, field) => {
-    switch (field) {
-      case "title":
-        if (val.length > POST_TITLE_LIMIT) return false;
-        break;
-      case "body":
-        break;
-      case "image":
-        break;
-      case "video":
-        break;
-      default:
-      // do nothing
-    }
-    return true;
-  };
+  // const handleInput = e => {
+  //   const val = e.target.value;
+  //   const field = e.target.name;
 
-  const handleInput = e => {
-    const val = e.target.value;
-    const field = e.target.name;
+  //   const isValid = validatePost(val, field);
 
-    const isValid = validatePost(val, field);
-
-    if (isValid) {
-      setPostData({
-        ...postData,
-        [field]: val
-      });
-    }
-
-    if (field === "title" && isValid) {
-      const valueLen = val.length;
-      setRemainingChars(POST_TITLE_LIMIT - valueLen);
-    }
-  };
+  //   if (isValid) {
+  //     setPostData({
+  //       ...postData,
+  //       [field]: val
+  //     });
+  //   }
+  // };
 
   return (
     <div className={styles.container}>
-      <div className={styles.title_section}>
-        <input
-          className={styles.title_input}
-          placeholder='Title'
-          autoComplete='off'
-          value={postData.title}
-          name='title'
-          onChange={handleInput}
-        />
-        <div className={styles.remaining_chars}>
-          {remainingChars}/{POST_TITLE_LIMIT}
-        </div>
-      </div>
+      <TitleInput postData={postData} setPostData={setPostData} />
       <div className={styles.body}>
         <QuillEditor
           className={styles.body_editor}

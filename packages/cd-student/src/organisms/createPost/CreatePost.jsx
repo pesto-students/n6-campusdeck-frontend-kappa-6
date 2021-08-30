@@ -73,7 +73,15 @@ const CreatePost = () => {
             {
               label: "Media",
               disabled: false,
-              content: <div>Media</div>
+              content: (
+                <TextPost
+                  postData={postData}
+                  setPostData={setPostData}
+                  space={space}
+                  removeTag={removeTag}
+                  handleTagSelect={handleTagSelect}
+                />
+              )
             },
             {
               label: "Poll",

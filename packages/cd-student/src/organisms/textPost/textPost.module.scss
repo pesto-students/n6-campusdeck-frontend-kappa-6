@@ -3,32 +3,6 @@
 @import "./src/styles/variables/general";
 
 .container {
-  .title_section {
-    display: flex;
-    justify-content: center;
-    margin: 0.75rem 0;
-
-    .title_input {
-      border: none;
-      outline: none;
-      width: 28rem;
-      font-size: $medium;
-      background: $light-grey;
-      color: $dark-grey;
-      padding: 0.4rem 0.55rem;
-      border-top-left-radius: $normal-border-radius;
-      border-bottom-left-radius: $normal-border-radius;
-    }
-    .remaining_chars {
-      width: fit-content;
-      padding: 0.4rem 0.55rem;
-      background: $light-grey;
-      color: $dark-grey;
-      border-top-right-radius: $normal-border-radius;
-      border-bottom-right-radius: $normal-border-radius;
-    }
-  }
-
   .body {
     width: 32.2rem;
     max-height: 18rem;
