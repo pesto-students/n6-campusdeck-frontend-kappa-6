@@ -1,4 +1,4 @@
-import { Comment, Tooltip } from "antd";
+import { Comment, Tooltip, List } from "antd";
 import moment from "moment";
 
 import { ProfilePic } from "../..";
@@ -43,86 +43,85 @@ const Comments = ({ comments, authorName }) => {
 
   return (
     <div>
-      <div className={styles.comments_container}>
-        <div className={styles.comment_list}>
-          {comments.length > 0 &&
-            comments.map((comment, idx) => (
-              <Comment
-                actions={actions}
-                author={
-                  <>
-                    {comment.author}
-                    {comment.author === authorName ? (
-                      <Button
-                        size='Small'
-                        style={{
-                          marginLeft: "0.5rem",
-                          padding: "0.1rem 0.5rem",
-                          fontSize: "0.75rem",
-                          cursor: "default"
-                        }}
+      <List
+        className='comment-list'
+        header={`Comments (${comments.length})`}
+        itemLayout='horizontal'
+        dataSource={comments}
+        renderItem={comment => (
+          <Comment
+            actions={actions}
+            author={
+              <>
+                {comment.author}
+                {comment.author === authorName ? (
+                  <Button
+                    size='Small'
+                    style={{
+                      marginLeft: "0.5rem",
+                      padding: "0.1rem 0.5rem",
+                      fontSize: "0.75rem",
+                      cursor: "default"
+                    }}
+                  >
+                    Author
+                  </Button>
+                ) : null}
+              </>
+            }
+            avatar={comment.avatar ?? ProfilePic}
+            content={comment.content}
+            datetime={
+              <>
+                <Tooltip
+                  title={moment(comment.datetime).format("YYYY-MM-DD HH:mm:ss")}
+                >
+                  {moment(comment.datetime).fromNow()}
+                </Tooltip>
+              </>
+            }
+          >
+            {comment.replies &&
+              comment.replies.length > 0 &&
+              comment.replies.map((reply, idx) => (
+                <Comment
+                  actions={actions}
+                  author={
+                    <>
+                      {reply.author}
+                      {reply.author === authorName ? (
+                        <Button
+                          size='Small'
+                          style={{
+                            marginLeft: "0.5rem",
+                            padding: "0.1rem 0.5rem",
+                            fontSize: "0.75rem",
+                            cursor: "default"
+                          }}
+                        >
+                          Author
+                        </Button>
+                      ) : null}
+                    </>
+                  }
+                  avatar={reply.avatar ?? ProfilePic}
+                  content={reply.content}
+                  datetime={
+                    <>
+                      <Tooltip
+                        title={moment(reply.datetime).format(
+                          "YYYY-MM-DD HH:mm:ss"
+                        )}
                       >
-                        Author
-                      </Button>
-                    ) : null}
-                  </>
-                }
-                avatar={comment.avatar ?? ProfilePic}
-                content={comment.content}
-                datetime={
-                  <>
-                    <Tooltip
-                      title={moment(comment.datetime).format(
-                        "YYYY-MM-DD HH:mm:ss"
-                      )}
-                    >
-                      {moment(comment.datetime).fromNow()}
-                    </Tooltip>
-                  </>
-                }
-              >
-                {comment.replies &&
-                  comment.replies.length > 0 &&
-                  comment.replies.map((reply, idx) => (
-                    <Comment
-                      actions={actions}
-                      author={
-                        <>
-                          {reply.author}
-                          {reply.author === authorName ? (
-                            <Button
-                              size='Small'
-                              style={{
-                                marginLeft: "0.5rem",
-                                padding: "0.1rem 0.5rem",
-                                fontSize: "0.75rem",
-                                cursor: "default"
-                              }}
-                            >
-                              Author
-                            </Button>
-                          ) : null}
-                        </>
-                      }
-                      avatar={reply.avatar ?? ProfilePic}
-                      content={reply.content}
-                      datetime={
-                        <>
-                          <Tooltip
-                            title={moment(reply.datetime).format(
-                              "YYYY-MM-DD HH:mm:ss"
-                            )}
-                          >
-                            {moment(reply.datetime).fromNow()}
-                          </Tooltip>
-                        </>
-                      }
-                    />
-                  ))}
-              </Comment>
-            ))}
-        </div>
-      </div>
+                        {moment(reply.datetime).fromNow()}
+                      </Tooltip>
+                    </>
+                  }
+                />
+              ))}
+          </Comment>
+        )}
+      />
     </div>
   );
 };
