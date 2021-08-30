@@ -11,3 +11,9 @@
   display: flex;
   justify-content: center;
 }
+
+/* styles related to antd*/
+
+.ant-tag-checkable-checked {
+  background-color: $light-blue;
+}

@@ -24,7 +24,7 @@
     flex-direction: column;
     align-items: center;
     width: 39.4rem;
-    height: 32rem;
+    height: 100%;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 0.28rem;
     padding: 0 0.8rem;
@@ -64,11 +64,22 @@
   }
 
   .post_labels {
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+
+    .tag_title {
+      font-size: 0.9rem;
+      color: $dark-grey;
+      font-weight: 600;
+    }
 
     .label {
-      margin-right: 2rem;
+      margin: 0 0.5rem;
+      padding: 0.15rem 0.7rem;
+      font-size: 0.9rem;
+      border-radius: $normal-border-radius;
     }
   }
 
