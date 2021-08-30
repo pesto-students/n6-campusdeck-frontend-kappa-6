@@ -12,7 +12,6 @@ import "./App.scss";
 // routes
 import Home from "./pages/home";
 import UserProfile from "./pages/userProfile";
-import CreatePost from "./pages/createPost";
 import Base from "./Base";
 
 // lazy loading of pages

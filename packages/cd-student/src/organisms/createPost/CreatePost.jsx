@@ -3,7 +3,7 @@ import { Tooltip, Tag } from "antd";
 
 import { Button, TabMenu, InfoCircleFilled, BUTTON_SIZE } from "@cd/components";
 import { POST_TITLE_LIMIT } from "../../constants/post";
-import QuillEditor from "../../organisms/QuillEditor";
+import QuillEditor from "../quillEditor/QuillEditor";
 
 // styles
 import styles from "./createPost.module.scss";
