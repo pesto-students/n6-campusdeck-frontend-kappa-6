@@ -1,6 +1,7 @@
 .container {
   display: flex;
   align-items: center;
+  width: 35%;
 }
 
 .img {
@@ -13,4 +14,7 @@
   margin-left: 0.4rem;
   color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

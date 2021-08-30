@@ -130,6 +130,22 @@
       margin-top: 0.75rem;
       margin-left: 1rem;
       margin-bottom: 0.25rem;
+
+      .space_details {
+        font-size: 0.83rem;
+        color: $dark-grey;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 30%;
+        margin-left: 0.2rem;
+
+        .link {
+          color: blue;
+          font-style: italic;
+          cursor: pointer;
+        }
+      }
     }
 
     .comments_container {

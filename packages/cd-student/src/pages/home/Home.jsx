@@ -7,7 +7,7 @@ import styles from "./home.module.scss";
 const Home = () => {
   const [posts, setPosts] = useState([
     {
-      title: "Lorem ipsum dolor sit amet 1?",
+      title: "Lorem ipsum dolor sit amet?",
       label: "Question",
       rawContent:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
@@ -15,6 +15,8 @@ const Home = () => {
       time: "2 days ago",
       totalComments: "100+",
       authorName: "Pushpak Bhattacharya",
+      space: "Random",
+      campus: "VIT, Vellore",
       comments: [
         {
           author: "Sai Chaitanya",
@@ -67,7 +69,9 @@ const Home = () => {
       points: "4723",
       time: "2 days ago",
       totalComments: "100+",
-      authorName: "Pushpak Bhattacharya",
+      authorName: "Rashi Gaikwad",
+      space: "Fests",
+      campus: "XIME, Bangalore",
       comments: [
         {
           author: "Sai Chaitanya",
@@ -99,7 +103,9 @@ const Home = () => {
       points: "4723",
       time: "2 days ago",
       totalComments: "100+",
-      authorName: "Pushpak Bhattacharya"
+      authorName: "Sai Chaitanya",
+      space: "Announcements",
+      campus: "IIIT Hyderabad"
     },
     {
       title: "Lorem ipsum dolor sit amet?",
@@ -110,6 +116,8 @@ const Home = () => {
       time: "2 days ago",
       totalComments: "100+",
       authorName: "Pushpak Bhattacharya",
+      space: "Random",
+      campus: "VIT, Vellore",
       comments: [
         {
           author: "Sai Chaitanya",
@@ -146,6 +154,8 @@ const Home = () => {
                   time={post.time}
                   totalComments={post.totalComments}
                   authorName={post.authorName}
+                  space={post.space}
+                  campus={post.campus}
                   comments={post.comments}
                 />
               </div>

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Avatar } from "antd";
+import { Avatar, Tooltip } from "antd";
 import { ProfilePic } from "../..";
 
 // styles
@@ -10,7 +10,10 @@ const AuthorDetails = ({ authorName, authorPic }) => {
     <div className={styles.container}>
       <Avatar className={styles.img} src={authorPic} alt={authorName} />
       <div className={styles.credit}>
-        Created by <span style={{ color: "blue" }}>{authorName}</span>
+        Created by{" "}
+        <span style={{ color: "blue" }}>
+          <Tooltip title={authorName}>{authorName}</Tooltip>
+        </span>
       </div>
     </div>
   );

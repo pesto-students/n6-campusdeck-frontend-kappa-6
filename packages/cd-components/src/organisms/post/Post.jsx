@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import _truncate from "lodash/truncate";
 import cx from "classnames";
+import { Tooltip } from "antd";
 
 import { MoreOutlined } from "../../atoms/icon/Icon";
 import Button from "../../atoms/button/Button";
@@ -27,6 +28,8 @@ const Post = ({
   authorName,
   authorPic,
   size,
+  space,
+  campus,
   comments
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -95,6 +98,12 @@ const Post = ({
             })}
           >
             <AuthorDetails authorName={authorName} authorPic={authorPic} />
+            <div className={styles.space_details}>
+              <span className={styles.link}>{space}</span> of{" "}
+              <span className={styles.link}>
+                <Tooltip title={campus}>{campus}</Tooltip>
+              </span>
+            </div>
             <PostDetails time={time} totalComments={totalComments} />
           </div>
           {isExpanded && (

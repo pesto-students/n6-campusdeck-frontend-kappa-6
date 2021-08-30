@@ -1,14 +1,17 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 30%;
-  height: 30px;
-  padding: 0 0.5rem;
+  width: 27%;
+  padding: 0.35rem 0.5rem;
 }
 
 .comment,
 .time {
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.7);
+}
+
+.comment {
+  margin-left: 1.35rem;
 }
