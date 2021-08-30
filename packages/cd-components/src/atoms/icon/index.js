@@ -20,5 +20,6 @@ export {
   DislikeOutlined,
   LikeOutlined,
   DislikeFilled,
-  LikeFilled
+  LikeFilled,
+  CloudUploadOutlined
 } from "./Icon";
