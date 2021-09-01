@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Banner, Button, BUTTON_SIZE } from "@cd/components";
 import { signup } from "../../actions/auth";
 
@@ -20,12 +21,13 @@ const initialFormState = {
 const Register = () => {
   const [formData, setFormData] = useState(initialFormState);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // function that will submit the form
   const submitForm = e => {
     e.preventDefault();
 
-    dispatch(signup(formData));
+    dispatch(signup(formData, history));
   };
 
   // function that will handle input
