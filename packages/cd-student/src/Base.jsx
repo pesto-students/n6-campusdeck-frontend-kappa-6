@@ -18,6 +18,7 @@ import {
 } from "@cd/components";
 import CreatePost from "./organisms/createPost";
 import CreateSpace from "./organisms/createSpace";
+import MySpaces from "./organisms/mySpaces/MySpaces";
 import { LOGOUT } from "./actions/constants/actionTypes";
 
 // styles
@@ -132,17 +133,10 @@ const Base = ({ children }) => {
                 }
               ]}
             />
+
+            {/* my spaces section */}
             <div className={styles.spaces_section}>
-              <div className={styles.my_spaces_heading}>My Spaces</div>
-              <div className={styles.spaces_list}>
-                <div className={styles.space_name}>
-                  Announcements in VIT, Vellore
-                </div>
-                <div className={styles.space_name}>Fests in NIT, Warangal</div>
-                <div className={styles.space_name}>
-                  Random in IIIT Hyderabad
-                </div>
-              </div>
+              <MySpaces openModal={() => setSpaceModalVisible(true)} />
             </div>
           </div>
 

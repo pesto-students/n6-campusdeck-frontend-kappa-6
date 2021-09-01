@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
-import SpaceImage from "./deleteThisLater/defaultProfile.jpg";
+import { ProfilePic } from "@cd/components";
 // style
 import styles from "./listItem.module.scss";
 
 const ListItem = ({ image, name, metric }) => {
   return (
     <div className={styles.container}>
-      <img className={styles.img} src={SpaceImage} alt={name} />
+      <img className={styles.img} src={image} alt={name} />
       <div className={styles.name}>{name}</div>
       <span className={styles.metric}>{metric}</span>
     </div>
@@ -21,7 +21,7 @@ ListItem.propTypes = {
 };
 
 ListItem.defaultProps = {
-  image: SpaceImage
+  image: ProfilePic
 };
 
 export default ListItem;

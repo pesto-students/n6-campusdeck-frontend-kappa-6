@@ -21,22 +21,6 @@
       .spaces_section {
         margin-top: 1.75rem;
         width: 100%;
-
-        .my_spaces_heading {
-          font-size: $medium;
-          font-weight: 600;
-          color: $dark-grey;
-          margin-bottom: 0.35rem;
-        }
-
-        .spaces_list {
-          color: $primary-blue;
-
-          .space_name {
-            margin-top: 0.2rem;
-            cursor: pointer;
-          }
-        }
       }
     }
 
