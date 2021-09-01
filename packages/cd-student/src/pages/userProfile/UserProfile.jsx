@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { ProfileCard, Navbar, LeftSidebar } from "@cd/components";
+import { ProfileCard } from "@cd/components";
 
 // styles
 import styles from "./userProfile.module.scss";
 
 const UserProfile = () => {
-  const [posts, setPosts] = useState([
+  const [posts] = useState([
     {
       title: "Lorem ipsum dolor sit amet?",
       label: "Question",
@@ -29,8 +29,8 @@ const UserProfile = () => {
       size: "compact"
     }
   ]);
-  const [comments, setComments] = useState([]);
-  const [savedItems, setSavedItems] = useState([
+  const [comments] = useState([]);
+  const [savedItems] = useState([
     {
       title: "Lorem ipsum dolor sit amet?",
       label: "Question",

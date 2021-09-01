@@ -1,10 +1,8 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import { Tooltip, Tag } from "antd";
 
 import { InfoCircleFilled } from "@cd/components";
 import QuillEditor from "../quillEditor/QuillEditor";
-import { POST_TITLE_LIMIT } from "../../constants/post";
 import TitleInput from "../titleInput/TitleInput";
 
 // styles
@@ -12,13 +10,7 @@ import styles from "./textPost.module.scss";
 
 const { CheckableTag } = Tag;
 
-const TextPost = ({
-  postData,
-  setPostData,
-  space,
-  removeTag,
-  handleTagSelect
-}) => {
+const TextPost = ({ postData, setPostData, space, handleTagSelect }) => {
   // const validatePost = (val, field) => {
   //   switch (field) {
   //     case "title":
@@ -97,8 +89,7 @@ TextPost.propTypes = {
   postData: PropTypes.object.isRequired,
   setPostData: PropTypes.func.isRequired,
   space: PropTypes.object.isRequired,
-  handleTagSelect: PropTypes.func.isRequired,
-  removeTag: PropTypes.func.isRequired
+  handleTagSelect: PropTypes.func.isRequired
 };
 
 export default TextPost;

@@ -16,7 +16,7 @@ const toolbarOptions = [
 ];
 
 const QuillEditor = ({ postData, setPostData }) => {
-  const [quill, setQuill] = useState(null);
+  const [_, setQuill] = useState(null);
   const wrapper = useRef();
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { ContextMenu, Post } from "@cd/components";
 import styles from "./home.module.scss";
 
 const Home = () => {
-  const [posts, setPosts] = useState([
+  const [posts] = useState([
     {
       title: "Lorem ipsum dolor sit amet?",
       label: "Question",
@@ -129,9 +129,7 @@ const Home = () => {
     }
   ]);
 
-  const updatePosts = ({ key }) => {
-    alert(`post update handler: ${key}`);
-  };
+  const updatePosts = ({ key }) => {};
 
   return (
     <>
@@ -144,8 +142,8 @@ const Home = () => {
         </ContextMenu>
         <div className={styles.post_container}>
           {posts.length &&
-            posts.map((post, idx) => (
-              <div className={styles.post}>
+            posts.map(post => (
+              <div key={post.id} className={styles.post}>
                 <Post
                   title={post.title}
                   label={post.label}

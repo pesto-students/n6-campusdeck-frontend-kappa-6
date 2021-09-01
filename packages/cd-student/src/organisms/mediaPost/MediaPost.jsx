@@ -12,13 +12,7 @@ import styles from "./mediaPost.module.scss";
 const { CheckableTag } = Tag;
 const { Dragger } = Upload;
 
-const MediaPost = ({
-  postData,
-  setPostData,
-  space,
-  removeTag,
-  handleTagSelect
-}) => {
+const MediaPost = ({ postData, setPostData, space, handleTagSelect }) => {
   const [image, setImage] = useState("");
 
   const props = {
@@ -139,8 +133,7 @@ MediaPost.propTypes = {
   postData: PropTypes.object.isRequired,
   setPostData: PropTypes.func.isRequired,
   space: PropTypes.object.isRequired,
-  handleTagSelect: PropTypes.func.isRequired,
-  removeTag: PropTypes.func.isRequired
+  handleTagSelect: PropTypes.func.isRequired
 };
 
 export default MediaPost;

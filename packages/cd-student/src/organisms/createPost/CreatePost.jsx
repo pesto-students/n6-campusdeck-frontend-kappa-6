@@ -18,9 +18,7 @@ const CreatePost = () => {
     tags: ["Info", "Urgent", "Advice", "Question"]
   });
 
-  const submit = () => {
-    console.log(postData);
-  };
+  const submit = () => {};
 
   // this function will remove the tag associated to the post
   const removeTag = () => {
@@ -28,7 +26,7 @@ const CreatePost = () => {
   };
 
   // this function is called when a tag is selected to associate the tag to the post
-  const handleTagSelect = (tag, checked) => {
+  const handleTagSelect = tag => {
     setPostData({
       ...postData,
       tag
