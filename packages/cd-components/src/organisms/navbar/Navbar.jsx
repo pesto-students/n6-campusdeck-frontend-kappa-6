@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Logo from "../../atoms/logo/Logo";
 import UserInfo from "../../atoms/userInfo/UserInfo";
 import SearchBox from "../../molecules/searchBox/SearchBox";
@@ -12,12 +13,15 @@ const Navbar = ({ userName, userImg }) => {
       <Logo />
       <SearchBox />
       <ActionIcons />
-      <UserInfo userName={userName} profileImg={userImg} />
+      {userName && <UserInfo userName={userName} profileImg={userImg} />}
     </nav>
   );
 };
 
-Navbar.propTypes = {};
+Navbar.propTypes = {
+  userName: PropTypes.string,
+  userImg: PropTypes.string
+};
 
 Navbar.defaultProps = {};
 

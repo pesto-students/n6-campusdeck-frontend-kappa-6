@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,38 +13,39 @@ import "./App.scss";
 import Home from "./pages/home";
 import UserProfile from "./pages/userProfile";
 import Base from "./Base";
-
-// lazy loading of pages
-const Login = lazy(() => import("./pages/login"));
-const Register = lazy(() => import("./pages/register"));
+import Login from "./pages/login";
+import Register from "./pages/register";
 
 function App() {
+  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+
   return (
     <Router>
       <Switch>
-        {/* TODO: change to a proper loading fallback */}
-        <Suspense fallback={<div>Loading...</div>}>
-          <Route
-            component={() => (
+        <Route
+          component={() => {
+            return user ? (
               <Base>
                 <Home />
               </Base>
-            )}
-            path='/'
-            exact
-          />
-          <Route component={Login} path='/login' exact />
-          <Route component={Register} path='/register' exact />
-          <Route
-            component={() => (
-              <Base>
-                <UserProfile />
-              </Base>
-            )}
-            path='/profile'
-            exact
-          />
-        </Suspense>
+            ) : (
+              <Redirect to='/login' />
+            );
+          }}
+          path='/'
+          exact
+        />
+        <Route component={Login} path='/login' exact />
+        <Route component={Register} path='/register' exact />
+        <Route
+          component={() => (
+            <Base>
+              <UserProfile />
+            </Base>
+          )}
+          path='/profile'
+          exact
+        />
       </Switch>
     </Router>
   );
