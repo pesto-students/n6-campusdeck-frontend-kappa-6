@@ -20,6 +20,7 @@ const MediaPost = ({ postData, setPostData, space, handleTagSelect }) => {
     multiple: false,
     async onChange(info) {
       const { status } = info.file;
+
       if (status !== "removed" && status !== "uploading") {
         const formData = new FormData();
         formData.append("file", info.file.originFileObj);

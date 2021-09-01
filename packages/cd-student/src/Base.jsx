@@ -17,14 +17,17 @@ import {
   CompassFilled
 } from "@cd/components";
 import CreatePost from "./organisms/createPost";
+import CreateSpace from "./organisms/createSpace";
 import { LOGOUT } from "./actions/constants/actionTypes";
 
 // styles
 import styles from "./Base.module.scss";
 
 const Base = ({ children }) => {
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [postModalVisible, setPostModalVisible] = useState(false);
+  const [spaceModalVisible, setSpaceModalVisible] = useState(false);
+  const [createPostLoading, setCreatePostLoading] = useState(false);
+  const [createSpaceLoading, setCreateSpaceLoading] = useState(false);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const history = useHistory();
   const location = useLocation();
@@ -35,24 +38,26 @@ const Base = ({ children }) => {
     history.push(destination);
   };
 
-  // opens the create post modal
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleOk = () => {
-    setConfirmLoading(true);
+  // function that will execute when a post is created
+  const handleSavePost = () => {
+    setCreatePostLoading(true);
 
     // the below line will be replaced by dispatching an action to save the post
     setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
+      setPostModalVisible(false);
+      setCreatePostLoading(false);
     }, 2000);
   };
 
-  // closes the create post modal
-  const handleCancel = () => {
-    setVisible(false);
+  // function that will execute when a space is created
+  const handleSaveSpace = () => {
+    setCreateSpaceLoading(true);
+
+    // the below line will be replaced by dispatching an action to save a space
+    setTimeout(() => {
+      setSpaceModalVisible(false);
+      setCreateSpaceLoading(false);
+    }, 2000);
   };
 
   // function to logout the user
@@ -146,28 +151,34 @@ const Base = ({ children }) => {
           <div className={styles.right_sidebar}>
             <div className={styles.btns_container}>
               <Button
-                onClick={showModal}
+                onClick={() => setPostModalVisible(true)}
                 className={styles.btn}
                 size={BUTTON_SIZE.XL}
               >
                 + Add a new post
               </Button>
-              <Button className={styles.btn} size={BUTTON_SIZE.XL}>
+              <Button
+                onClick={() => setSpaceModalVisible(true)}
+                className={styles.btn}
+                size={BUTTON_SIZE.XL}
+              >
                 + Add a new space
               </Button>
             </div>
+
+            {/* create post modal */}
             <Modal
               title='Create Post'
-              visible={visible}
-              onOk={handleOk}
-              confirmLoading={confirmLoading}
-              onCancel={handleCancel}
+              visible={postModalVisible}
+              onOk={handleSavePost}
+              confirmLoading={createPostLoading}
+              onCancel={() => setPostModalVisible(false)}
               width={670}
               centered
               footer={[
                 <AntButton
                   key='cancel'
-                  onClick={handleCancel}
+                  onClick={() => setPostModalVisible(false)}
                   style={{
                     borderRadius: "5px",
                     border: "0.55px solid rgb(61, 110, 240)",
@@ -180,8 +191,8 @@ const Base = ({ children }) => {
                 <AntButton
                   key='create'
                   type='primary'
-                  loading={confirmLoading}
-                  onClick={handleOk}
+                  loading={createPostLoading}
+                  onClick={handleSavePost}
                   style={{
                     borderRadius: "5px",
                     backgroundColor: "rgb(61, 110, 240)",
@@ -194,6 +205,47 @@ const Base = ({ children }) => {
               ]}
             >
               <CreatePost />
+            </Modal>
+
+            {/* create space modal */}
+            <Modal
+              title='Create Space'
+              visible={spaceModalVisible}
+              onOk={handleSaveSpace}
+              confirmLoading={createSpaceLoading}
+              onCancel={() => setSpaceModalVisible(false)}
+              width={670}
+              centered
+              footer={[
+                <AntButton
+                  key='cancel'
+                  onClick={() => setSpaceModalVisible(false)}
+                  style={{
+                    borderRadius: "5px",
+                    border: "0.55px solid rgb(61, 110, 240)",
+                    fontWeight: "bold",
+                    color: "rgb(61, 110, 240)"
+                  }}
+                >
+                  Cancel
+                </AntButton>,
+                <AntButton
+                  key='create'
+                  type='primary'
+                  loading={createSpaceLoading}
+                  onClick={handleSaveSpace}
+                  style={{
+                    borderRadius: "5px",
+                    backgroundColor: "rgb(61, 110, 240)",
+                    border: "none",
+                    fontWeight: "bold"
+                  }}
+                >
+                  Create
+                </AntButton>
+              ]}
+            >
+              <CreateSpace />
             </Modal>
             <div className={styles.card_list}>
               <div className={styles.card}>
