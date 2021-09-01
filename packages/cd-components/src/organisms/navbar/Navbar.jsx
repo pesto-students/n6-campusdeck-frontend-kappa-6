@@ -6,13 +6,13 @@ import ActionIcons from "../actionIcons/ActionIcons";
 // styles
 import styles from "./navbar.module.scss";
 
-const Navbar = () => {
+const Navbar = ({ userName, userImg }) => {
   return (
     <nav className={styles.navbar}>
       <Logo />
       <SearchBox />
       <ActionIcons />
-      <UserInfo userName='Pushpak Bhattacharya' />
+      <UserInfo userName={userName} profileImg={userImg} />
     </nav>
   );
 };

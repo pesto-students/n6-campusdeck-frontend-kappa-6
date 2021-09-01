@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal, Button as AntButton } from "antd";
+import decode from "jwt-decode";
 import {
   Button,
   Footer,
@@ -14,16 +16,19 @@ import {
   UserOutlined,
   CompassFilled
 } from "@cd/components";
+import CreatePost from "./organisms/createPost";
+import { LOGOUT } from "./actions/constants/actionTypes";
 
 // styles
 import styles from "./Base.module.scss";
-import CreatePost from "./organisms/createPost";
 
 const Base = ({ children }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   // navigate to given page
   const onClick = destination => {
@@ -50,9 +55,46 @@ const Base = ({ children }) => {
     setVisible(false);
   };
 
+  // function to logout the user
+  const logout = () => {
+    dispatch({
+      type: LOGOUT
+    });
+
+    // clears the current user
+    setUser(() => {
+      // redirect user to home page upon logging out
+      history.push("/");
+
+      return null;
+    });
+  };
+
+  // resets the user (and logs them out, if token is expired) once the location,
+  // i.e. the current path in the app
+  useEffect(() => {
+    const token = user?.token;
+    /*
+     * decode() function takes the token and destructures the data.
+     * decodedToken.exp will have the time of expiry of the token in ms.
+     */
+    if (token) {
+      const decodedToken = token && decode(token);
+      const expTimeInSecs = decodedToken?.exp * 1000;
+      const currTimeInSecs = new Date().getTime();
+
+      // if token has expired, log out the user
+      if (expTimeInSecs < currTimeInSecs) {
+        logout();
+      }
+    }
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location]);
+
   return (
     <>
-      <Navbar />
+      <Navbar userName={user?.result.name} userImg={user?.result.profileImg} />
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.left_sidebar}>
