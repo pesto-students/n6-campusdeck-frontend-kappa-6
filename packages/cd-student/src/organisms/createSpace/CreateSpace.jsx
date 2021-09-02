@@ -7,6 +7,7 @@ import { SPACE_NAME_LIMIT } from "../../constants/space";
 
 // styles
 import styles from "./createSpace.module.scss";
+import EditableTagGroup from "../editableTagGroup";
 
 const { Dragger } = Upload;
 
@@ -148,7 +149,9 @@ const CreateSpace = () => {
             </p>
           </Dragger>
         </div>
-        <div classnames={styles.tags}>TAGS</div>
+        <div classnames={styles.tags_section}>
+          <EditableTagGroup />
+        </div>
         <div classnames={styles.checkbox}>
           <label htmlFor='accessibility'>
             <input type='checkbox' id='accessibility' />
