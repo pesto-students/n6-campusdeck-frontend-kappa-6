@@ -19,7 +19,8 @@ import {
   DislikeFilled,
   LikeFilled,
   CloudUploadOutlined,
-  PlusCircleFilled
+  PlusCircleFilled,
+  PlusOutlined
 } from "@ant-design/icons";
 
 import { Users, MapPin, BarChart2 } from "react-feather";
@@ -48,5 +49,6 @@ export {
   DislikeFilled,
   LikeFilled,
   CloudUploadOutlined,
-  PlusCircleFilled
+  PlusCircleFilled,
+  PlusOutlined
 };

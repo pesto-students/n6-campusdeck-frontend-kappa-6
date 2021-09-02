@@ -31,7 +31,8 @@ export {
   DislikeFilled,
   LikeFilled,
   CloudUploadOutlined,
-  PlusCircleFilled
+  PlusCircleFilled,
+  PlusOutlined
 } from "./atoms/icon/Icon";
 
 // all molecules
