@@ -149,7 +149,7 @@ const CreateSpace = () => {
             </p>
           </Dragger>
         </div>
-        <div classnames={styles.tags}>
+        <div classnames={styles.tags_section}>
           <EditableTagGroup />
         </div>
         <div classnames={styles.checkbox}>

@@ -3,6 +3,9 @@ import { Tag, Input, Tooltip, message } from "antd";
 
 import { PlusOutlined } from "@cd/components";
 
+// styles
+import styles from "./editableTagGroup.module.scss";
+
 const EditableTagGroup = () => {
   const [tags, setTags] = useState([]);
   const [inputVisible, setInputVisible] = useState(false);
@@ -52,7 +55,7 @@ const EditableTagGroup = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       {tags.length > 0 &&
         tags.map((tag, idx) => {
           if (editInputIdx === idx) {
@@ -60,6 +63,7 @@ const EditableTagGroup = () => {
               <Input
                 key={tag}
                 size='small'
+                className='tag-input'
                 value={editInputVal}
                 onChange={handleEditInputChange}
                 onBlur={handleEditInputConfirm}
@@ -71,7 +75,12 @@ const EditableTagGroup = () => {
           const isLongTag = tag.length > 20;
 
           const tagElem = (
-            <Tag key={tag} closable onClose={() => handleRemove(tag)}>
+            <Tag
+              className='edit-tag'
+              key={tag}
+              closable
+              onClose={() => handleRemove(tag)}
+            >
               <span
                 onDoubleClick={e => {
                   setEditInputIdx(idx);
@@ -107,7 +116,7 @@ const EditableTagGroup = () => {
           <PlusOutlined /> New Tag
         </Tag>
       )}
-    </>
+    </div>
   );
 };
 

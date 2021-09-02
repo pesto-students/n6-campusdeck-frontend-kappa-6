@@ -17,3 +17,19 @@
 .ant-tag-checkable-checked {
   background-color: $light-blue;
 }
+
+.ant-tag {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  &.edit-tag {
+    background-color: $light-blue;
+    color: white;
+  }
+}
+
+.ant-input {
+  width: 6.5rem;
+  padding: 0.25rem 0.5rem;
+}

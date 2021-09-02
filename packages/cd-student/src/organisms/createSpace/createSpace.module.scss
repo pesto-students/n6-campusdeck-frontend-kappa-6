@@ -72,6 +72,12 @@
       }
     }
 
+    .tags_section {
+      display: flex;
+      justify-content: flex-start;
+      border: 1px solid black;
+    }
+
     .img {
       width: 31.2rem;
       max-height: 21rem;
