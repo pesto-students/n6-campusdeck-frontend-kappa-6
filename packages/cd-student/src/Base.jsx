@@ -20,6 +20,7 @@ import CreatePost from "./organisms/createPost";
 import CreateSpace from "./organisms/createSpace";
 import MySpaces from "./organisms/mySpaces/MySpaces";
 import { LOGOUT } from "./actions/constants/actionTypes";
+import { createSpace } from "./actions/space";
 
 // styles
 import styles from "./Base.module.scss";
@@ -29,6 +30,14 @@ const Base = ({ children }) => {
   const [spaceModalVisible, setSpaceModalVisible] = useState(false);
   const [createPostLoading, setCreatePostLoading] = useState(false);
   const [createSpaceLoading, setCreateSpaceLoading] = useState(false);
+  const [spaceData, setSpaceData] = useState({
+    name: "",
+    desc: "",
+    img: "",
+    campus: "",
+    tags: [],
+    isPublic: true
+  });
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const history = useHistory();
   const location = useLocation();
@@ -54,11 +63,17 @@ const Base = ({ children }) => {
   const handleSaveSpace = () => {
     setCreateSpaceLoading(true);
 
-    // the below line will be replaced by dispatching an action to save a space
-    setTimeout(() => {
-      setSpaceModalVisible(false);
-      setCreateSpaceLoading(false);
-    }, 2000);
+    console.log(spaceData);
+
+    dispatch(createSpace(spaceData));
+
+    setSpaceModalVisible(false);
+    setCreateSpaceLoading(false);
+
+    // setTimeout(() => {
+    //   setSpaceModalVisible(false);
+    //   setCreateSpaceLoading(false);
+    // }, 2000);
   };
 
   // function to logout the user
@@ -239,7 +254,7 @@ const Base = ({ children }) => {
                 </AntButton>
               ]}
             >
-              <CreateSpace />
+              <CreateSpace spaceData={spaceData} setSpaceData={setSpaceData} />
             </Modal>
             <div className={styles.card_list}>
               <div className={styles.card}>

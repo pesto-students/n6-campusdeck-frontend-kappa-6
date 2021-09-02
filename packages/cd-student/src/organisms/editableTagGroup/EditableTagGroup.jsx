@@ -1,25 +1,25 @@
 import { useState } from "react";
 import { Tag, Input, Tooltip, message } from "antd";
+import PropTypes from "prop-types";
 
 import { PlusOutlined } from "@cd/components";
 
 // styles
 import styles from "./editableTagGroup.module.scss";
 
-const EditableTagGroup = () => {
-  const [tags, setTags] = useState([]);
+const EditableTagGroup = ({ spaceData, setSpaceData }) => {
   const [inputVisible, setInputVisible] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const [editInputIdx, setEditInputIdx] = useState(-1);
   const [editInputVal, setEditInputVal] = useState("");
 
   const handleRemove = removedTag => {
-    const newTags = tags.filter(tag => tag !== removedTag);
-    setTags(newTags);
+    const newTags = spaceData.tags.filter(tag => tag !== removedTag);
+    setSpaceData({ ...spaceData, tags: newTags });
   };
 
   const showInput = () => {
-    if (tags.length >= 5) {
+    if (spaceData.tags.length >= 5) {
       message.warn("You can only add 5 tags");
     } else {
       setInputVisible(true);
@@ -32,8 +32,8 @@ const EditableTagGroup = () => {
   };
 
   const handleInputConfirm = () => {
-    if (inputVal && tags.indexOf(inputVal) === -1) {
-      setTags([...tags, inputVal]);
+    if (inputVal && spaceData.tags.indexOf(inputVal) === -1) {
+      setSpaceData({ ...spaceData, tags: [...spaceData.tags, inputVal] });
     }
 
     setInputVisible(false);
@@ -46,18 +46,18 @@ const EditableTagGroup = () => {
   };
 
   const handleEditInputConfirm = () => {
-    const newTags = [...tags];
+    const newTags = [...spaceData.tags];
     newTags[editInputIdx] = editInputVal;
 
-    setTags(newTags);
+    setSpaceData({ ...spaceData, tags: newTags });
     setEditInputIdx(-1);
     setEditInputVal("");
   };
 
   return (
     <div className={styles.container}>
-      {tags.length > 0 &&
-        tags.map((tag, idx) => {
+      {spaceData.tags.length > 0 &&
+        spaceData.tags.map((tag, idx) => {
           if (editInputIdx === idx) {
             return (
               <Input
@@ -118,6 +118,18 @@ const EditableTagGroup = () => {
       )}
     </div>
   );
+};
+
+EditableTagGroup.propTypes = {
+  spaceData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string,
+    img: PropTypes.string,
+    campus: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    isPublic: PropTypes.bool
+  }).isRequired,
+  setSpaceData: PropTypes.func.isRequired
 };
 
 export default EditableTagGroup;

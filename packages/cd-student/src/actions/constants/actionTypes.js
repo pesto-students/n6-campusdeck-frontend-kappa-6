@@ -4,3 +4,6 @@ export const LOGOUT = "LOGOUT";
 
 // campus related
 export const FETCH_ALL_CAMPUS = "FETCH_ALL_CAMPUS";
+
+// space related
+export const CREATE_SPACE = "CREATE_SPACE";

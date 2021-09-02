@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Divider, Upload, message, Tooltip } from "antd";
 import axios from "axios";
@@ -13,16 +14,7 @@ import EditableTagGroup from "../editableTagGroup";
 
 const { Dragger } = Upload;
 
-const CreateSpace = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    desc: "",
-    img: "",
-    campus: "",
-    tags: [],
-    isPublic: true
-  });
-
+const CreateSpace = ({ spaceData, setSpaceData }) => {
   const [remainingChars, setRemainingChars] = useState(SPACE_NAME_LIMIT);
   // fetch list of campus from the global store
   const { campus } = useSelector(state => state.campus);
@@ -45,7 +37,7 @@ const CreateSpace = () => {
           imageData
         );
         if (response.status === 200) {
-          setFormData({ ...formData, img: response.data.secure_url });
+          setSpaceData({ ...spaceData, img: response.data.secure_url });
           message.success(`${info.file.name} file uploaded successfully.`);
         } else {
           message.error(`${info.file.name} file upload failed.`);
@@ -74,29 +66,14 @@ const CreateSpace = () => {
     return isJpgOrPng;
   };
 
-  const submit = () => {};
-
-  // this function will remove the tag associated to the post
-  const removeTag = () => {
-    console.log("tag removed");
-  };
-
-  // this function is called when a tag is selected to associate the tag to the post
-  const handleTagSelect = tag => {
-    setFormData({
-      ...formData,
-      tag
-    });
-  };
-
   const handleNameInput = e => {
     const val = e.target.value;
     const valueLen = val.length;
 
     setRemainingChars(SPACE_NAME_LIMIT - valueLen);
 
-    setFormData({
-      ...formData,
+    setSpaceData({
+      ...spaceData,
       name: val
     });
   };
@@ -110,7 +87,7 @@ const CreateSpace = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <select
-          onChange={e => setFormData({ ...formData, campus: e.target.value })}
+          onChange={e => setSpaceData({ ...spaceData, campus: e.target.value })}
           className={styles.selector}
         >
           <option>Choose a campus</option>
@@ -129,7 +106,7 @@ const CreateSpace = () => {
             className={styles.name_input}
             placeholder='Name'
             autoComplete='off'
-            value={formData.name}
+            value={spaceData.name}
             name='name'
             onChange={handleNameInput}
           />
@@ -141,8 +118,8 @@ const CreateSpace = () => {
           <textarea
             className={styles.description}
             placeholder='Description'
-            value={formData.desc}
-            onChange={e => setFormData({ ...formData, desc: e.target.value })}
+            value={spaceData.desc}
+            onChange={e => setSpaceData({ ...spaceData, desc: e.target.value })}
           />
         </div>
         <div className={styles.img}>
@@ -160,11 +137,18 @@ const CreateSpace = () => {
           </Dragger>
         </div>
         <div classnames={styles.tags_section}>
-          <EditableTagGroup />
+          <EditableTagGroup spaceData={spaceData} setSpaceData={setSpaceData} />
         </div>
         <div classnames={styles.checkbox}>
           <label htmlFor='accessibility'>
-            <input type='checkbox' id='accessibility' />
+            <input
+              type='checkbox'
+              id='accessibility'
+              checked={spaceData.isPublic}
+              onChange={e => {
+                setSpaceData({ ...spaceData, isPublic: !spaceData.isPublic });
+              }}
+            />
             <span style={{ marginLeft: "0.5rem" }}>
               Make this a public space?
             </span>
@@ -179,6 +163,18 @@ const CreateSpace = () => {
       </div>
     </div>
   );
+};
+
+CreateSpace.propTypes = {
+  spaceData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string,
+    img: PropTypes.string,
+    campus: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    isPublic: PropTypes.bool
+  }).isRequired,
+  setSpaceData: PropTypes.func.isRequired
 };
 
 export default CreateSpace;
