@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Divider, Upload, message, Tooltip } from "antd";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Button, InfoCircleFilled, CloudUploadOutlined } from "@cd/components";
 import { SPACE_NAME_LIMIT } from "../../constants/space";
+import { fetchAllCampus } from "../../actions/campus";
 
 // styles
 import styles from "./createSpace.module.scss";
@@ -19,10 +21,11 @@ const CreateSpace = () => {
     tags: [],
     isPublic: true
   });
-  const [campus, setCampus] = useState({
-    name: "VIT, Vellore"
-  });
+
   const [remainingChars, setRemainingChars] = useState(SPACE_NAME_LIMIT);
+  // fetch list of campus from the global store
+  const { campus } = useSelector(state => state.campus);
+  const dispatch = useDispatch();
 
   const props = {
     name: "file",
@@ -98,17 +101,24 @@ const CreateSpace = () => {
   };
 
   useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+    // fetch all the campus
+    dispatch(fetchAllCampus());
+  }, []);
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <select className={styles.selector}>
+        <select
+          onChange={e => setFormData({ ...formData, campus: e.target.value })}
+          className={styles.selector}
+        >
           <option>Choose a campus</option>
-          <option>VIT, Vellore</option>
-          <option>XIME, Bangalore</option>
-          <option>IIIT Hyderabad</option>
+          {campus.length > 0 &&
+            campus.map(c => (
+              <option key={c._id} value={c.name}>
+                {c.name}
+              </option>
+            ))}
         </select>
       </div>
       <Divider />
