@@ -12,6 +12,8 @@ import {
   CommentEditor
 } from "@cd/components";
 
+import { countTotalComments } from "@cd/base";
+
 import { ProfilePic } from "../..";
 
 // styles
@@ -107,7 +109,7 @@ const Comments = ({ comments, authorName }) => {
         className='comment-list'
         header={
           <div>
-            {`Comments (${comments.length})`}
+            {`Comments (${countTotalComments(comments)})`}
             <Button
               className={styles.comment_btn}
               size={BUTTON_SIZE.SMALL}
