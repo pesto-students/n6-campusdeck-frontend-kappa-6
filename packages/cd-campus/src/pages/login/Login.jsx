@@ -1,7 +1,8 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Banner, Button, BUTTON_SIZE } from "@cd/components";
+import { signIn } from "../../actions/auth";
 
 // styles
 import styles from "./login.module.scss";
@@ -13,14 +14,16 @@ const initialFormState = {
 
 const Login = () => {
   const [formData, setFormData] = useState(initialFormState);
-  //   const dispatch = useDispatch();
-  //   const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   // function that will submit the form
   const submitForm = e => {
     e.preventDefault();
 
-    // dispatch(signin(formData, history));
+    console.log(formData);
+
+    dispatch(signIn(formData, history));
   };
 
   // function that will handle input
