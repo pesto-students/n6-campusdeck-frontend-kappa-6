@@ -13,6 +13,10 @@ const SPACE_API = axios.create({
   baseURL: process.env.REACT_APP_SPACE_SERVICE_URL
 });
 
+const POST_API = axios.create({
+  baseURL: process.env.REACT_APP_POST_SERVICE_URL
+});
+
 // user auth related
 export const signUp = formData => USER_API.post("/users/signup", formData);
 export const signIn = formData => USER_API.post("/users/signin", formData);
@@ -22,3 +26,9 @@ export const fetchAllCampus = () => CAMPUS_API.get("/campus");
 
 // space related
 export const createSpace = formData => SPACE_API.post("/space", formData);
+export const getSpace = id => SPACE_API.get(`/space/${id}`);
+export const getAllSpacesByCampus = campusId =>
+  SPACE_API.get(`/space/campus/${campusId}`);
+
+// post related
+export const createPost = formData => POST_API.post("/post", formData);

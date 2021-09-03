@@ -93,7 +93,7 @@ const CreateSpace = ({ spaceData, setSpaceData }) => {
           <option>Choose a campus</option>
           {campus.length > 0 &&
             campus.map(c => (
-              <option key={c._id} value={c.name}>
+              <option key={c._id} value={c._id}>
                 {c.name}
               </option>
             ))}
