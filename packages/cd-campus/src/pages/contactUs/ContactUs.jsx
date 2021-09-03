@@ -12,6 +12,7 @@ import styles from "./contactUs.module.scss";
 const initialFormState = {
   firstName: "",
   lastName: "",
+  userName: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -93,6 +94,13 @@ const ContactUs = () => {
               name='email'
               type='email'
               value={formData.email}
+              onChange={handleInput}
+            />
+            <input
+              className={styles.input}
+              placeholder='Username'
+              name='userName'
+              value={formData.userName}
               onChange={handleInput}
             />
             <AutoComplete
