@@ -42,7 +42,7 @@ const Base = ({ children }) => {
   const [postData, setPostData] = useState({
     title: "",
     type: "TEXT",
-    body: "Start typing...",
+    body: "",
     tag: "",
     space: "",
     isPublic: true
@@ -62,7 +62,6 @@ const Base = ({ children }) => {
     setCreatePostLoading(true);
 
     dispatch(createPost(postData));
-
     setPostModalVisible(false);
     setCreatePostLoading(false);
 

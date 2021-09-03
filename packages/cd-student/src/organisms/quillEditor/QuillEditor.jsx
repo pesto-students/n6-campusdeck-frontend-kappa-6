@@ -16,7 +16,7 @@ const toolbarOptions = [
 ];
 
 const QuillEditor = ({ postData, setPostData }) => {
-  const [_, setQuill] = useState(null);
+  const [quill, setQuill] = useState(null);
   const wrapper = useRef();
 
   useEffect(() => {
@@ -28,7 +28,8 @@ const QuillEditor = ({ postData, setPostData }) => {
       theme: "snow",
       modules: {
         toolbar: toolbarOptions
-      }
+      },
+      placeholder: "Start typing..."
     });
 
     // editor placeholder text
@@ -37,6 +38,17 @@ const QuillEditor = ({ postData, setPostData }) => {
     // set quill instance to the local state
     setQuill(q);
   }, []);
+
+  useEffect(() => {
+    if (quill) {
+      quill.on("text-change", () => {
+        const bodyText = quill.getText();
+        // remove all newline characters
+        bodyText.replace(/\n/, "");
+        setPostData({ ...postData, body: bodyText });
+      });
+    }
+  }, [quill]);
 
   return <div className={styles.container} ref={wrapper} />;
 };
