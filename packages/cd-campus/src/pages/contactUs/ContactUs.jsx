@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import { useDispatch } from "react-redux";
 // import { useHistory } from "react-router-dom";
+import { AutoComplete } from "antd";
 import { Banner, Button, BUTTON_SIZE } from "@cd/components";
 // import { signup } from "../../actions/auth";
 
@@ -11,6 +12,8 @@ const initialFormState = {
   firstName: "",
   lastName: "",
   email: "",
+  password: "",
+  confirmPassword: "",
   campus: "",
   message: ""
 };
@@ -24,6 +27,7 @@ const ContactUs = () => {
   const submitForm = e => {
     e.preventDefault();
 
+    console.log(formData);
     // dispatch(signup(formData, history));
   };
 
@@ -38,6 +42,15 @@ const ContactUs = () => {
     });
   };
 
+  const options = [
+    { value: "Burns Bay Road" },
+    { value: "Downing Street" },
+    { value: "Wall Street" }
+  ];
+
+  const onChange = data => {
+    setFormData({ ...formData, campus: data });
+  };
   return (
     <div className={styles.container}>
       <Banner
@@ -73,12 +86,38 @@ const ContactUs = () => {
               value={formData.email}
               onChange={handleInput}
             />
-            <input
+            {/* <input
               className={styles.input}
               placeholder='Campus'
               name='campus'
               value={formData.campus}
               onChange={handleInput}
+            /> */}
+            <AutoComplete
+              options={options}
+              className={styles.input}
+              style={{
+                width: 200
+              }}
+              // onSearch={onSearch}
+              onChange={onChange}
+              placeholder='Campus'
+            />
+            <input
+              className={styles.input}
+              placeholder='Password'
+              name='password'
+              type='password'
+              value={formData.password}
+              onChange={handleInput}
+            />
+            <input
+              className={styles.input}
+              placeholder='Confirm Password'
+              name='confirmPassword'
+              type='password'
+              onChange={handleInput}
+              value={formData.confirmPassword}
             />
           </div>
           <textarea
