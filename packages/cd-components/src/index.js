@@ -46,7 +46,6 @@ export { default as CommentEditor } from "./molecules/commentEditor/CommentEdito
 // all organisms
 export { default as Navbar } from "./organisms/navbar/Navbar";
 export { default as Post } from "./organisms/post/Post";
-export { default as SpaceDetails } from "./organisms/spaceDetails/SpaceDetails";
 export { default as ProfileCard } from "./organisms/profileCard/ProfileCard";
 
 // all constants
