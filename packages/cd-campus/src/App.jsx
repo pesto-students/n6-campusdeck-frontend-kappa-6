@@ -5,6 +5,7 @@ import Base from "./Base";
 // pages
 import Spaces from "./pages/spaces";
 import Login from "./pages/login";
+import ContactUs from "./pages/contactUs";
 
 // styles
 import "./App.scss";
@@ -14,6 +15,7 @@ function App() {
     <Router>
       <Switch>
         <Route component={Login} path='/login' exact />
+        <Route component={ContactUs} path='/contact' exact />
         <Route
           component={() => (
             <Base>
