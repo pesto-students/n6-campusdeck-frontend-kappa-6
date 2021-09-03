@@ -21,6 +21,7 @@ import CreateSpace from "./organisms/createSpace";
 import MySpaces from "./organisms/mySpaces/MySpaces";
 import { LOGOUT } from "./actions/constants/actionTypes";
 import { createSpace } from "./actions/space";
+import { createPost } from "./actions/post";
 
 // styles
 import styles from "./Base.module.scss";
@@ -38,6 +39,14 @@ const Base = ({ children }) => {
     tags: [],
     isPublic: true
   });
+  const [postData, setPostData] = useState({
+    title: "",
+    type: "TEXT",
+    body: "Start typing...",
+    tag: "",
+    space: "",
+    isPublic: true
+  });
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const history = useHistory();
   const location = useLocation();
@@ -52,18 +61,21 @@ const Base = ({ children }) => {
   const handleSavePost = () => {
     setCreatePostLoading(true);
 
+    dispatch(createPost(postData));
+
+    setPostModalVisible(false);
+    setCreatePostLoading(false);
+
     // the below line will be replaced by dispatching an action to save the post
-    setTimeout(() => {
-      setPostModalVisible(false);
-      setCreatePostLoading(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   setPostModalVisible(false);
+    //   setCreatePostLoading(false);
+    // }, 2000);
   };
 
   // function that will execute when a space is created
   const handleSaveSpace = () => {
     setCreateSpaceLoading(true);
-
-    console.log(spaceData);
 
     dispatch(createSpace(spaceData));
 
@@ -209,7 +221,7 @@ const Base = ({ children }) => {
                 </AntButton>
               ]}
             >
-              <CreatePost />
+              <CreatePost postData={postData} setPostData={setPostData} />
             </Modal>
 
             {/* create space modal */}

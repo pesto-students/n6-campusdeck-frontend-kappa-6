@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { TabMenu } from "@cd/components";
 import TextPost from "../textPost";
@@ -10,13 +11,7 @@ import { getAllSpacesByCampus } from "../../actions/space";
 // styles
 import styles from "./createPost.module.scss";
 
-const CreatePost = () => {
-  const [postData, setPostData] = useState({
-    title: "",
-    body: "Start typing...",
-    tag: "",
-    space: ""
-  });
+const CreatePost = ({ postData, setPostData }) => {
   const [selectedCampus, setSelectedCampus] = useState("");
   // fetch list of campus from the global store
   const { campus } = useSelector(state => state.campus);
@@ -119,6 +114,18 @@ const CreatePost = () => {
       </div>
     </div>
   );
+};
+
+CreatePost.propTypes = {
+  postData: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    body: PropTypes.string.isRequired,
+    tag: PropTypes.string.isRequired,
+    space: PropTypes.string.isRequired,
+    isPublic: PropTypes.bool
+  }).isRequired,
+  setPostData: PropTypes.func.isRequired
 };
 
 export default CreatePost;

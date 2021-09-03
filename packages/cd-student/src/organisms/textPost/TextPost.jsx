@@ -1,16 +1,19 @@
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Tooltip, Tag } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 
 import { InfoCircleFilled } from "@cd/components";
 import QuillEditor from "../quillEditor/QuillEditor";
 import TitleInput from "../titleInput/TitleInput";
+import { getSpace } from "../../actions/space";
 
 // styles
 import styles from "./textPost.module.scss";
 
 const { CheckableTag } = Tag;
 
-const TextPost = ({ postData, setPostData, space, handleTagSelect }) => {
+const TextPost = ({ postData, setPostData, handleTagSelect }) => {
   // const validatePost = (val, field) => {
   //   switch (field) {
   //     case "title":
@@ -41,6 +44,13 @@ const TextPost = ({ postData, setPostData, space, handleTagSelect }) => {
   //     });
   //   }
   // };
+  const dispatch = useDispatch();
+  const { space } = useSelector(state => state.space);
+
+  // fetch new space details when the space changes
+  useEffect(() => {
+    dispatch(getSpace(postData.space));
+  }, [postData.space]);
 
   return (
     <div className={styles.container}>
@@ -56,7 +66,7 @@ const TextPost = ({ postData, setPostData, space, handleTagSelect }) => {
       <div className={styles.post_labels}>
         <div className={styles.tag_title}>Select a tag:</div>
         {space &&
-          space.tags &&
+          space.tags.length > 0 &&
           space.tags.map(tag => (
             <CheckableTag
               className={styles.label}
@@ -70,7 +80,14 @@ const TextPost = ({ postData, setPostData, space, handleTagSelect }) => {
       </div>
       <div className={styles.options}>
         <label htmlFor='accessibility'>
-          <input type='checkbox' id='accessibility' />
+          <input
+            type='checkbox'
+            id='accessibility'
+            checked={postData.isPublic}
+            onChange={e => {
+              setPostData({ ...postData, isPublic: !postData.isPublic });
+            }}
+          />
           <span style={{ marginLeft: "0.5rem" }}>Make this a public post?</span>
         </label>
         <Tooltip
