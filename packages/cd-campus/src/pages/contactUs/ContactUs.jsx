@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from "react-router-dom";
 import { AutoComplete } from "antd";
 import { Banner, Button, BUTTON_SIZE } from "@cd/components";
-// import { signup } from "../../actions/auth";
+import { fetchAllCampus } from "../../actions/campus";
 
 // style
 import styles from "./contactUs.module.scss";
@@ -20,7 +20,8 @@ const initialFormState = {
 
 const ContactUs = () => {
   const [formData, setFormData] = useState(initialFormState);
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const { campus } = useSelector(state => state.campus);
   //   const history = useHistory();
 
   // function that will submit the form
@@ -28,7 +29,6 @@ const ContactUs = () => {
     e.preventDefault();
 
     console.log(formData);
-    // dispatch(signup(formData, history));
   };
 
   // function that will handle input
@@ -42,15 +42,23 @@ const ContactUs = () => {
     });
   };
 
-  const options = [
-    { value: "Burns Bay Road" },
-    { value: "Downing Street" },
-    { value: "Wall Street" }
-  ];
+  // options that will be show in campus select
+  const campusOpts = campus.map(c => {
+    return {
+      label: c.name,
+      value: c._id
+    };
+  });
 
-  const onChange = data => {
-    setFormData({ ...formData, campus: data });
+  const onCampusChange = data => {
+    const selectedCampus = campus.find(c => c._id === data);
+
+    setFormData({ ...formData, campus: selectedCampus?.name });
   };
+
+  useEffect(() => {
+    dispatch(fetchAllCampus());
+  }, []);
   return (
     <div className={styles.container}>
       <Banner
@@ -86,23 +94,17 @@ const ContactUs = () => {
               value={formData.email}
               onChange={handleInput}
             />
-            {/* <input
-              className={styles.input}
-              placeholder='Campus'
-              name='campus'
-              value={formData.campus}
-              onChange={handleInput}
-            /> */}
             <AutoComplete
-              options={options}
-              className={styles.input}
+              options={campusOpts}
               style={{
-                width: 200
+                width: "90%"
               }}
-              // onSearch={onSearch}
-              onChange={onChange}
-              placeholder='Campus'
-            />
+              onChange={onCampusChange}
+              value={formData.campus}
+              allowClear
+            >
+              <input className={styles.input} placeholder='Campus' />
+            </AutoComplete>
             <input
               className={styles.input}
               placeholder='Password'

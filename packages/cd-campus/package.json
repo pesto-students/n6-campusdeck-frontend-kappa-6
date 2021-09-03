@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
+    "redux-thunk": "^2.3.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -40,6 +41,7 @@
       "comma-dangle": 0,
       "arrow-parens": 0,
       "no-restricted-globals": 0,
+      "no-underscore-dangle": 0,
       "arrow-body-style": 0,
       "object-curly-newline": 0,
       "operator-linebreak": 0,
