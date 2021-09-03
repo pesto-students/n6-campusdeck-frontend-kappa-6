@@ -84,7 +84,11 @@ const Post = ({
               />
             </ContextMenu>
           ) : (
-            <PostDetails time={time} totalComments={totalComments} />
+            <PostDetails
+              time={time}
+              totalComments={totalComments}
+              toggleBody={toggleBody}
+            />
           )}
         </div>
         <div className={styles.content}>
@@ -104,7 +108,11 @@ const Post = ({
                 <Tooltip title={campus}>{campus}</Tooltip>
               </span>
             </div>
-            <PostDetails time={time} totalComments={totalComments} />
+            <PostDetails
+              toggleBody={toggleBody}
+              time={time}
+              totalComments={totalComments}
+            />
           </div>
           {isExpanded && (
             <Comments comments={comments} authorName={authorName} />
