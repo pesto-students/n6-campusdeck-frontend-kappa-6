@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { AutoComplete } from "antd";
 import { Banner, Button, BUTTON_SIZE } from "@cd/components";
 import { fetchAllCampus } from "../../actions/campus";
+import { signUp } from "../../actions/auth";
 
 // style
 import styles from "./contactUs.module.scss";
@@ -22,13 +23,13 @@ const ContactUs = () => {
   const [formData, setFormData] = useState(initialFormState);
   const dispatch = useDispatch();
   const { campus } = useSelector(state => state.campus);
-  //   const history = useHistory();
+  const history = useHistory();
 
   // function that will submit the form
   const submitForm = e => {
     e.preventDefault();
 
-    console.log(formData);
+    dispatch(signUp(formData, history));
   };
 
   // function that will handle input
@@ -51,8 +52,8 @@ const ContactUs = () => {
   });
 
   const onCampusChange = data => {
+    // on campus change from the dropdown, find the name of the campus and set it
     const selectedCampus = campus.find(c => c._id === data);
-
     setFormData({ ...formData, campus: selectedCampus?.name });
   };
 
@@ -103,7 +104,13 @@ const ContactUs = () => {
               value={formData.campus}
               allowClear
             >
-              <input className={styles.input} placeholder='Campus' />
+              <input
+                className={styles.input}
+                placeholder='Campus'
+                name='campus'
+                onChange={handleInput}
+                value={formData.campus}
+              />
             </AutoComplete>
             <input
               className={styles.input}
