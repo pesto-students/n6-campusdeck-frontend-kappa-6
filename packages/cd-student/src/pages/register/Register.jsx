@@ -10,6 +10,7 @@ import styles from "./register.module.scss";
 const initialFormState = {
   firstName: "",
   lastName: "",
+  userName: "",
   email: "",
   campus: "",
   password: "",
@@ -74,6 +75,13 @@ const Register = () => {
               name='email'
               type='email'
               value={formData.email}
+              onChange={handleInput}
+            />
+            <input
+              className={styles.input}
+              placeholder='Username'
+              name='userName'
+              value={formData.userName}
               onChange={handleInput}
             />
             <input
