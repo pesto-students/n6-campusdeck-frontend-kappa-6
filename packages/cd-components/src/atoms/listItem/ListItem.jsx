@@ -4,24 +4,29 @@ import { ProfilePic } from "@cd/components";
 // style
 import styles from "./listItem.module.scss";
 
-const ListItem = ({ image, name, metric }) => {
+const ListItem = ({ item, onClick }) => {
   return (
     <div className={styles.container}>
-      <img className={styles.img} src={image} alt={name} />
-      <div className={styles.name}>{name}</div>
-      <span className={styles.metric}>{metric}</span>
+      <img
+        className={styles.img}
+        src={item.image ? item.image : ProfilePic}
+        alt={item.name}
+      />
+      <div className={styles.name} onClick={() => onClick(item.id)}>
+        {item.name}
+      </div>
+      <span className={styles.metric}>{item.metric}</span>
     </div>
   );
 };
 
 ListItem.propTypes = {
-  image: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  metric: PropTypes.string.isRequired
-};
-
-ListItem.defaultProps = {
-  image: ProfilePic
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+    metric: PropTypes.string
+  }).isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default ListItem;

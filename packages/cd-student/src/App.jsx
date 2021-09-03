@@ -15,6 +15,7 @@ import UserProfile from "./pages/userProfile";
 import Base from "./Base";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Space from "./pages/space";
 
 function App() {
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -37,6 +38,15 @@ function App() {
         />
         <Route component={Login} path='/login' exact />
         <Route component={Register} path='/register' exact />
+        <Route
+          component={() => (
+            <Base isSpacePage={true}>
+              <Space />
+            </Base>
+          )}
+          path='/space/:id'
+          exact
+        />
         <Route
           component={() => (
             <Base>

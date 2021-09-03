@@ -19,6 +19,7 @@ import {
 import CreatePost from "./organisms/createPost";
 import CreateSpace from "./organisms/createSpace";
 import MySpaces from "./organisms/mySpaces/MySpaces";
+import SpaceDetails from "./organisms/spaceDetails";
 import { LOGOUT } from "./actions/constants/actionTypes";
 import { createSpace } from "./actions/space";
 import { createPost } from "./actions/post";
@@ -26,7 +27,7 @@ import { createPost } from "./actions/post";
 // styles
 import styles from "./Base.module.scss";
 
-const Base = ({ children }) => {
+const Base = ({ children, isSpacePage }) => {
   const [postModalVisible, setPostModalVisible] = useState(false);
   const [spaceModalVisible, setSpaceModalVisible] = useState(false);
   const [createPostLoading, setCreatePostLoading] = useState(false);
@@ -55,6 +56,10 @@ const Base = ({ children }) => {
   // navigate to given page
   const onClick = destination => {
     history.push(destination);
+  };
+
+  const navigateToSpace = id => {
+    history.push(`/space/${id}`);
   };
 
   // function that will execute when a post is created
@@ -173,13 +178,15 @@ const Base = ({ children }) => {
               >
                 + Add a new post
               </Button>
-              <Button
-                onClick={() => setSpaceModalVisible(true)}
-                className={styles.btn}
-                size={BUTTON_SIZE.XL}
-              >
-                + Add a new space
-              </Button>
+              {!isSpacePage && (
+                <Button
+                  onClick={() => setSpaceModalVisible(true)}
+                  className={styles.btn}
+                  size={BUTTON_SIZE.XL}
+                >
+                  + Add a new space
+                </Button>
+              )}
             </div>
 
             {/* create post modal */}
@@ -263,47 +270,58 @@ const Base = ({ children }) => {
             >
               <CreateSpace spaceData={spaceData} setSpaceData={setSpaceData} />
             </Modal>
-            <div className={styles.card_list}>
-              <div className={styles.card}>
-                <SuggestionCard
-                  heading='Trending Spaces'
-                  list={[
-                    {
-                      name: "Announcements",
-                      metric: "31k users"
-                    },
-                    {
-                      name: "WebDev",
-                      metric: "25k users"
-                    },
-                    {
-                      name: "QnA",
-                      metric: "21k users"
-                    },
-                    {
-                      name: "Fests",
-                      metric: "18k users"
-                    }
-                  ]}
-                />
-              </div>
+            {!isSpacePage ? (
+              <div className={styles.card_list}>
+                <div className={styles.card}>
+                  <SuggestionCard
+                    heading='Trending Spaces'
+                    list={[
+                      {
+                        id: "announcements",
+                        name: "Announcements",
+                        metric: "31k users"
+                      },
+                      {
+                        id: "webdev",
+                        name: "WebDev",
+                        metric: "25k users"
+                      },
+                      {
+                        id: "qna",
+                        name: "QnA",
+                        metric: "21k users"
+                      },
+                      {
+                        id: "fests",
+                        name: "Fests",
+                        metric: "18k users"
+                      }
+                    ]}
+                    onClick={navigateToSpace}
+                  />
+                </div>
 
-              <div className={styles.card}>
-                <SuggestionCard
-                  heading='Popular Campuses'
-                  list={[
-                    {
-                      name: "VIT, Vellore",
-                      metric: "150 spaces"
-                    },
-                    {
-                      name: "IIIT Hyderabad",
-                      metric: "110 spaces"
-                    }
-                  ]}
-                />
+                <div className={styles.card}>
+                  <SuggestionCard
+                    heading='Popular Campuses'
+                    list={[
+                      {
+                        name: "VIT, Vellore",
+                        metric: "150 spaces"
+                      },
+                      {
+                        name: "IIIT Hyderabad",
+                        metric: "110 spaces"
+                      }
+                    ]}
+                  />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className={styles.card_list}>
+                <SpaceDetails />
+              </div>
+            )}
             <div>
               <Footer />
             </div>
@@ -315,7 +333,11 @@ const Base = ({ children }) => {
 };
 
 Base.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  isSpacePage: PropTypes.bool
 };
 
+Base.defaultProps = {
+  isSpacePage: false
+};
 export default Base;
