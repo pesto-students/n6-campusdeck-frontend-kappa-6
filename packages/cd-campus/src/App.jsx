@@ -4,6 +4,7 @@ import Base from "./Base";
 
 // pages
 import Spaces from "./pages/spaces";
+import Login from "./pages/login";
 
 // styles
 import "./App.scss";
@@ -12,6 +13,7 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route component={Login} path='/login' exact />
         <Route
           component={() => (
             <Base>
