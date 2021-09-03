@@ -67,13 +67,9 @@ const Base = ({ children }) => {
 
     dispatch(createSpace(spaceData));
 
+    // make the below lines async
     setSpaceModalVisible(false);
     setCreateSpaceLoading(false);
-
-    // setTimeout(() => {
-    //   setSpaceModalVisible(false);
-    //   setCreateSpaceLoading(false);
-    // }, 2000);
   };
 
   // function to logout the user

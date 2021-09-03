@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { TabMenu } from "@cd/components";
 import TextPost from "../textPost";
 import MediaPost from "../mediaPost";
+import { fetchAllCampus } from "../../actions/campus";
+import { getAllSpacesByCampus } from "../../actions/space";
 
 // styles
 import styles from "./createPost.module.scss";
@@ -11,12 +14,14 @@ const CreatePost = () => {
   const [postData, setPostData] = useState({
     title: "",
     body: "Start typing...",
-    tag: ""
+    tag: "",
+    space: ""
   });
-  const [space, setSpace] = useState({
-    name: "Random",
-    tags: ["Info", "Urgent", "Advice", "Question"]
-  });
+  const [selectedCampus, setSelectedCampus] = useState("");
+  // fetch list of campus from the global store
+  const { campus } = useSelector(state => state.campus);
+  const { spaces } = useSelector(state => state.space);
+  const dispatch = useDispatch();
 
   const submit = () => {};
 
@@ -34,23 +39,42 @@ const CreatePost = () => {
   };
 
   useEffect(() => {
-    console.log(postData);
-  }, [postData]);
+    // fetch all the campus
+    dispatch(fetchAllCampus());
+  }, []);
+
+  // once the user has selected a campus, show them the list of spaces
+  useEffect(() => {
+    dispatch(getAllSpacesByCampus(selectedCampus));
+  }, [selectedCampus]);
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <select className={styles.selector}>
-          <option>Choose a campus</option>
-          <option>VIT, Vellore</option>
-          <option>XIME, Bangalore</option>
-          <option>IIIT Hyderabad</option>
+        <select
+          onChange={e => setSelectedCampus(e.target.value)}
+          className={styles.selector}
+        >
+          <option value=''>Choose a campus</option>
+          {campus.length > 0 &&
+            campus.map(c => (
+              <option key={c._id} value={c.name}>
+                {c.name}
+              </option>
+            ))}
         </select>
-        <select className={styles.selector}>
-          <option>Choose a space</option>
-          <option>Fests</option>
-          <option>Random</option>
-          <option>React</option>
+        <select
+          className={styles.selector}
+          disabled={!selectedCampus}
+          onChange={e => setPostData({ ...postData, space: e.target.value })}
+        >
+          <option value=''>Choose a space</option>
+          {spaces.length > 0 &&
+            spaces.map(space => (
+              <option key={space._id} value={space.name}>
+                {space.name}
+              </option>
+            ))}
         </select>
       </div>
       <div className={styles.content}>
@@ -63,7 +87,6 @@ const CreatePost = () => {
                 <TextPost
                   postData={postData}
                   setPostData={setPostData}
-                  space={space}
                   removeTag={removeTag}
                   handleTagSelect={handleTagSelect}
                 />
@@ -76,7 +99,7 @@ const CreatePost = () => {
                 <MediaPost
                   postData={postData}
                   setPostData={setPostData}
-                  space={space}
+                  space={postData.space}
                   removeTag={removeTag}
                   handleTagSelect={handleTagSelect}
                 />

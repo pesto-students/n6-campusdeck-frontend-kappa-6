@@ -22,3 +22,4 @@ export const fetchAllCampus = () => CAMPUS_API.get("/campus");
 
 // space related
 export const createSpace = formData => SPACE_API.post("/space", formData);
+export const getAllSpacesByCampus = campus => SPACE_API.get(`/space/${campus}`);

@@ -7,3 +7,4 @@ export const FETCH_ALL_CAMPUS = "FETCH_ALL_CAMPUS";
 
 // space related
 export const CREATE_SPACE = "CREATE_SPACE";
+export const FETCH_ALL_SPACES_BY_CAMPUS = "FETCH_ALL_SPACES_BY_CAMPUS";
