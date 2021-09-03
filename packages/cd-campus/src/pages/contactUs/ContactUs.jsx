@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { useHistory } from "react-router-dom";
 import { AutoComplete } from "antd";
 import { Banner, Button, BUTTON_SIZE } from "@cd/components";
