@@ -58,7 +58,7 @@ const CreatePost = () => {
           <option value=''>Choose a campus</option>
           {campus.length > 0 &&
             campus.map(c => (
-              <option key={c._id} value={c.name}>
+              <option key={c._id} value={c._id}>
                 {c.name}
               </option>
             ))}
@@ -71,7 +71,7 @@ const CreatePost = () => {
           <option value=''>Choose a space</option>
           {spaces.length > 0 &&
             spaces.map(space => (
-              <option key={space._id} value={space.name}>
+              <option key={space._id} value={space._id}>
                 {space.name}
               </option>
             ))}
