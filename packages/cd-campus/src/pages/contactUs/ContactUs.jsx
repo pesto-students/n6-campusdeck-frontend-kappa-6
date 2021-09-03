@@ -22,6 +22,7 @@ const initialFormState = {
 
 const ContactUs = () => {
   const [formData, setFormData] = useState(initialFormState);
+  const [campusOpts, setCampusOpts] = useState([]);
   const dispatch = useDispatch();
   const { campus } = useSelector(state => state.campus);
   const history = useHistory();
@@ -44,13 +45,13 @@ const ContactUs = () => {
     });
   };
 
-  // options that will be show in campus select
-  const campusOpts = campus.map(c => {
-    return {
-      label: c.name,
-      value: c._id
-    };
-  });
+  // // options that will be show in campus select
+  // const campusOpts = campus.map(c => {
+  //   return {
+  //     label: c.name,
+  //     value: c._id
+  //   };
+  // });
 
   const onCampusChange = data => {
     // on campus change from the dropdown, find the name of the campus and set it
@@ -58,9 +59,33 @@ const ContactUs = () => {
     setFormData({ ...formData, campus: selectedCampus?.name });
   };
 
+  // function that will filter the options for campus list based on input value
+  const filterCampus = (inputValue, option) => {
+    const optionLabel = option.label.toLowerCase();
+
+    if (optionLabel.indexOf(inputValue) > -1) {
+      return true;
+    }
+    return false;
+  };
+
   useEffect(() => {
     dispatch(fetchAllCampus());
   }, []);
+
+  useEffect(() => {
+    if (campus) {
+      setCampusOpts(
+        campus.map(c => {
+          return {
+            label: c.name,
+            value: c._id
+          };
+        })
+      );
+    }
+  }, [campus]);
+
   return (
     <div className={styles.container}>
       <Banner
@@ -110,6 +135,7 @@ const ContactUs = () => {
               }}
               onChange={onCampusChange}
               value={formData.campus}
+              filterOption={filterCampus}
               allowClear
             >
               <input
