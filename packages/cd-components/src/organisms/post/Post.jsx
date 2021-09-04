@@ -10,7 +10,7 @@ import Points from "../../atoms/points/Points";
 import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
 import ContextMenu from "../../molecules/contextMenu/ContextMenu";
 import PostDetails from "../../atoms/postDetails/PostDetails";
-import { compactNumber } from "@cd/base";
+import { compactNumber, countTotalComments } from "@cd/base";
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
 import { BUTTON_TYPE, BUTTON_SIZE, Comments } from "@cd/components";
 
@@ -24,7 +24,6 @@ const Post = ({
   type,
   points,
   time,
-  totalComments,
   authorName,
   authorPic,
   size,
@@ -57,6 +56,9 @@ const Post = ({
     [styles.compact_container]: size === "compact"
   });
 
+  // recursively count all the comments
+  const totalComments = countTotalComments(comments);
+
   return (
     <div className={containerClassName}>
       <div className={styles.points}>
@@ -86,7 +88,7 @@ const Post = ({
           ) : (
             <PostDetails
               time={time}
-              totalComments={totalComments}
+              totalComments={compactNumber(totalComments)}
               toggleBody={toggleBody}
             />
           )}
@@ -115,7 +117,11 @@ const Post = ({
             />
           </div>
           {isExpanded && (
-            <Comments comments={comments} authorName={authorName} />
+            <Comments
+              comments={comments}
+              totalComments={totalComments}
+              authorName={authorName}
+            />
           )}
         </div>
       </div>
@@ -129,7 +135,6 @@ Post.propTypes = {
   type: PropTypes.string.isRequired,
   points: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
-  totalComments: PropTypes.number,
   authorName: PropTypes.string.isRequired,
   authorPic: PropTypes.string,
   size: PropTypes.string,
@@ -138,7 +143,6 @@ Post.propTypes = {
 
 Post.defaultProps = {
   label: undefined,
-  totalComments: 0,
   size: "full",
   comments: []
 };

@@ -19,7 +19,7 @@ const PostDetails = ({ time, totalComments, toggleBody }) => {
 
 PostDetails.propTypes = {
   time: PropTypes.string.isRequired,
-  totalComments: PropTypes.number.isRequired
+  totalComments: PropTypes.string.isRequired
 };
 
 export default PostDetails;

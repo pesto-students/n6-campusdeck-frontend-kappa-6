@@ -12,14 +12,12 @@ import {
   CommentEditor
 } from "@cd/components";
 
-import { countTotalComments } from "@cd/base";
-
 import { ProfilePic } from "../..";
 
 // styles
 import styles from "./comments.module.scss";
 
-const Comments = ({ comments, authorName }) => {
+const Comments = ({ comments, totalComments, authorName }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [newComment, setNewComment] = useState("");
@@ -109,7 +107,7 @@ const Comments = ({ comments, authorName }) => {
         className='comment-list'
         header={
           <div>
-            {`Comments (${countTotalComments(comments)})`}
+            {`Comments (${totalComments})`}
             <Button
               className={styles.comment_btn}
               size={BUTTON_SIZE.SMALL}

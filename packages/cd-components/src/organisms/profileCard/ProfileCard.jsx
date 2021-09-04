@@ -81,11 +81,6 @@ const ProfileCard = ({ postList, commentList, savedList }) => {
               )
             },
             {
-              label: "Comments",
-              disabled: false,
-              content: <span>Comments</span>
-            },
-            {
               label: "Saved",
               disabled: false,
               content: (
