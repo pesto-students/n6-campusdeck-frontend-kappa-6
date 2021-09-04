@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,7 +18,7 @@ import Space from "./pages/space";
 import Explore from "./pages/explore";
 
 function App() {
-  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
     <Router>
@@ -37,8 +36,16 @@ function App() {
           path='/'
           exact
         />
-        <Route component={Login} path='/login' exact />
-        <Route component={Register} path='/register' exact />
+        <Route
+          component={() => (!user ? <Login /> : <Redirect to='/' />)}
+          path='/login'
+          exact
+        />
+        <Route
+          component={() => (!user ? <Register /> : <Redirect to='/' />)}
+          path='/register'
+          exact
+        />
         <Route
           component={() => (
             <Base isSpacePage={true}>

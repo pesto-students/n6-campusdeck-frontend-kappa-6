@@ -3,17 +3,29 @@ import Logo from "../../atoms/logo/Logo";
 import UserInfo from "../../atoms/userInfo/UserInfo";
 import SearchBox from "../../molecules/searchBox/SearchBox";
 import ActionIcons from "../actionIcons/ActionIcons";
+import { Button } from "@cd/components";
 
 // styles
 import styles from "./navbar.module.scss";
 
-const Navbar = ({ userName, userImg }) => {
+const Navbar = ({ userName, userImg, logout }) => {
   return (
     <nav className={styles.navbar}>
       <Logo />
       <SearchBox />
       <ActionIcons />
-      {userName && <UserInfo userName={userName} profileImg={userImg} />}
+      {userName ? (
+        <>
+          <UserInfo userName={userName} profileImg={userImg} />
+          <Button
+            style={{ marginLeft: "-4rem", marginRight: "10rem" }}
+            size='small'
+            onClick={logout}
+          >
+            Logout
+          </Button>
+        </>
+      ) : null}
     </nav>
   );
 };
@@ -23,6 +35,8 @@ Navbar.propTypes = {
   userImg: PropTypes.string
 };
 
-Navbar.defaultProps = {};
+Navbar.defaultProps = {
+  userName: ""
+};
 
 export default Navbar;
