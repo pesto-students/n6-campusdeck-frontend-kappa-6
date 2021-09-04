@@ -118,7 +118,7 @@ const Post = ({
           </div>
           {isExpanded && (
             <Comments
-              comments={comments}
+              commentIds={comments}
               totalComments={totalComments}
               authorName={authorName}
             />

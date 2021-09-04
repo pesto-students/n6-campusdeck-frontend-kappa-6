@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Comment, Tooltip, List, Modal, Button as AntButton } from "antd";
 import moment from "moment";
 
@@ -17,9 +17,10 @@ import { ProfilePic } from "../..";
 // styles
 import styles from "./comments.module.scss";
 
-const Comments = ({ comments, totalComments, authorName }) => {
+const Comments = ({ commentIds, totalComments, authorName }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
   // opens the comment modal
@@ -101,6 +102,15 @@ const Comments = ({ comments, totalComments, authorName }) => {
     </span>
   ];
 
+  // this logic might be moved to post component for faster loads
+  useEffect(() => {
+    commentIds.length > 0 &&
+      commentIds.map(commentId => {
+        // dispatch and action to get the comment from the id,
+        // save the comment info to 'comments' state
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
       <List
@@ -140,14 +150,14 @@ const Comments = ({ comments, totalComments, authorName }) => {
                 ) : null}
               </>
             }
-            avatar={comment.avatar ?? ProfilePic}
+            avatar={comment.authorImg ?? ProfilePic}
             content={comment.content}
             datetime={
               <>
                 <Tooltip
                   title={moment(comment.datetime).format("YYYY-MM-DD HH:mm:ss")}
                 >
-                  {moment(comment.datetime).fromNow()}
+                  {moment(comment.createdAt).fromNow()}
                 </Tooltip>
               </>
             }
