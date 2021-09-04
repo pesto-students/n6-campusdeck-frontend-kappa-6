@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +9,7 @@ import { getSpace } from "../../actions/space";
 // styles
 import styles from "./spaceDetails.module.css";
 
-const SpaceDetails = () => {
+const SpaceDetails = ({ isSpacePage, dbId }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   // const { space } = useSelector(state => state.space);
@@ -24,7 +25,10 @@ const SpaceDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(getSpace(id));
+    // if it is used in the space page, use id from params
+    // otherwise use the one provided as a prop.
+    const idToUse = isSpacePage ? id : dbId;
+    dispatch(getSpace(idToUse));
   }, []);
   return (
     <div className={styles.container}>
@@ -53,6 +57,16 @@ const SpaceDetails = () => {
       </div>
     </div>
   );
+};
+
+SpaceDetails.propTypes = {
+  isSpacePage: PropTypes.bool,
+  dbId: PropTypes.string
+};
+
+SpaceDetails.defaultProps = {
+  isSpacePage: false,
+  dbId: undefined
 };
 
 export default SpaceDetails;

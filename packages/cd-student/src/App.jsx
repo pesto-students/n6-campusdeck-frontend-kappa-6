@@ -16,6 +16,7 @@ import Base from "./Base";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Space from "./pages/space";
+import Explore from "./pages/explore";
 
 function App() {
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -54,6 +55,15 @@ function App() {
             </Base>
           )}
           path='/profile'
+          exact
+        />
+        <Route
+          component={() => (
+            <Base>
+              <Explore />
+            </Base>
+          )}
+          path='/explore'
           exact
         />
       </Switch>
