@@ -127,7 +127,11 @@ const Base = ({ children, isSpacePage }) => {
 
   return (
     <>
-      <Navbar userName={user?.result.name} userImg={user?.result.profileImg} />
+      <Navbar
+        userName={user?.result.name}
+        userImg={user?.result.profileImg}
+        logout={logout}
+      />
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.left_sidebar}>
