@@ -36,16 +36,8 @@ function App() {
           path='/'
           exact
         />
-        <Route
-          component={() => (!user ? <Login /> : <Redirect to='/' />)}
-          path='/login'
-          exact
-        />
-        <Route
-          component={() => (!user ? <Register /> : <Redirect to='/' />)}
-          path='/register'
-          exact
-        />
+        <Route component={Login} path='/login' exact />
+        <Route component={Register} path='/register' exact />
         <Route
           component={() => (
             <Base isSpacePage={true}>
