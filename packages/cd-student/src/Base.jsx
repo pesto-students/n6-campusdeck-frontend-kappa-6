@@ -46,6 +46,7 @@ const Base = ({ children, isSpacePage }) => {
     body: "",
     tag: "",
     space: "",
+    campus: "",
     isPublic: true
   });
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -67,6 +68,7 @@ const Base = ({ children, isSpacePage }) => {
     setCreatePostLoading(true);
 
     dispatch(createPost(postData));
+
     setPostModalVisible(false);
     setCreatePostLoading(false);
 

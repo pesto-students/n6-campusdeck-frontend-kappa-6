@@ -8,6 +8,7 @@ import styles from "./home.module.scss";
 import { getHomeFeed } from "../../actions/post";
 
 const Home = () => {
+  const userId = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
   const { posts } = useSelector(state => state.post);
 
@@ -16,6 +17,10 @@ const Home = () => {
   useEffect(() => {
     dispatch(getHomeFeed());
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, [userId]);
 
   return (
     <>
@@ -41,6 +46,7 @@ const Home = () => {
                   creator={post.creator}
                   spaceId={post.space}
                   comments={post.comments}
+                  campusId={post.campus}
                 />
               </div>
             ))}

@@ -21,6 +21,7 @@ import { compactNumber, countTotalComments } from "@cd/base";
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
 import { getUser } from "../../actions/auth";
 import { getSpace } from "../../actions/space";
+import { getCampusById } from "../../actions/campus";
 
 // styles
 import styles from "./post.module.scss";
@@ -35,17 +36,20 @@ const Post = ({
   creator,
   size,
   spaceId,
+  campusId,
   comments
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [author, setAuthor] = useState({
     authorName: "",
-    authorImg: "",
-    campus: ""
+    authorImg: ""
   });
+  const [postSpace, setPostSpace] = useState("");
+  const [postCampus, setPostCampus] = useState("");
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const { space } = useSelector(state => state.space);
+  const { singleCampus } = useSelector(state => state.campus);
 
   const likePost = () => {};
   const dislikePost = () => {};
@@ -77,17 +81,29 @@ const Post = ({
   useEffect(() => {
     dispatch(getUser(creator));
     dispatch(getSpace(spaceId));
+    dispatch(getCampusById(campusId));
   }, []);
 
   useEffect(() => {
     if (user) {
       setAuthor({
         authorName: user.name,
-        authorImg: user.profileImg,
-        campus: user.campus
+        authorImg: user.profileImg
       });
     }
   }, [user]);
+
+  useEffect(() => {
+    if (space) {
+      setPostSpace(space.name);
+    }
+  }, [space]);
+
+  useEffect(() => {
+    if (singleCampus) {
+      setPostCampus(singleCampus.name);
+    }
+  }, [singleCampus]);
 
   return (
     <div className={containerClassName}>
@@ -138,9 +154,9 @@ const Post = ({
               authorPic={author.authorPic}
             />
             <div className={styles.space_details}>
-              <span className={styles.link}>{space?.name}</span> of{" "}
+              <span className={styles.link}>{postSpace}</span> of{" "}
               <span className={styles.link}>
-                <Tooltip title={author.campus}>{author.campus}</Tooltip>
+                <Tooltip title={postCampus}>{postCampus}</Tooltip>
               </span>
             </div>
             <PostDetails
@@ -171,6 +187,7 @@ Post.propTypes = {
   time: PropTypes.string.isRequired,
   creator: PropTypes.string.isRequired,
   spaceId: PropTypes.string.isRequired,
+  campusId: PropTypes.string.isRequired,
   size: PropTypes.string,
   comments: PropTypes.array
 };

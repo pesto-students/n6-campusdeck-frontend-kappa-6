@@ -42,6 +42,7 @@ export const getUser = id => USER_API.get(`/users/${id}`);
 
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");
+export const getCampusById = id => CAMPUS_API.get(`/campus/${id}`);
 
 // space related
 export const createSpace = formData => SPACE_API.post("/space", formData);

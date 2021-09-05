@@ -4,7 +4,7 @@ import {
   FETCH_ALL_SPACES_BY_CAMPUS
 } from "../actions/constants/actionTypes";
 
-const spaceReducer = (state = { spaces: [] }, action) => {
+const spaceReducer = (state = { spaces: [], space: {} }, action) => {
   switch (action.type) {
     case CREATE_SPACE:
       return { ...state, spaces: [...state.spaces, action.payload] };

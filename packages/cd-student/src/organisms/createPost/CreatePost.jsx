@@ -45,7 +45,10 @@ const CreatePost = ({ postData, setPostData }) => {
     <div className={styles.container}>
       <div className={styles.header}>
         <select
-          onChange={e => setSelectedCampus(e.target.value)}
+          onChange={e => {
+            setPostData({ ...postData, campus: e.target.value });
+            setSelectedCampus(e.target.value);
+          }}
           className={styles.selector}
         >
           <option value=''>Choose a campus</option>
