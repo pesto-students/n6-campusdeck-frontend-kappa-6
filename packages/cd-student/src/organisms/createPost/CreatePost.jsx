@@ -18,8 +18,6 @@ const CreatePost = ({ postData, setPostData }) => {
   const { spaces } = useSelector(state => state.space);
   const dispatch = useDispatch();
 
-  const submit = () => {};
-
   // this function will remove the tag associated to the post
   const removeTag = () => {
     console.log("tag removed");

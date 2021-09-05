@@ -32,9 +32,6 @@ const QuillEditor = ({ postData, setPostData }) => {
       placeholder: "Start typing..."
     });
 
-    // editor placeholder text
-    q.setText(postData.body);
-
     // set quill instance to the local state
     setQuill(q);
   }, []);

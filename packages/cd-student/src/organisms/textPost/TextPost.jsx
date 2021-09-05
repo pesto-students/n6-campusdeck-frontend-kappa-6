@@ -14,36 +14,6 @@ import styles from "./textPost.module.scss";
 const { CheckableTag } = Tag;
 
 const TextPost = ({ postData, setPostData, handleTagSelect }) => {
-  // const validatePost = (val, field) => {
-  //   switch (field) {
-  //     case "title":
-  //       if (val.length > POST_TITLE_LIMIT) return false;
-  //       break;
-  //     case "body":
-  //       break;
-  //     case "image":
-  //       break;
-  //     case "video":
-  //       break;
-  //     default:
-  //     // do nothing
-  //   }
-  //   return true;
-  // };
-
-  // const handleInput = e => {
-  //   const val = e.target.value;
-  //   const field = e.target.name;
-
-  //   const isValid = validatePost(val, field);
-
-  //   if (isValid) {
-  //     setPostData({
-  //       ...postData,
-  //       [field]: val
-  //     });
-  //   }
-  // };
   const dispatch = useDispatch();
   const { space } = useSelector(state => state.space);
 
