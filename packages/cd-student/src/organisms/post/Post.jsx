@@ -22,7 +22,8 @@ import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
 import { getUser } from "../../actions/auth";
 import { getSpace } from "../../actions/space";
 import { getCampusById } from "../../actions/campus";
-import { createComment } from "../../actions/post";
+import { createComment, getCommentById } from "../../actions/post";
+import * as api from "../../api/index";
 
 // styles
 import styles from "./post.module.scss";
@@ -46,6 +47,7 @@ const Post = ({
     authorName: "",
     authorImg: ""
   });
+  const [finalComments, setFinalComments] = useState([]);
   const [postSpace, setPostSpace] = useState("");
   const [postCampus, setPostCampus] = useState("");
   const dispatch = useDispatch();
@@ -92,10 +94,18 @@ const Post = ({
   // recursively count all the comments
   const totalComments = countTotalComments(comments);
 
+  const getSpaceDetails = async spaceIdDb => {
+    const {
+      data: { data }
+    } = await api.getSpace(spaceIdDb);
+    setPostSpace(data.name);
+  };
+
   useEffect(() => {
     dispatch(getUser(creator));
-    dispatch(getSpace(spaceId));
     dispatch(getCampusById(campusId));
+
+    getSpaceDetails(spaceId);
   }, []);
 
   useEffect(() => {
@@ -118,6 +128,23 @@ const Post = ({
       setPostCampus(singleCampus.name);
     }
   }, [singleCampus]);
+
+  // const getCommentFromId = async commentId => {
+  //   const {
+  //     data: { data: comment }
+  //   } = await api.getCommentById(commentId);
+  //   return comment;
+  // };
+
+  // useEffect(() => {
+  //   if (comments) {
+  //     comments.forEach(comment => {
+  //       getCommentFromId(comment).then(commentObj => {
+  //         setFinalComments([...finalComments, commentObj]);
+  //       });
+  //     });
+  //   }
+  // }, []);
 
   return (
     <div className={containerClassName}>
@@ -181,8 +208,8 @@ const Post = ({
           </div>
           {isExpanded && (
             <Comments
-              commentIds={comments}
-              totalComments={comments.length}
+              comments={finalComments}
+              totalComments={finalComments.length}
               authorName={creator}
               handleCommentSave={handleCommentSave}
             />
