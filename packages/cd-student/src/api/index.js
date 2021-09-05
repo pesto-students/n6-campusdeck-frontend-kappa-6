@@ -35,9 +35,10 @@ CAMPUS_API.interceptors.request.use(addToken);
 SPACE_API.interceptors.request.use(addToken);
 POST_API.interceptors.request.use(addToken);
 
-// user auth related
+// user related
 export const signUp = formData => USER_API.post("/users/signup", formData);
 export const signIn = formData => USER_API.post("/users/signin", formData);
+export const getUser = id => USER_API.get(`/users/${id}`);
 
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");

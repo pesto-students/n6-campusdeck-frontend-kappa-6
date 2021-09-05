@@ -1,4 +1,4 @@
-import { AUTH } from "./constants/actionTypes";
+import { AUTH, FETCH_USER } from "./constants/actionTypes";
 import * as api from "../api";
 
 // action to register a new user
@@ -26,6 +26,20 @@ export const signin = (formData, history) => async dispatch => {
     }
 
     dispatch({ type: AUTH, data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// gets user by id
+export const getUser = id => async dispatch => {
+  try {
+    const { data } = await api.getUser(id);
+
+    dispatch({
+      type: FETCH_USER,
+      payload: data
+    });
   } catch (error) {
     console.error(error);
   }

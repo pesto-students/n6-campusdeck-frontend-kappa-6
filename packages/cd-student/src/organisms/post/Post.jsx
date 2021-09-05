@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import _truncate from "lodash/truncate";
 import cx from "classnames";
 import { Tooltip } from "antd";
@@ -15,15 +16,10 @@ import {
   BUTTON_SIZE,
   BUTTON_TYPE
 } from "@cd/components";
-// import { MoreOutlined } from "../../atoms/icon/Icon";
-// import Button from "../../atoms/button/Button";
-// import Points from "../../atoms/points/Points";
-// import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
-// import ContextMenu from "../../molecules/contextMenu/ContextMenu";
-// import PostDetails from "../../atoms/postDetails/PostDetails";
-// import { BUTTON_TYPE, BUTTON_SIZE, Comments } from "@cd/components";
 import { compactNumber, countTotalComments } from "@cd/base";
+
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
+import { getUser } from "../../actions/auth";
 
 // styles
 import styles from "./post.module.scss";
@@ -45,6 +41,8 @@ const Post = ({
     authorName: "",
     authorImg: ""
   });
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
 
   const likePost = () => {};
   const dislikePost = () => {};
@@ -74,9 +72,10 @@ const Post = ({
   const totalComments = countTotalComments(comments);
 
   useEffect(() => {
-    // authorName
-    // authorPic
-  }, [creator]);
+    dispatch(getUser(creator));
+  }, []);
+  // authorName
+  // authorPic
   // campus
 
   return (
