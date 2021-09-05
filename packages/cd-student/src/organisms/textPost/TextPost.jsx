@@ -36,8 +36,8 @@ const TextPost = ({ postData, setPostData, handleTagSelect }) => {
       <div className={styles.post_labels}>
         <div className={styles.tag_title}>Select a tag:</div>
         {space &&
-          space.tags.length > 0 &&
-          space.tags.map(tag => (
+          space.tags?.length > 0 &&
+          space.tags?.map(tag => (
             <CheckableTag
               className={styles.label}
               key={tag}

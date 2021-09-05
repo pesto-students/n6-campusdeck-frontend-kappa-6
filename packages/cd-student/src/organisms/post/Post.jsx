@@ -47,14 +47,14 @@ const Post = ({
     authorName: "",
     authorImg: ""
   });
-  const [finalComments, setFinalComments] = useState([]);
   const [postSpace, setPostSpace] = useState("");
   const [postCampus, setPostCampus] = useState("");
+  const [allComments, setAllComments] = useState([]);
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.auth);
-  const { space } = useSelector(state => state.space);
   const { singleCampus } = useSelector(state => state.campus);
+
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
+  const finalComments = [];
 
   const likePost = () => {};
   const dislikePost = () => {};
@@ -66,7 +66,6 @@ const Post = ({
       author: loggedInUser?.result?.name,
       authorImg: loggedInUser?.result?.profileImg
     };
-    console.log(newComment);
     dispatch(createComment(newComment));
   };
 
@@ -101,27 +100,22 @@ const Post = ({
     setPostSpace(data.name);
   };
 
+  const getCreatorDetails = async creatorId => {
+    const {
+      data: { data }
+    } = await api.getUser(creatorId);
+    setAuthor({
+      authorName: data.name,
+      authorImg: data.profileImg
+    });
+  };
+
   useEffect(() => {
-    dispatch(getUser(creator));
     dispatch(getCampusById(campusId));
 
+    getCreatorDetails(creator);
     getSpaceDetails(spaceId);
   }, []);
-
-  useEffect(() => {
-    if (user) {
-      setAuthor({
-        authorName: user.name,
-        authorImg: user.profileImg
-      });
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (space) {
-      setPostSpace(space.name);
-    }
-  }, [space]);
 
   useEffect(() => {
     if (singleCampus) {
@@ -129,22 +123,29 @@ const Post = ({
     }
   }, [singleCampus]);
 
-  // const getCommentFromId = async commentId => {
-  //   const {
-  //     data: { data: comment }
-  //   } = await api.getCommentById(commentId);
-  //   return comment;
-  // };
+  const getCommentFromId = async commentId => {
+    return api.getCommentById(commentId);
+  };
 
-  // useEffect(() => {
-  //   if (comments) {
-  //     comments.forEach(comment => {
-  //       getCommentFromId(comment).then(commentObj => {
-  //         setFinalComments([...finalComments, commentObj]);
-  //       });
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    const promiseArr = [];
+
+    if (comments) {
+      comments.forEach(comment => {
+        promiseArr.push(getCommentFromId(comment));
+      });
+
+      Promise.all(promiseArr)
+        .then(results => {
+          results.forEach(result => {
+            finalComments.push(result.data.data);
+          });
+        })
+        .then(() => {
+          setAllComments(finalComments);
+        });
+    }
+  }, []);
 
   return (
     <div className={containerClassName}>
@@ -208,8 +209,8 @@ const Post = ({
           </div>
           {isExpanded && (
             <Comments
-              comments={finalComments}
-              totalComments={finalComments.length}
+              comments={allComments}
+              totalComments={allComments.length}
               authorName={creator}
               handleCommentSave={handleCommentSave}
             />
