@@ -19,20 +19,17 @@ import styles from "./post.module.scss";
 
 const Post = ({
   title,
-  rawContent,
-  label,
+  tag,
+  content,
   type,
   points,
   time,
-  authorName,
-  authorPic,
+  creator,
   size,
   space,
-  campus,
   comments
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
   const likePost = () => {};
   const dislikePost = () => {};
 
@@ -43,13 +40,15 @@ const Post = ({
 
   // if the post body is expanded then show the full content. Otherwise, truncate it to 500 characters
   const bodyContent = isExpanded
-    ? rawContent
-    : _truncate(rawContent, {
+    ? content
+    : _truncate(content, {
         length:
           size === "full"
             ? POST_LIMITS_BODY_TRUNCATE.FULL
             : POST_LIMITS_BODY_TRUNCATE.COMPACT
       });
+
+  console.log("bodyContent trunc: ", content);
 
   const containerClassName = cx({
     [styles.container]: size === "full",
@@ -58,6 +57,10 @@ const Post = ({
 
   // recursively count all the comments
   const totalComments = countTotalComments(comments);
+
+  // authorName
+  // authorPic
+  // campus
 
   return (
     <div className={containerClassName}>
@@ -76,7 +79,7 @@ const Post = ({
             size={BUTTON_SIZE.SMALL}
             type={BUTTON_TYPE.REGULAR}
           >
-            {label}
+            {tag}
           </Button>
           {size === "full" ? (
             <ContextMenu items={["Save", "Report", "Delete"]}>
@@ -103,24 +106,24 @@ const Post = ({
               [styles.hidden]: size === "compact"
             })}
           >
-            <AuthorDetails authorName={authorName} authorPic={authorPic} />
+            <AuthorDetails authorName={creator} authorPic={creator} />
             <div className={styles.space_details}>
               <span className={styles.link}>{space}</span> of{" "}
               <span className={styles.link}>
-                <Tooltip title={campus}>{campus}</Tooltip>
+                {/* <Tooltip title={campus}>{campus}</Tooltip> */}
               </span>
             </div>
             <PostDetails
               toggleBody={toggleBody}
               time={time}
-              totalComments={totalComments}
+              totalComments={comments.length}
             />
           </div>
           {isExpanded && (
             <Comments
               commentIds={comments}
-              totalComments={totalComments}
-              authorName={authorName}
+              totalComments={comments.length}
+              authorName={creator}
             />
           )}
         </div>

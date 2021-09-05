@@ -50,3 +50,4 @@ export const getAllSpacesByCampus = campusId =>
 
 // post related
 export const createPost = formData => POST_API.post("/post", formData);
+export const getHomeFeed = () => POST_API.get("/post/feed");
