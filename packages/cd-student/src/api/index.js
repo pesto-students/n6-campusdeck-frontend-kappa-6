@@ -55,3 +55,4 @@ export const createPost = formData => POST_API.post("/post", formData);
 export const getHomeFeed = () => POST_API.get("/post/feed");
 export const createComment = newComment =>
   POST_API.post(`/comment/${newComment.parent}`, newComment);
+export const getCommentById = id => POST_API.get(`/comment/${id}`);

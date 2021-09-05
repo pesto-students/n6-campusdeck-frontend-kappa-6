@@ -46,3 +46,16 @@ export const createComment = newComment => async dispatch => {
     console.error(error);
   }
 };
+
+export const getCommentById = id => async dispatch => {
+  try {
+    const {
+      data: { data }
+    } = await api.getCommentById(id);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+  return null;
+};

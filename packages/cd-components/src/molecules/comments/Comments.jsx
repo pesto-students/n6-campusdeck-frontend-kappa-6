@@ -18,14 +18,13 @@ import { ProfilePic } from "../..";
 import styles from "./comments.module.scss";
 
 const Comments = ({
-  commentIds,
+  comments,
   totalComments,
   authorName,
   handleCommentSave
 }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
   // opens the comment modal
@@ -87,15 +86,6 @@ const Comments = ({
       Reply
     </span>
   ];
-
-  // this logic might be moved to post component for faster loads
-  useEffect(() => {
-    commentIds.length > 0 &&
-      commentIds.map(commentId => {
-        // dispatch and action to get the comment from the id,
-        // save the comment info to 'comments' state
-      });
-  }, []);
 
   return (
     <div className={styles.container}>
