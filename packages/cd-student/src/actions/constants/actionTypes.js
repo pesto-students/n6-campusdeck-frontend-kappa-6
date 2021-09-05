@@ -15,6 +15,7 @@ export const FETCH_ALL_SPACES_BY_CAMPUS = "FETCH_ALL_SPACES_BY_CAMPUS";
 export const CREATE_POST = "CREATE_POST";
 export const FETCH_HOME_FEED = "FETCH_HOME_FEED";
 export const CREATE_COMMENT = "CREATE_COMMENT";
+export const LIKE_POST = "LIKE_POST";
 
 // user related
 export const FETCH_USER = "FETCH_USER";

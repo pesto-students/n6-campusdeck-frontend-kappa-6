@@ -1,7 +1,8 @@
 import {
   CREATE_POST,
   FETCH_HOME_FEED,
-  CREATE_COMMENT
+  CREATE_COMMENT,
+  LIKE_POST
 } from "../actions/constants/actionTypes";
 
 const postReducer = (state = { posts: [] }, action) => {
@@ -11,6 +12,16 @@ const postReducer = (state = { posts: [] }, action) => {
     case FETCH_HOME_FEED:
       return { ...state, posts: action.payload.data };
     case CREATE_COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post._id === +action.payload.data._id) {
+            return action.payload.data;
+          }
+          return post;
+        })
+      };
+    case LIKE_POST:
       return {
         ...state,
         posts: state.posts.map(post => {

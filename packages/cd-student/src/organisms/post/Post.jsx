@@ -19,10 +19,8 @@ import {
 import { compactNumber, countTotalComments } from "@cd/base";
 
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
-import { getUser } from "../../actions/auth";
-import { getSpace } from "../../actions/space";
 import { getCampusById } from "../../actions/campus";
-import { createComment, getCommentById } from "../../actions/post";
+import { createComment, likePost } from "../../actions/post";
 import * as api from "../../api/index";
 
 // styles
@@ -34,7 +32,7 @@ const Post = ({
   tag,
   content,
   type,
-  points,
+  likes,
   time,
   creator,
   size,
@@ -56,7 +54,11 @@ const Post = ({
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
   const finalComments = [];
 
-  const likePost = () => {};
+  const likeThisPost = () => {
+    console.log("like reached");
+    dispatch(likePost(id));
+  };
+
   const dislikePost = () => {};
 
   const handleCommentSave = comment => {
@@ -150,11 +152,7 @@ const Post = ({
   return (
     <div className={containerClassName}>
       <div className={styles.points}>
-        <Points
-          onLike={likePost}
-          onDislike={dislikePost}
-          points={compactNumber(points)}
-        />
+        <Points likePost={likeThisPost} onDislike={dislikePost} likes={likes} />
       </div>
       <div className={styles.body}>
         <div className={styles.header}>
@@ -227,7 +225,7 @@ Post.propTypes = {
   tag: PropTypes.string,
   type: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  points: PropTypes.number.isRequired,
+  likes: PropTypes.arrayOf(PropTypes.string).isRequired,
   time: PropTypes.string.isRequired,
   creator: PropTypes.string.isRequired,
   spaceId: PropTypes.string.isRequired,

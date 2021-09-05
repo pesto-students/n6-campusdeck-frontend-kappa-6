@@ -2,8 +2,22 @@ import * as api from "../api";
 import {
   CREATE_POST,
   FETCH_HOME_FEED,
-  CREATE_COMMENT
+  CREATE_COMMENT,
+  LIKE_POST
 } from "./constants/actionTypes";
+
+export const likePost = id => async dispatch => {
+  try {
+    const { data } = await api.likePost(id);
+
+    dispatch({
+      type: LIKE_POST,
+      payload: data
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // action to create a post
 export const createPost = formData => async dispatch => {

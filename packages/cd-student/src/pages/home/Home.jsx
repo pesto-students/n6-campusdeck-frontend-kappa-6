@@ -40,7 +40,7 @@ const Home = () => {
                   title={post.title}
                   tag={post.tag}
                   type={post.type}
-                  points={post.points}
+                  likes={post?.likes}
                   content={post.body}
                   time={post.createdAt}
                   totalComments={post.comments?.length}
