@@ -58,3 +58,4 @@ export const createComment = newComment =>
 export const getCommentById = id => POST_API.get(`/comment/${id}`);
 export const likePost = id => POST_API.patch(`/post/${id}/likePost`);
 export const getSpaceFeed = id => POST_API.get(`/post/space/${id}`);
+export const getPostsFromSpace = id => POST_API.get(`/post/space/${id}`);
