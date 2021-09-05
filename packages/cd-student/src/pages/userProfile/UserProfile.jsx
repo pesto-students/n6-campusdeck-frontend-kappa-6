@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProfileCard } from "@cd/components";
+import ProfileCard from "../../organisms/profileCard/ProfileCard";
 
 // styles
 import styles from "./userProfile.module.scss";

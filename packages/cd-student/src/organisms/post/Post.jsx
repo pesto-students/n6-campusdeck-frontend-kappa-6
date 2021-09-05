@@ -4,15 +4,26 @@ import _truncate from "lodash/truncate";
 import cx from "classnames";
 import { Tooltip } from "antd";
 
-import { MoreOutlined } from "../../atoms/icon/Icon";
-import Button from "../../atoms/button/Button";
-import Points from "../../atoms/points/Points";
-import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
-import ContextMenu from "../../molecules/contextMenu/ContextMenu";
-import PostDetails from "../../atoms/postDetails/PostDetails";
+import {
+  MoreOutlined,
+  Button,
+  Points,
+  AuthorDetails,
+  ContextMenu,
+  PostDetails,
+  Comments,
+  BUTTON_SIZE,
+  BUTTON_TYPE
+} from "@cd/components";
+// import { MoreOutlined } from "../../atoms/icon/Icon";
+// import Button from "../../atoms/button/Button";
+// import Points from "../../atoms/points/Points";
+// import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
+// import ContextMenu from "../../molecules/contextMenu/ContextMenu";
+// import PostDetails from "../../atoms/postDetails/PostDetails";
+// import { BUTTON_TYPE, BUTTON_SIZE, Comments } from "@cd/components";
 import { compactNumber, countTotalComments } from "@cd/base";
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
-import { BUTTON_TYPE, BUTTON_SIZE, Comments } from "@cd/components";
 
 //styles
 import styles from "./post.module.scss";
@@ -30,6 +41,11 @@ const Post = ({
   comments
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [author, setAuthor] = useState({
+    authorName: "",
+    authorImg: ""
+  });
+
   const likePost = () => {};
   const dislikePost = () => {};
 
@@ -48,8 +64,6 @@ const Post = ({
             : POST_LIMITS_BODY_TRUNCATE.COMPACT
       });
 
-  console.log("bodyContent trunc: ", content);
-
   const containerClassName = cx({
     [styles.container]: size === "full",
     [styles.compact_container]: size === "compact"
@@ -58,8 +72,10 @@ const Post = ({
   // recursively count all the comments
   const totalComments = countTotalComments(comments);
 
-  // authorName
-  // authorPic
+  useEffect(() => {
+    // authorName
+    // authorPic
+  }, [creator, campus]);
   // campus
 
   return (

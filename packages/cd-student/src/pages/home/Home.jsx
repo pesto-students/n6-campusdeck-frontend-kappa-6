@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ContextMenu, Post } from "@cd/components";
+import { ContextMenu } from "@cd/components";
+import Post from "../../organisms/post/Post";
 
 // styles
 import styles from "./home.module.scss";

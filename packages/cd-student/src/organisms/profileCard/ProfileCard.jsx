@@ -2,16 +2,24 @@ import cx from "classnames";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
+// import {
+//   ArrowLeftOutlined,
+//   EditFilled,
+//   MapPin,
+//   Users as UsersIcon
+// } from "../../atoms/icon";
+// import TabMenu from "../../molecules/tabMenu/TabMenu";
+// import Button from "../../atoms/button/Button";
+import Post from "../post/Post";
 import {
+  BUTTON_TYPE,
   ArrowLeftOutlined,
   EditFilled,
   MapPin,
-  Users as UsersIcon
-} from "../../atoms/icon";
-import TabMenu from "../../molecules/tabMenu/TabMenu";
-import Button from "../../atoms/button/Button";
-import Post from "../../organisms/post/Post";
-import { BUTTON_TYPE } from "@cd/components";
+  Users as UsersIcon,
+  TabMenu,
+  Button
+} from "@cd/components";
 
 // style
 import styles from "./profileCard.module.scss";

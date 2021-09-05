@@ -4,8 +4,9 @@ import Carousel, {
   slidesToShowPlugin,
   arrowsPlugin
 } from "@brainhubeu/react-carousel";
-import { Post, ArrowLeftOutlined, ArrowRightOutlined } from "@cd/components";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@cd/components";
 import SpaceDetails from "../../organisms/spaceDetails";
+import Post from "../../organisms/post/Post";
 
 // style
 import styles from "./explore.module.scss";
