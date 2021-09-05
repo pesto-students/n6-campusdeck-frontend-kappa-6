@@ -1,18 +1,18 @@
+import PropTypes from "prop-types";
 import cx from "classnames";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-
 import {
+  BUTTON_TYPE,
   ArrowLeftOutlined,
   EditFilled,
   MapPin,
-  Users as UsersIcon
-} from "../../atoms/icon";
-import TabMenu from "../../molecules/tabMenu/TabMenu";
-import Button from "../../atoms/button/Button";
-import Post from "../../organisms/post/Post";
-import { BUTTON_TYPE } from "@cd/components";
+  Users as UsersIcon,
+  TabMenu,
+  Button
+} from "@cd/components";
 
+import Post from "../post/Post";
 // style
 import styles from "./profileCard.module.scss";
 
@@ -113,6 +113,12 @@ const ProfileCard = ({ postList, commentList, savedList }) => {
       </div>
     </div>
   );
+};
+
+ProfileCard.propTypes = {
+  postList: PropTypes.array.isRequired,
+  commentList: PropTypes.array.isRequired,
+  savedList: PropTypes.array.isRequired
 };
 
 export default ProfileCard;

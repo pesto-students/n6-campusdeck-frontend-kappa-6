@@ -7,6 +7,9 @@ export { default as ProfilePic } from "./atoms/userInfo/assets/defaultProfile.jp
 export { default as SpaceStats } from "./atoms/spaceStats/SpaceStats";
 export { default as Banner } from "./atoms/banner/Banner";
 export { default as Footer } from "./atoms/footer/Footer";
+export { default as AuthorDetails } from "./atoms/authorDetails/AuthorDetails";
+export { default as Points } from "./atoms/points/Points";
+export { default as PostDetails } from "./atoms/postDetails/PostDetails";
 export {
   SearchOutlined,
   BellFilled,
@@ -45,10 +48,10 @@ export { default as CommentEditor } from "./molecules/commentEditor/CommentEdito
 
 // all organisms
 export { default as Navbar } from "./organisms/navbar/Navbar";
-export { default as Post } from "./organisms/post/Post";
-export { default as ProfileCard } from "./organisms/profileCard/ProfileCard";
+// export { default as Post } from "./organisms/post/Post";
+// export { default as ProfileCard } from "./organisms/profileCard/ProfileCard";
 
 // all constants
-export { default as POST_TYPES } from "./organisms/post/constants/post.types";
+// export { default as POST_TYPES } from "./organisms/post/constants/post.types";
 export { default as BUTTON_SIZE } from "./atoms/button/constants/button.size";
 export { default as BUTTON_TYPE } from "./atoms/button/constants/button.types";

@@ -1,37 +1,48 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import _truncate from "lodash/truncate";
 import cx from "classnames";
 import { Tooltip } from "antd";
 
-import { MoreOutlined } from "../../atoms/icon/Icon";
-import Button from "../../atoms/button/Button";
-import Points from "../../atoms/points/Points";
-import AuthorDetails from "../../atoms/authorDetails/AuthorDetails";
-import ContextMenu from "../../molecules/contextMenu/ContextMenu";
-import PostDetails from "../../atoms/postDetails/PostDetails";
+import {
+  MoreOutlined,
+  Button,
+  Points,
+  AuthorDetails,
+  ContextMenu,
+  PostDetails,
+  Comments,
+  BUTTON_SIZE,
+  BUTTON_TYPE
+} from "@cd/components";
 import { compactNumber, countTotalComments } from "@cd/base";
-import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
-import { BUTTON_TYPE, BUTTON_SIZE, Comments } from "@cd/components";
 
-//styles
+import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
+import { getUser } from "../../actions/auth";
+
+// styles
 import styles from "./post.module.scss";
 
 const Post = ({
   title,
-  rawContent,
-  label,
+  tag,
+  content,
   type,
   points,
   time,
-  authorName,
-  authorPic,
+  creator,
   size,
   space,
-  campus,
   comments
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [author, setAuthor] = useState({
+    authorName: "",
+    authorImg: ""
+  });
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
 
   const likePost = () => {};
   const dislikePost = () => {};
@@ -41,10 +52,11 @@ const Post = ({
     setIsExpanded(prevIsExpanded => !prevIsExpanded);
   };
 
-  // if the post body is expanded then show the full content. Otherwise, truncate it to 500 characters
+  // if the post body is expanded then show the full content.
+  // Otherwise, truncate it to 500 characters
   const bodyContent = isExpanded
-    ? rawContent
-    : _truncate(rawContent, {
+    ? content
+    : _truncate(content, {
         length:
           size === "full"
             ? POST_LIMITS_BODY_TRUNCATE.FULL
@@ -58,6 +70,13 @@ const Post = ({
 
   // recursively count all the comments
   const totalComments = countTotalComments(comments);
+
+  useEffect(() => {
+    dispatch(getUser(creator));
+  }, []);
+  // authorName
+  // authorPic
+  // campus
 
   return (
     <div className={containerClassName}>
@@ -76,7 +95,7 @@ const Post = ({
             size={BUTTON_SIZE.SMALL}
             type={BUTTON_TYPE.REGULAR}
           >
-            {label}
+            {tag}
           </Button>
           {size === "full" ? (
             <ContextMenu items={["Save", "Report", "Delete"]}>
@@ -97,30 +116,30 @@ const Post = ({
           <div className={styles.post_body} onClick={toggleBody}>
             {bodyContent}
           </div>
-          <div className={styles.separator}></div>
+          <div className={styles.separator} />
           <div
             className={cx(styles.footer, {
               [styles.hidden]: size === "compact"
             })}
           >
-            <AuthorDetails authorName={authorName} authorPic={authorPic} />
+            <AuthorDetails authorName={creator} authorPic={creator} />
             <div className={styles.space_details}>
               <span className={styles.link}>{space}</span> of{" "}
               <span className={styles.link}>
-                <Tooltip title={campus}>{campus}</Tooltip>
+                {/* <Tooltip title={campus}>{campus}</Tooltip> */}
               </span>
             </div>
             <PostDetails
               toggleBody={toggleBody}
               time={time}
-              totalComments={totalComments}
+              totalComments={comments.length}
             />
           </div>
           {isExpanded && (
             <Comments
               commentIds={comments}
-              totalComments={totalComments}
-              authorName={authorName}
+              totalComments={comments.length}
+              authorName={creator}
             />
           )}
         </div>
@@ -131,18 +150,19 @@ const Post = ({
 
 Post.propTypes = {
   title: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  tag: PropTypes.string,
   type: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   points: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
-  authorName: PropTypes.string.isRequired,
-  authorPic: PropTypes.string,
+  creator: PropTypes.string.isRequired,
+  space: PropTypes.string.isRequired,
   size: PropTypes.string,
   comments: PropTypes.array
 };
 
 Post.defaultProps = {
-  label: undefined,
+  tag: undefined,
   size: "full",
   comments: []
 };

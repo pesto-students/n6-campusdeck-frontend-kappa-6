@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT } from "../actions/constants/actionTypes";
+import { AUTH, LOGOUT, FETCH_USER } from "../actions/constants/actionTypes";
 
 const authReducer = (state = { authData: null }, action) => {
   switch (action.type) {
@@ -10,6 +10,8 @@ const authReducer = (state = { authData: null }, action) => {
       // removes user info from local storage
       localStorage.removeItem("profile");
       return { ...state, authData: null };
+    case FETCH_USER:
+      return { ...state, user: action.payload.data };
     default:
       return state;
   }
