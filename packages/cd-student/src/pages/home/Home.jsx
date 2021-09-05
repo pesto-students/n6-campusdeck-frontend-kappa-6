@@ -42,7 +42,7 @@ const Home = () => {
                   type={post.type}
                   points={post.points}
                   content={post.body}
-                  time={post.cretedAt}
+                  time={post.createdAt}
                   totalComments={post.comments?.length}
                   creator={post.creator}
                   spaceId={post.space}
