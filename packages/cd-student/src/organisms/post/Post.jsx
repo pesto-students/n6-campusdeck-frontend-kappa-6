@@ -20,6 +20,7 @@ import { compactNumber, countTotalComments } from "@cd/base";
 
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
 import { getUser } from "../../actions/auth";
+import { getSpace } from "../../actions/space";
 
 // styles
 import styles from "./post.module.scss";
@@ -33,16 +34,18 @@ const Post = ({
   time,
   creator,
   size,
-  space,
+  spaceId,
   comments
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [author, setAuthor] = useState({
     authorName: "",
-    authorImg: ""
+    authorImg: "",
+    campus: ""
   });
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
+  const { space } = useSelector(state => state.space);
 
   const likePost = () => {};
   const dislikePost = () => {};
@@ -73,10 +76,18 @@ const Post = ({
 
   useEffect(() => {
     dispatch(getUser(creator));
+    dispatch(getSpace(spaceId));
   }, []);
-  // authorName
-  // authorPic
-  // campus
+
+  useEffect(() => {
+    if (user) {
+      setAuthor({
+        authorName: user.name,
+        authorImg: user.profileImg,
+        campus: user.campus
+      });
+    }
+  }, [user]);
 
   return (
     <div className={containerClassName}>
@@ -122,11 +133,14 @@ const Post = ({
               [styles.hidden]: size === "compact"
             })}
           >
-            <AuthorDetails authorName={creator} authorPic={creator} />
+            <AuthorDetails
+              authorName={author.authorName}
+              authorPic={author.authorPic}
+            />
             <div className={styles.space_details}>
-              <span className={styles.link}>{space}</span> of{" "}
+              <span className={styles.link}>{space?.name}</span> of{" "}
               <span className={styles.link}>
-                {/* <Tooltip title={campus}>{campus}</Tooltip> */}
+                <Tooltip title={author.campus}>{author.campus}</Tooltip>
               </span>
             </div>
             <PostDetails
@@ -156,7 +170,7 @@ Post.propTypes = {
   points: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
   creator: PropTypes.string.isRequired,
-  space: PropTypes.string.isRequired,
+  spaceId: PropTypes.string.isRequired,
   size: PropTypes.string,
   comments: PropTypes.array
 };

@@ -37,9 +37,9 @@ const Home = () => {
                   points={post.points}
                   content={post.body}
                   time={post.cretedAt}
-                  totalComments={post.comments.length}
+                  totalComments={post.comments?.length}
                   creator={post.creator}
-                  space={post.space}
+                  spaceId={post.space}
                   comments={post.comments}
                 />
               </div>
