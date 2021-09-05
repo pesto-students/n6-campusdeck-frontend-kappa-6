@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import _truncate from "lodash/truncate";
 import cx from "classnames";
 import { Tooltip } from "antd";
@@ -25,7 +25,7 @@ import {
 import { compactNumber, countTotalComments } from "@cd/base";
 import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
 
-//styles
+// styles
 import styles from "./post.module.scss";
 
 const Post = ({
@@ -54,7 +54,8 @@ const Post = ({
     setIsExpanded(prevIsExpanded => !prevIsExpanded);
   };
 
-  // if the post body is expanded then show the full content. Otherwise, truncate it to 500 characters
+  // if the post body is expanded then show the full content.
+  // Otherwise, truncate it to 500 characters
   const bodyContent = isExpanded
     ? content
     : _truncate(content, {
@@ -75,7 +76,7 @@ const Post = ({
   useEffect(() => {
     // authorName
     // authorPic
-  }, [creator, campus]);
+  }, [creator]);
   // campus
 
   return (
@@ -116,7 +117,7 @@ const Post = ({
           <div className={styles.post_body} onClick={toggleBody}>
             {bodyContent}
           </div>
-          <div className={styles.separator}></div>
+          <div className={styles.separator} />
           <div
             className={cx(styles.footer, {
               [styles.hidden]: size === "compact"
@@ -150,18 +151,19 @@ const Post = ({
 
 Post.propTypes = {
   title: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  tag: PropTypes.string,
   type: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   points: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
-  authorName: PropTypes.string.isRequired,
-  authorPic: PropTypes.string,
+  creator: PropTypes.string.isRequired,
+  space: PropTypes.string.isRequired,
   size: PropTypes.string,
   comments: PropTypes.array
 };
 
 Post.defaultProps = {
-  label: undefined,
+  tag: undefined,
   size: "full",
   comments: []
 };
