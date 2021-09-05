@@ -71,12 +71,6 @@ const Base = ({ children, isSpacePage }) => {
 
     setPostModalVisible(false);
     setCreatePostLoading(false);
-
-    // the below line will be replaced by dispatching an action to save the post
-    // setTimeout(() => {
-    //   setPostModalVisible(false);
-    //   setCreatePostLoading(false);
-    // }, 2000);
   };
 
   // function that will execute when a space is created

@@ -3,7 +3,9 @@ import {
   CREATE_POST,
   FETCH_HOME_FEED,
   CREATE_COMMENT,
-  LIKE_POST
+  LIKE_POST,
+  FETCH_SPACE_FEED,
+  CLEAR_POSTS
 } from "./constants/actionTypes";
 
 export const likePost = id => async dispatch => {
@@ -38,9 +40,31 @@ export const getHomeFeed = () => async dispatch => {
   try {
     const { data } = await api.getHomeFeed();
 
+    dispatch({
+      type: CLEAR_POSTS
+    });
+
     // dispatch action that sets the post received to the store
     dispatch({
       type: FETCH_HOME_FEED,
+      payload: data
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getSpaceFeed = id => async dispatch => {
+  try {
+    const { data } = await api.getSpaceFeed(id);
+
+    dispatch({
+      type: CLEAR_POSTS
+    });
+
+    // dispatch action that sets the post received to the store
+    dispatch({
+      type: FETCH_SPACE_FEED,
       payload: data
     });
   } catch (error) {

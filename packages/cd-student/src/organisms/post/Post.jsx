@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import _truncate from "lodash/truncate";
 import cx from "classnames";
 import { Tooltip } from "antd";
@@ -48,15 +49,20 @@ const Post = ({
   const [postSpace, setPostSpace] = useState("");
   const [postCampus, setPostCampus] = useState("");
   const [allComments, setAllComments] = useState([]);
-  const dispatch = useDispatch();
   const { singleCampus } = useSelector(state => state.campus);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
   const finalComments = [];
 
   const likeThisPost = () => {
-    console.log("like reached");
     dispatch(likePost(id));
+  };
+
+  // navigate to the space page
+  const navigateToSpace = () => {
+    history.push(`/space/${spaceId}`);
   };
 
   const dislikePost = () => {};
@@ -194,7 +200,10 @@ const Post = ({
               authorPic={author.authorPic}
             />
             <div className={styles.space_details}>
-              <span className={styles.link}>{postSpace}</span> of{" "}
+              <span className={styles.link} onClick={navigateToSpace}>
+                {postSpace}
+              </span>{" "}
+              of{" "}
               <span className={styles.link}>
                 <Tooltip title={postCampus}>{postCampus}</Tooltip>
               </span>

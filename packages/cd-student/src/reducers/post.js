@@ -1,8 +1,10 @@
 import {
   CREATE_POST,
   FETCH_HOME_FEED,
+  FETCH_SPACE_FEED,
   CREATE_COMMENT,
-  LIKE_POST
+  LIKE_POST,
+  CLEAR_POSTS
 } from "../actions/constants/actionTypes";
 
 const postReducer = (state = { posts: [] }, action) => {
@@ -10,6 +12,7 @@ const postReducer = (state = { posts: [] }, action) => {
     case CREATE_POST:
       return { ...state, posts: [...state.posts, action.payload] };
     case FETCH_HOME_FEED:
+    case FETCH_SPACE_FEED:
       return { ...state, posts: action.payload.data };
     case CREATE_COMMENT:
       return {
@@ -31,6 +34,8 @@ const postReducer = (state = { posts: [] }, action) => {
           return post;
         })
       };
+    case CLEAR_POSTS:
+      return { ...state, posts: [] };
     default:
       return state;
   }

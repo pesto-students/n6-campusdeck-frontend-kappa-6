@@ -16,6 +16,8 @@ export const CREATE_POST = "CREATE_POST";
 export const FETCH_HOME_FEED = "FETCH_HOME_FEED";
 export const CREATE_COMMENT = "CREATE_COMMENT";
 export const LIKE_POST = "LIKE_POST";
+export const FETCH_SPACE_FEED = "FETCH_SPACE_FEED";
+export const CLEAR_POSTS = "CLEAR_POSTS";
 
 // user related
 export const FETCH_USER = "FETCH_USER";
