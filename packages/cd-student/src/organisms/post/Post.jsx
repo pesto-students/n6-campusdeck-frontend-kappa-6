@@ -22,11 +22,13 @@ import POST_LIMITS_BODY_TRUNCATE from "./constants/post.limits";
 import { getUser } from "../../actions/auth";
 import { getSpace } from "../../actions/space";
 import { getCampusById } from "../../actions/campus";
+import { createComment } from "../../actions/post";
 
 // styles
 import styles from "./post.module.scss";
 
 const Post = ({
+  id,
   title,
   tag,
   content,
@@ -50,9 +52,21 @@ const Post = ({
   const { user } = useSelector(state => state.auth);
   const { space } = useSelector(state => state.space);
   const { singleCampus } = useSelector(state => state.campus);
+  const loggedInUser = JSON.parse(localStorage.getItem("profile"));
 
   const likePost = () => {};
   const dislikePost = () => {};
+
+  const handleCommentSave = comment => {
+    const newComment = {
+      ...comment,
+      parent: id,
+      author: loggedInUser?.result?.name,
+      authorImg: loggedInUser?.result?.profileImg
+    };
+    console.log(newComment);
+    dispatch(createComment(newComment));
+  };
 
   // function to toggle between post expanded and collapsed state
   const toggleBody = () => {
@@ -170,6 +184,7 @@ const Post = ({
               commentIds={comments}
               totalComments={comments.length}
               authorName={creator}
+              handleCommentSave={handleCommentSave}
             />
           )}
         </div>
@@ -179,6 +194,7 @@ const Post = ({
 };
 
 Post.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   tag: PropTypes.string,
   type: PropTypes.string.isRequired,

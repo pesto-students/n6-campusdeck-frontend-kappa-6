@@ -17,7 +17,12 @@ import { ProfilePic } from "../..";
 // styles
 import styles from "./comments.module.scss";
 
-const Comments = ({ commentIds, totalComments, authorName }) => {
+const Comments = ({
+  commentIds,
+  totalComments,
+  authorName,
+  handleCommentSave
+}) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [comments, setComments] = useState([]);
@@ -30,6 +35,12 @@ const Comments = ({ commentIds, totalComments, authorName }) => {
 
   const handleOk = () => {
     setConfirmLoading(true);
+
+    let commentObj = {
+      content: newComment,
+      createdAt: new Date()
+    };
+    handleCommentSave(commentObj);
 
     // the below line will be replaced by dispatching an action to save the comment
     setTimeout(() => {
@@ -46,31 +57,6 @@ const Comments = ({ commentIds, totalComments, authorName }) => {
   const handleChange = e => {
     const value = e.target.value;
     setNewComment(value);
-  };
-
-  // handles addition of new comment
-  const handleSubmit = () => {
-    if (!newComment) {
-      return;
-    }
-
-    setConfirmLoading(true);
-
-    setTimeout(() => {
-      setConfirmLoading(false);
-      setNewComment("");
-
-      // dispatch action to save new comment
-      // setComments([
-      //   ...comments,
-      //   {
-      //     author: JSON.parse(localStorage.getItem(user)).name,
-      //     avatar: JSON.parse(localStorage.getItem(user)).profile,
-      //     content: <p>{newComment}</p>,
-      //     datetime: moment().fromNow()
-      //   }
-      // ]);
-    }, 1000);
   };
 
   // dispatch action to like a comment
@@ -241,7 +227,7 @@ const Comments = ({ commentIds, totalComments, authorName }) => {
       >
         <CommentEditor
           onChange={handleChange}
-          onSubmit={handleSubmit}
+          onSubmit={handleOk}
           submitting={confirmLoading}
           value={newComment}
         />

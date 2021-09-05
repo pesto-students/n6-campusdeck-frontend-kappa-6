@@ -34,8 +34,9 @@ const Home = () => {
         <div className={styles.post_container}>
           {posts.length > 0 &&
             posts.map(post => (
-              <div key={post.id} className={styles.post}>
+              <div key={post._id} className={styles.post}>
                 <Post
+                  id={post._id}
                   title={post.title}
                   tag={post.tag}
                   type={post.type}
