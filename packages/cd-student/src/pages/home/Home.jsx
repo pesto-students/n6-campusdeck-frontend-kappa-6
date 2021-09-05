@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Skeleton } from "antd";
+
 import { ContextMenu } from "@cd/components";
 import Post from "../../organisms/post/Post";
+import { getHomeFeed } from "../../actions/post";
 
 // styles
 import styles from "./home.module.scss";
-import { getHomeFeed } from "../../actions/post";
 
 const Home = () => {
-  const userId = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
   const { posts } = useSelector(state => state.post);
 
@@ -17,10 +18,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(getHomeFeed());
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, [userId]);
 
   return (
     <>
@@ -31,9 +28,12 @@ const Home = () => {
         >
           <span className={styles.sort_option}>Sort by: </span>
         </ContextMenu>
-        <div className={styles.post_container}>
-          {posts.length > 0 &&
-            posts.map(post => (
+        <Skeleton loading={!posts.length} active />
+        <Skeleton loading={!posts.length} active />
+        <Skeleton loading={!posts.length} active />
+        <Skeleton loading={!posts.length} active>
+          {posts.map(post => (
+            <div className={styles.post_container}>
               <div key={post._id} className={styles.post}>
                 <Post
                   id={post._id}
@@ -50,8 +50,9 @@ const Home = () => {
                   campusId={post.campus}
                 />
               </div>
-            ))}
-        </div>
+            </div>
+          ))}
+        </Skeleton>
       </div>
     </>
   );
