@@ -131,7 +131,9 @@ const Comments = ({
             datetime={
               <>
                 <Tooltip
-                  title={moment(comment.datetime).format("YYYY-MM-DD HH:mm:ss")}
+                  title={moment(comment.createdAt).format(
+                    "YYYY-MM-DD HH:mm:ss"
+                  )}
                 >
                   {moment(comment.createdAt).fromNow()}
                 </Tooltip>
