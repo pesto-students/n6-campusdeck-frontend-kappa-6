@@ -31,13 +31,15 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
   };
 
   const getCreatorDetails = async creatorId => {
-    const {
-      data: { data }
-    } = await api.getUser(creatorId);
-    setAuthor({
-      authorName: data.name,
-      authorImg: data.profileImg
-    });
+    if (creatorId) {
+      const {
+        data: { data }
+      } = await api.getUser(creatorId);
+      setAuthor({
+        authorName: data.name,
+        authorImg: data.profileImg
+      });
+    }
   };
 
   const spaceJoin = () => {
