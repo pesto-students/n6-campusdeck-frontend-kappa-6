@@ -31,7 +31,7 @@ const Button = ({
 };
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   type: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,

@@ -317,6 +317,7 @@ const Base = ({ children, isSpacePage }) => {
                         metric: "110 spaces"
                       }
                     ]}
+                    onClick={navigateToSpace}
                   />
                 </div>
               </div>

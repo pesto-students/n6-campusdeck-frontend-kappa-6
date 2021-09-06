@@ -33,8 +33,8 @@ const Home = () => {
         <Skeleton loading={!posts.length} active />
         <Skeleton loading={!posts.length} active>
           {posts.map(post => (
-            <div className={styles.post_container}>
-              <div key={post._id} className={styles.post}>
+            <div key={post._id} className={styles.post_container}>
+              <div className={styles.post}>
                 <Post
                   id={post._id}
                   title={post.title}

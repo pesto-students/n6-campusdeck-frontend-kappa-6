@@ -60,7 +60,7 @@ const MySpaces = ({ userId, openModal }) => {
       <div className={styles.spaces_list}>
         {spaces.length > 0 ? (
           spaces.map(space => (
-            <div className={styles.space}>
+            <div key={space._id} className={styles.space}>
               <div className={styles.row}>
                 <img
                   className={styles.space_img}

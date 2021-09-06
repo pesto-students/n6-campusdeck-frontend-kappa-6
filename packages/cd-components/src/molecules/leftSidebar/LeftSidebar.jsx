@@ -10,6 +10,7 @@ const LeftSidebar = ({ onClick, links }) => {
       {links.length &&
         links.map(link => (
           <MenuItem
+            key={link.destination}
             active={link.isActive}
             label={link.label}
             destination={link.destination}
