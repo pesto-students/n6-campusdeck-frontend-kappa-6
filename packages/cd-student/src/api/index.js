@@ -51,6 +51,7 @@ export const getSpace = id => SPACE_API.get(`/space/${id}`);
 export const getAllSpacesByCampus = campusId =>
   SPACE_API.get(`/space/campus/${campusId}`);
 export const joinSpace = spaceId => SPACE_API.patch(`/space/${spaceId}/join`);
+export const fetchTrendingSpaces = () => SPACE_API.get("/space/trending");
 
 // post related
 export const createPost = formData => POST_API.post("/post", formData);

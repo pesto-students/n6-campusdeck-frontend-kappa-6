@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Skeleton } from "antd";
 
 import ListItem from "../../atoms/listItem/ListItem";
 
@@ -10,12 +11,17 @@ const SuggestionCard = ({ heading, list, onClick }) => {
     <div className={styles.container}>
       <div className={styles.heading}>{heading}</div>
       <div className={styles.stats}>
-        {list &&
+        {list?.length > 0 ? (
           list?.map(item => (
             <div key={item.id}>
               <ListItem item={item} onClick={onClick} />
             </div>
-          ))}
+          ))
+        ) : (
+          <>
+            <Skeleton active size='small' />
+          </>
+        )}
       </div>
     </div>
   );

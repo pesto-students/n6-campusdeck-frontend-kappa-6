@@ -16,6 +16,7 @@ import {
   UserOutlined,
   CompassFilled
 } from "@cd/components";
+import { compactNumber } from "@cd/base";
 import CreatePost from "./organisms/createPost";
 import CreateSpace from "./organisms/createSpace";
 import MySpaces from "./organisms/mySpaces/MySpaces";
@@ -23,6 +24,7 @@ import SpaceDetails from "./organisms/spaceDetails";
 import { LOGOUT } from "./actions/constants/actionTypes";
 import { createSpace } from "./actions/space";
 import { createPost } from "./actions/post";
+import * as api from "./api/index";
 
 // styles
 import styles from "./Base.module.scss";
@@ -49,6 +51,7 @@ const Base = ({ children, isSpacePage }) => {
     campus: "",
     isPublic: true
   });
+  const [allTrendingSpaces, setAllTrendingSpaces] = useState([]);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const history = useHistory();
   const location = useLocation();
@@ -93,7 +96,7 @@ const Base = ({ children, isSpacePage }) => {
     // clears the current user
     setUser(() => {
       // redirect user to home page upon logging out
-      history.push("/");
+      history.push("/login");
 
       return null;
     });
@@ -120,6 +123,30 @@ const Base = ({ children, isSpacePage }) => {
 
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
+
+  const getTrendingSpaces = async () => {
+    const {
+      data: { data }
+    } = await api.fetchTrendingSpaces();
+    return data;
+  };
+
+  useEffect(() => {
+    getTrendingSpaces().then(spaces => {
+      console.log("reached before loop: ", spaces);
+      spaces.forEach(space => {
+        const trendingObj = {
+          id: space._id,
+          name: space.name,
+          metric: `${compactNumber(space.members?.length)} users`,
+          img: space.img
+        };
+        setAllTrendingSpaces(old => {
+          return [...old, trendingObj];
+        });
+      });
+    });
+  }, []);
 
   return (
     <>
@@ -278,28 +305,7 @@ const Base = ({ children, isSpacePage }) => {
                 <div className={styles.card}>
                   <SuggestionCard
                     heading='Trending Spaces'
-                    list={[
-                      {
-                        id: "announcements",
-                        name: "Announcements",
-                        metric: "31k users"
-                      },
-                      {
-                        id: "webdev",
-                        name: "WebDev",
-                        metric: "25k users"
-                      },
-                      {
-                        id: "qna",
-                        name: "QnA",
-                        metric: "21k users"
-                      },
-                      {
-                        id: "fests",
-                        name: "Fests",
-                        metric: "18k users"
-                      }
-                    ]}
+                    list={allTrendingSpaces}
                     onClick={navigateToSpace}
                   />
                 </div>
