@@ -17,7 +17,7 @@ const Space = () => {
 
   useEffect(() => {
     dispatch(getSpaceFeed(id));
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles.container}>
@@ -29,8 +29,8 @@ const Space = () => {
       <Skeleton loading={!posts.length} active />
       <Skeleton loading={!posts.length} active>
         {posts.map(post => (
-          <div className={styles.post_container}>
-            <div key={post._id} className={styles.post}>
+          <div key={post._id} className={styles.post_container}>
+            <div className={styles.post}>
               <Post
                 id={post._id}
                 title={post.title}

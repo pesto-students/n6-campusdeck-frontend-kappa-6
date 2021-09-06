@@ -119,10 +119,17 @@ const Post = ({
   };
 
   useEffect(() => {
-    dispatch(getCampusById(campusId));
+    if (campusId) {
+      dispatch(getCampusById(campusId));
+    }
 
-    getCreatorDetails(creator);
-    getSpaceDetails(spaceId);
+    if (creator) {
+      getCreatorDetails(creator);
+    }
+
+    if (spaceId) {
+      getSpaceDetails(spaceId);
+    }
   }, []);
 
   useEffect(() => {

@@ -112,7 +112,7 @@ const CreatePost = ({ postData, setPostData }) => {
               disabled: true
             }
           ]}
-          centered={true}
+          centered
         />
       </div>
     </div>

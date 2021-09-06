@@ -23,11 +23,15 @@ const SpaceStats = ({ numOfPosts, followers, numOfUsers }) => {
 };
 
 SpaceStats.propTypes = {
-  numOfPosts: PropTypes.number.isRequired,
-  followers: PropTypes.number.isRequired,
-  numOfUsers: PropTypes.number.isRequired
+  numOfPosts: PropTypes.number,
+  followers: PropTypes.number,
+  numOfUsers: PropTypes.number
 };
 
-SpaceStats.defaultProps = {};
+SpaceStats.defaultProps = {
+  numOfPosts: 0,
+  followers: 0,
+  numOfUsers: 0
+};
 
 export default SpaceStats;

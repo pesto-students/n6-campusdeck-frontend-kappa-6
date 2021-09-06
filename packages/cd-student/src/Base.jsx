@@ -323,7 +323,7 @@ const Base = ({ children, isSpacePage }) => {
               </div>
             ) : (
               <div className={styles.card_list}>
-                <SpaceDetails isSpacePage={true} />
+                <SpaceDetails isSpacePage />
               </div>
             )}
             <div>
