@@ -44,6 +44,7 @@ export const getUserSpaces = id => USER_API.get(`/users/space/${id}`);
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");
 export const getCampusById = id => CAMPUS_API.get(`/campus/${id}`);
+export const fetchPopularCampus = () => CAMPUS_API.get("/campus/popular");
 
 // space related
 export const createSpace = formData => SPACE_API.post("/space", formData);

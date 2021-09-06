@@ -52,6 +52,7 @@ const Base = ({ children, isSpacePage }) => {
     isPublic: true
   });
   const [allTrendingSpaces, setAllTrendingSpaces] = useState([]);
+  const [popularCampus, setPopularCampus] = useState([]);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const history = useHistory();
   const location = useLocation();
@@ -131,6 +132,13 @@ const Base = ({ children, isSpacePage }) => {
     return data;
   };
 
+  const getPopularCampus = async () => {
+    const {
+      data: { data }
+    } = await api.fetchPopularCampus();
+    return data;
+  };
+
   useEffect(() => {
     getTrendingSpaces().then(spaces => {
       spaces.forEach(space => {
@@ -142,6 +150,20 @@ const Base = ({ children, isSpacePage }) => {
         };
         setAllTrendingSpaces(old => {
           return [...old, trendingObj];
+        });
+      });
+    });
+
+    getPopularCampus().then(campuses => {
+      campuses.forEach(campus => {
+        const popularCampusObj = {
+          id: campus._id,
+          name: campus.name,
+          img: campus.img,
+          metric: `${compactNumber(campus?.spaces?.length)} spaces`
+        };
+        setPopularCampus(old => {
+          return [...old, popularCampusObj];
         });
       });
     });
@@ -312,16 +334,7 @@ const Base = ({ children, isSpacePage }) => {
                 <div className={styles.card}>
                   <SuggestionCard
                     heading='Popular Campuses'
-                    list={[
-                      {
-                        name: "VIT, Vellore",
-                        metric: "150 spaces"
-                      },
-                      {
-                        name: "IIIT Hyderabad",
-                        metric: "110 spaces"
-                      }
-                    ]}
+                    list={popularCampus}
                     onClick={navigateToSpace}
                   />
                 </div>
