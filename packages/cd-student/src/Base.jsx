@@ -133,7 +133,6 @@ const Base = ({ children, isSpacePage }) => {
 
   useEffect(() => {
     getTrendingSpaces().then(spaces => {
-      console.log("reached before loop: ", spaces);
       spaces.forEach(space => {
         const trendingObj = {
           id: space._id,

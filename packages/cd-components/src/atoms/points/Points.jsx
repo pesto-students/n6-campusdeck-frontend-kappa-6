@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Tooltip } from "antd";
 
 import { compactNumber } from "@cd/base";
 import { ArrowUpOutlined, ArrowDownOutlined } from "../icon";
@@ -22,7 +23,9 @@ const Points = ({ likes, likePost }) => {
         onClick={likePost}
       />
       <div className={styles.points}>{compactNumber(likes?.length)}</div>
-      <ArrowDownOutlined className={styles.arrow} />
+      <Tooltip placement='bottom' title='Coming soon'>
+        <ArrowDownOutlined className={styles.arrow} />
+      </Tooltip>
     </div>
   );
 };
