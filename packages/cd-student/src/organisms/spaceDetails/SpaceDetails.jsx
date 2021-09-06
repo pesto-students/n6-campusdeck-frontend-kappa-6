@@ -6,8 +6,7 @@ import moment from "moment";
 import { Tooltip } from "antd";
 
 import { Button, BUTTON_SIZE, SpaceStats, ProfilePic } from "@cd/components";
-import { getSpace } from "../../actions/space";
-import { getPostsFromSpace } from "../../actions/post";
+import { getSpace, joinASpace } from "../../actions/space";
 import * as api from "../../api/index";
 
 // styles
@@ -22,6 +21,7 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     authorName: "",
     authorImg: ""
   });
+  const loggedInUser = JSON.parse(localStorage.getItem("profile"));
 
   const getPostsCount = async spaceId => {
     const {
@@ -40,6 +40,23 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     });
   };
 
+  const spaceJoin = () => {
+    const spaceId = isSpacePage ? id : dbId;
+
+    dispatch(joinASpace(spaceId));
+  };
+
+  const hasUserJoinedSpace = () => {
+    if (
+      space?.members?.findIndex(
+        memberId => memberId === loggedInUser.result._id
+      ) !== -1
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   useEffect(() => {
     // if it is used in the space page, use id from params
     // otherwise use the one provided as a prop.
@@ -50,19 +67,24 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
       setPostCount(len);
     });
 
-    getCreatorDetails(space.creator);
+    getCreatorDetails(space?.creator);
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.card_header}>
-        <span className={styles.name}>{space.name}</span>
-        <Button size={BUTTON_SIZE.SMALL} text='+ Join' />
+        <span className={styles.name}>{space?.name}</span>
+        <Button
+          size={BUTTON_SIZE.SMALL}
+          onClick={spaceJoin}
+          text={hasUserJoinedSpace() ? "Joined" : "+ Join"}
+        />
       </div>
-      <div className={styles.space_desc}>{space.desc}</div>
+      <div className={styles.space_desc}>{space?.desc}</div>
       <SpaceStats
         numOfPosts={postCount}
-        followers={space.followers}
-        numOfUsers={space.numOfUsers}
+        followers={space?.members?.length}
+        numOfUsers={space?.members?.length}
       />
       <div className={styles.card_footer}>
         <img

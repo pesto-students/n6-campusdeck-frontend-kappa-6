@@ -1,7 +1,8 @@
 import {
   CREATE_SPACE,
   FETCH_SPACE,
-  FETCH_ALL_SPACES_BY_CAMPUS
+  FETCH_ALL_SPACES_BY_CAMPUS,
+  JOIN_SPACE
 } from "../actions/constants/actionTypes";
 
 const spaceReducer = (state = { spaces: [], space: {} }, action) => {
@@ -9,8 +10,10 @@ const spaceReducer = (state = { spaces: [], space: {} }, action) => {
     case CREATE_SPACE:
       return { ...state, spaces: [...state.spaces, action.payload] };
     case FETCH_ALL_SPACES_BY_CAMPUS:
-      return { spaces: action.payload };
+      return { ...state, spaces: action.payload };
     case FETCH_SPACE:
+      return { ...state, space: action.payload };
+    case JOIN_SPACE:
       return { ...state, space: action.payload };
     default:
       return state;

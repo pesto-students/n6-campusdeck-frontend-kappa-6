@@ -38,7 +38,9 @@ const CreatePost = ({ postData, setPostData }) => {
 
   // once the user has selected a campus, show them the list of spaces
   useEffect(() => {
-    dispatch(getAllSpacesByCampus(selectedCampus));
+    if (selectedCampus) {
+      dispatch(getAllSpacesByCampus(selectedCampus));
+    }
   }, [selectedCampus]);
 
   return (

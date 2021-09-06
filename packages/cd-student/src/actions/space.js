@@ -2,7 +2,8 @@ import * as api from "../api";
 import {
   CREATE_SPACE,
   FETCH_SPACE,
-  FETCH_ALL_SPACES_BY_CAMPUS
+  FETCH_ALL_SPACES_BY_CAMPUS,
+  JOIN_SPACE
 } from "./constants/actionTypes";
 
 // action to create a space
@@ -48,6 +49,23 @@ export const getAllSpacesByCampus = campusId => async dispatch => {
     dispatch({
       type: FETCH_ALL_SPACES_BY_CAMPUS,
       payload: data
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const joinASpace = spaceId => async dispatch => {
+  try {
+    const {
+      data: { data }
+    } = await api.joinSpace(spaceId);
+
+    console.log(data);
+    // dispatch action that sets the space received to the store
+    dispatch({
+      type: JOIN_SPACE,
+      payload: data.updatedSpace
     });
   } catch (error) {
     console.error(error);

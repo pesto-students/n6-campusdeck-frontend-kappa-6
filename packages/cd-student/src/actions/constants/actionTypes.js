@@ -10,6 +10,7 @@ export const FETCH_CAMPUS_BY_ID = "FETCH_CAMPUS_BY_ID";
 export const CREATE_SPACE = "CREATE_SPACE";
 export const FETCH_SPACE = "FETCH_SPACE";
 export const FETCH_ALL_SPACES_BY_CAMPUS = "FETCH_ALL_SPACES_BY_CAMPUS";
+export const JOIN_SPACE = "JOIN_SPACE";
 
 // post related
 export const CREATE_POST = "CREATE_POST";
