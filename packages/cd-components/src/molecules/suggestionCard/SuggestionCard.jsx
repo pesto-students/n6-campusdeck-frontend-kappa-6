@@ -11,7 +11,7 @@ const SuggestionCard = ({ heading, list, onClick }) => {
       <div className={styles.heading}>{heading}</div>
       <div className={styles.stats}>
         {list &&
-          list.map(item => (
+          list?.map(item => (
             <div key={item.id}>
               <ListItem item={item} onClick={onClick} />
             </div>

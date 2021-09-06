@@ -10,7 +10,7 @@ const Points = ({ likes, likePost }) => {
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
 
   const hasUserLiked =
-    likes?.findIndex(id => id === loggedInUser.result._id) === -1
+    likes?.findIndex(id => id === loggedInUser?.result?._id) === -1
       ? false
       : true;
 
