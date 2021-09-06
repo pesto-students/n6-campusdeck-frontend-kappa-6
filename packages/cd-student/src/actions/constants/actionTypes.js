@@ -1,6 +1,7 @@
 // auth related
 export const AUTH = "AUTH";
 export const LOGOUT = "LOGOUT";
+export const FETCH_MY_SPACES = "FETCH_MY_SPACES";
 
 // campus related
 export const FETCH_ALL_CAMPUS = "FETCH_ALL_CAMPUS";

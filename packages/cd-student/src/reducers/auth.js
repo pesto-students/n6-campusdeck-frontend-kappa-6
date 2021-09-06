@@ -1,4 +1,9 @@
-import { AUTH, LOGOUT, FETCH_USER } from "../actions/constants/actionTypes";
+import {
+  AUTH,
+  LOGOUT,
+  FETCH_USER,
+  FETCH_MY_SPACES
+} from "../actions/constants/actionTypes";
 
 const authReducer = (state = { authData: null }, action) => {
   switch (action.type) {
@@ -12,6 +17,9 @@ const authReducer = (state = { authData: null }, action) => {
       return { ...state, authData: null };
     case FETCH_USER:
       return { ...state, user: action.payload.data };
+    case FETCH_MY_SPACES: {
+      return { ...state, mySpaces: action.payload.data };
+    }
     default:
       return state;
   }

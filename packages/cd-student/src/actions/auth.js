@@ -1,4 +1,4 @@
-import { AUTH, FETCH_USER } from "./constants/actionTypes";
+import { AUTH, FETCH_USER, FETCH_MY_SPACES } from "./constants/actionTypes";
 import * as api from "../api";
 
 // action to register a new user
@@ -38,6 +38,19 @@ export const getUser = id => async dispatch => {
 
     dispatch({
       type: FETCH_USER,
+      payload: data
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getUserSpaces = id => async dispatch => {
+  try {
+    const { data } = await api.getUserSpaces(id);
+
+    dispatch({
+      type: FETCH_MY_SPACES,
       payload: data
     });
   } catch (error) {
