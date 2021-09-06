@@ -40,7 +40,7 @@ function App() {
         <Route component={Register} path='/register' exact />
         <Route
           component={() => (
-            <Base isSpacePage={true}>
+            <Base isSpacePage>
               <Space />
             </Base>
           )}

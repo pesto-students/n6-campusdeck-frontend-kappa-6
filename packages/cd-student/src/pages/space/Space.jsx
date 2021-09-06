@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Skeleton } from "antd";
 
 import { ContextMenu } from "@cd/components";
@@ -11,10 +11,8 @@ import { getSpaceFeed } from "../../actions/post";
 import styles from "./space.module.scss";
 
 const Space = () => {
-  // const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const { posts } = useSelector(state => state.post);
   const { id } = useParams();
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {

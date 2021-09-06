@@ -16,7 +16,7 @@ import Post from "../post/Post";
 // style
 import styles from "./profileCard.module.scss";
 
-const ProfileCard = ({ postList, commentList, savedList }) => {
+const ProfileCard = ({ postList, savedList }) => {
   // this function will fetch posts/comments/saved of user based on the key
   const fetchContents = key => {
     console.log(key);
@@ -117,7 +117,6 @@ const ProfileCard = ({ postList, commentList, savedList }) => {
 
 ProfileCard.propTypes = {
   postList: PropTypes.array.isRequired,
-  commentList: PropTypes.array.isRequired,
   savedList: PropTypes.array.isRequired
 };
 

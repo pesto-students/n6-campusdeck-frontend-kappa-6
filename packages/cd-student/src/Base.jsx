@@ -164,7 +164,7 @@ const Base = ({ children, isSpacePage }) => {
             {/* my spaces section */}
             <div className={styles.spaces_section}>
               <MySpaces
-                userId={user.result._id}
+                userId={user?.result?._id}
                 openModal={() => setSpaceModalVisible(true)}
               />
             </div>

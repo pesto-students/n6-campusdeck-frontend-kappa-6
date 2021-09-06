@@ -145,7 +145,7 @@ const CreateSpace = ({ spaceData, setSpaceData }) => {
               type='checkbox'
               id='accessibility'
               checked={spaceData.isPublic}
-              onChange={e => {
+              onChange={() => {
                 setSpaceData({ ...spaceData, isPublic: !spaceData.isPublic });
               }}
             />

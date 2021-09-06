@@ -89,7 +89,7 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
       <div className={styles.card_footer}>
         <img
           className={styles.creator_img}
-          src={author.authorImg}
+          src={author.authorImg ? author.authorImg : ProfilePic}
           alt={author.authorName}
         />
         <div className={styles.credit}>
