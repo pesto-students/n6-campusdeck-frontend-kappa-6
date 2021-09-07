@@ -3,14 +3,22 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import { Tooltip } from "antd";
+import { Tooltip, Skeleton } from "antd";
 
-import { Button, BUTTON_SIZE, SpaceStats, ProfilePic } from "@cd/components";
+import {
+  Button,
+  BUTTON_SIZE,
+  BUTTON_TYPE,
+  SpaceStats,
+  ProfilePic,
+  CheckOutlined,
+  PlusOutlined
+} from "@cd/components";
 import { getSpace, joinASpace } from "../../actions/space";
 import * as api from "../../api/index";
 
 // styles
-import styles from "./spaceDetails.module.css";
+import styles from "./spaceDetails.module.scss";
 
 const SpaceDetails = ({ isSpacePage, dbId }) => {
   const { id } = useParams();
@@ -72,15 +80,31 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     getCreatorDetails(space?.creator);
   }, []);
 
+  // subcomponent to render join button
+  const JoinButton = () => {
+    let btnType = BUTTON_TYPE.REGULAR;
+    let btnText = "Joined";
+    let icon = <CheckOutlined style={{ marginRight: "0.25rem" }} />;
+
+    if (!hasUserJoinedSpace()) {
+      btnType = BUTTON_TYPE.SKELETON;
+      btnText = "Join";
+      icon = <PlusOutlined style={{ marginRight: "0.25rem" }} />;
+    }
+
+    return (
+      <Button size={BUTTON_SIZE.SMALL} type={btnType} onClick={spaceJoin}>
+        {icon}
+        {btnText}
+      </Button>
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.card_header}>
         <span className={styles.name}>{space?.name}</span>
-        <Button
-          size={BUTTON_SIZE.SMALL}
-          onClick={spaceJoin}
-          text={hasUserJoinedSpace() ? "Joined" : "+ Join"}
-        />
+        <JoinButton />
       </div>
       <div className={styles.space_desc}>{space?.desc}</div>
       <SpaceStats
@@ -95,7 +119,7 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
           alt={author.authorName}
         />
         <div className={styles.credit}>
-          Created by <span style={{ color: "blue" }}>{author.authorName}</span>
+          Created by <span className={styles.name}>{author.authorName}</span>
         </div>
         <div className={styles.time}>
           <Tooltip

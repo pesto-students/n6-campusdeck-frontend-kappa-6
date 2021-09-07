@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   width: 84%;
-  margin-left: 0.9rem;
+  margin-left: 1.25rem;
   margin-top: 1.35rem;
 }
 
@@ -13,11 +13,12 @@
 }
 
 .num {
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: rgba(0, 0, 0, 0.75);
 }
 
 .label {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.65);
 }
