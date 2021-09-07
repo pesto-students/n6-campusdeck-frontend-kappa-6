@@ -10,16 +10,18 @@ import App from "./App";
 
 import "./index.css";
 
-// Sentry setup
-Sentry.init({
-  dsn: process.env.REACT_APP_SENTRY_DSN,
-  integrations: [new Integrations.BrowserTracing()],
+if (process.env.REACT_APP_ENVIRONMENT !== "development") {
+  // Sentry setup
+  Sentry.init({
+    dsn: process.env.REACT_APP_SENTRY_DSN,
+    integrations: [new Integrations.BrowserTracing()],
+    environment: process.env.REACT_APP_ENVIRONMENT,
 
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0
-});
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    tracesSampleRate: 1.0
+  });
+}
 
 // create global store
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
