@@ -4,6 +4,7 @@
 
 .container {
   display: flex;
+  position: relative;
   justify-content: center;
   padding-top: 1.5rem;
 
@@ -14,9 +15,10 @@
 
     .left_sidebar {
       display: flex;
+      position: fixed;
       flex-direction: column;
       width: 16.5rem;
-      margin-left: 1rem;
+      margin-top: 6rem;
 
       .spaces_section {
         margin-top: 1.75rem;
@@ -24,13 +26,25 @@
       }
     }
 
+    .main_content {
+      position: absolute;
+      left: 32rem;
+      top: 6rem;
+    }
+
+    .space_page_container {
+      position: absolute;
+      left: 40rem;
+    }
+
     .right_sidebar {
-      width: 16.5rem;
-      position: relative;
-      height: 90vh;
       display: flex;
       flex-direction: column;
-      // justify-content: space-around;
+      width: 16.5rem;
+      position: fixed;
+      right: 10rem;
+      top: 6rem;
+      height: 90vh;
 
       .btns_container {
         display: flex;

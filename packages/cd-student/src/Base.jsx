@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal, Button as AntButton } from "antd";
 import decode from "jwt-decode";
+import cx from "classnames";
+
 import {
   Button,
   Footer,
@@ -218,7 +220,13 @@ const Base = ({ children, isSpacePage }) => {
             </div>
           </div>
 
-          {children}
+          <div
+            className={cx(styles.main_content, {
+              [styles.space_page_container]: isSpacePage
+            })}
+          >
+            {children}
+          </div>
 
           <div className={styles.right_sidebar}>
             <div className={styles.btns_container}>
