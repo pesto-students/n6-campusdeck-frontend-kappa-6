@@ -344,7 +344,7 @@ const Base = ({ children, isSpacePage }) => {
                 <SpaceDetails isSpacePage />
               </div>
             )}
-            <div>
+            <div className={styles.footer}>
               <Footer />
             </div>
           </div>
