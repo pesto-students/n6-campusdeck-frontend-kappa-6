@@ -60,12 +60,12 @@ const Post = ({
     dispatch(likePost(id));
   };
 
+  const dislikePost = () => {};
+
   // navigate to the space page
   const navigateToSpace = () => {
     history.push(`/space/${spaceId}`);
   };
-
-  const dislikePost = () => {};
 
   const handleCommentSave = comment => {
     const newComment = {
