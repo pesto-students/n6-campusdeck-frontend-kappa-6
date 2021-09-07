@@ -24,8 +24,7 @@ const Space = () => {
       <ContextMenu items={["Following", "Popularity", "New"]}>
         <span className={styles.sort_option}>Sort by: </span>
       </ContextMenu>
-      <div style={{ width: "38rem" }}>
-        <Skeleton loading={!posts.length} active />
+      <div style={{ width: "40rem" }}>
         <Skeleton loading={!posts.length} active />
         <Skeleton loading={!posts.length} active />
         <Skeleton loading={!posts.length} active />
