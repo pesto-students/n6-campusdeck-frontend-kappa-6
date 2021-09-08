@@ -40,6 +40,8 @@ export const signUp = formData => USER_API.post("/users/signup", formData);
 export const signIn = formData => USER_API.post("/users/signin", formData);
 export const getUser = id => USER_API.get(`/users/${id}`);
 export const getUserSpaces = id => USER_API.get(`/users/space/${id}`);
+export const saveUserPref = (userId, preferences) =>
+  USER_API.patch(`/users/${userId}/addPreference`, preferences);
 
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");

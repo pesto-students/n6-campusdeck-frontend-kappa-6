@@ -75,3 +75,19 @@
     }
   }
 }
+
+.pref_container {
+  display: grid;
+  grid-template-columns: 19rem 19rem;
+  margin-left: 0.25rem;
+  padding: 3rem 0;
+}
+
+.pref_tag {
+  margin: 0.5rem 0.5rem;
+  padding: 0.35rem 1rem;
+  font-size: 1.05rem;
+  text-align: center;
+  border-radius: $normal-border-radius;
+  border: 1px solid $primary-blue;
+}
