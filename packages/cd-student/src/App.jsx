@@ -65,6 +65,15 @@ function App() {
           path='/explore'
           exact
         />
+        <Route
+          component={() => (
+            <Base>
+              <Explore isSearchPage />
+            </Base>
+          )}
+          path='/explore/search'
+          exact
+        />
       </Switch>
     </Router>
   );

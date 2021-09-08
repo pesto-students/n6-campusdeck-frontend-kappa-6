@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Divider, Skeleton } from "antd";
 import Carousel, {
   slidesToShowPlugin,
@@ -20,12 +22,16 @@ import * as api from "../../api/index";
 // style
 import styles from "./explore.module.scss";
 
-const Explore = () => {
+const Explore = ({ isSearchPage }) => {
   const [posts, setPosts] = useState([]);
   const [spaces, setSpaces] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [showPosts, setShowPosts] = useState(true);
   const [showSpaces, setShowSpaces] = useState(true);
+
+  // fetching the query params
+  const { search } = useLocation();
+  const searchTerm = new URLSearchParams(search).get("q");
 
   // get user id from the token
   const { result } = JSON.parse(localStorage.getItem("profile"));
@@ -104,11 +110,22 @@ const Explore = () => {
     if (showSpaces) {
       fetchSpaces();
     }
-  }, [showPosts]);
+  }, [showPosts, showSpaces]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      // fetch spaces and posts
+    }
+  }, [searchTerm]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>Explore</div>
+      <div className={styles.header}>
+        {isSearchPage ? `Results for '${searchTerm}'` : "Explore"}
+        {isSearchPage && (
+          <div className={styles.results_found}>50 results found</div>
+        )}
+      </div>
       <div className={styles.filter_section}>
         <div>
           <ContextMenu items={["Spaces", "Posts"]} handler={applyFilterOption}>
@@ -135,7 +152,9 @@ const Explore = () => {
       </div>
       {showSpaces && (
         <div className={styles.preferences_section}>
-          <div className={styles.title}>Spaces based on your preferences</div>
+          <div className={styles.title}>
+            Spaces {isSearchPage ? "(5)" : "based on your preferences"}
+          </div>
           <Divider style={{ margin: "1rem 0" }} />
           <div className={styles.space_list}>
             <Carousel
@@ -192,7 +211,9 @@ const Explore = () => {
 
       {showPosts && (
         <div className={styles.campus_post_section}>
-          <div className={styles.title}>Posts from your campus</div>
+          <div className={styles.title}>
+            Posts {isSearchPage ? "(45)" : "from your campus"}
+          </div>
           <Divider style={{ margin: "1rem 0" }} />
           <Skeleton loading={!posts.length} active />
           <Skeleton loading={!posts.length} active>
@@ -222,6 +243,14 @@ const Explore = () => {
       )}
     </div>
   );
+};
+
+Explore.propTypes = {
+  isSearchPage: PropTypes.bool
+};
+
+Explore.defaultProps = {
+  isSearchPage: false
 };
 
 export default Explore;

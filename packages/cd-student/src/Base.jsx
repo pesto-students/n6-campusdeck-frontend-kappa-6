@@ -182,6 +182,10 @@ const Base = ({ children, isSpacePage }) => {
     return data;
   };
 
+  const search = term => {
+    history.push(`/explore/search?q=${term}`);
+  };
+
   useEffect(() => {
     getTrendingSpaces().then(spaces => {
       spaces.forEach(space => {
@@ -228,6 +232,7 @@ const Base = ({ children, isSpacePage }) => {
         userName={user?.result.name}
         userImg={user?.result.profileImg}
         logout={logout}
+        onKeyUp={search}
       />
       <div className={styles.container}>
         <div className={styles.content}>

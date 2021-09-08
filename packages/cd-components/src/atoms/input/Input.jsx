@@ -7,12 +7,28 @@ import INPUT_SIZE from "./constants/input.size";
 // styles
 import styles from "./input.module.scss";
 
-const Input = ({ size, placeholder, ...props }) => {
+const Input = ({ size, placeholder, onKeyUp, ...props }) => {
   // TODO: move this to a helper
   // dynamically generate class name
   const classNames = cx(styles.input, styles[size]);
 
-  return <input {...props} className={classNames} placeholder={placeholder} />;
+  const handleSearch = e => {
+    const val = e.target.value;
+
+    if (e.keyCode === 13 && val) {
+      e.target.value = "";
+      onKeyUp(val);
+    }
+  };
+
+  return (
+    <input
+      {...props}
+      className={classNames}
+      placeholder={placeholder}
+      onKeyUp={handleSearch}
+    />
+  );
 };
 
 Input.propTypes = {
