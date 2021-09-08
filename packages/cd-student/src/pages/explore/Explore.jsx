@@ -70,6 +70,14 @@ const Explore = () => {
     setPosts(postsFromCampus);
   };
 
+  const fetchSpaces = async () => {
+    const {
+      data: { data: preferredSpaces }
+    } = await api.getPreferredSpaces();
+
+    setSpaces(preferredSpaces);
+  };
+
   useEffect(() => {
     const includesPosts = selectedFilters.includes("Posts");
     const includesSpaces = selectedFilters.includes("Spaces");
@@ -92,6 +100,9 @@ const Explore = () => {
   useEffect(() => {
     if (showPosts) {
       fetchPosts();
+    }
+    if (showSpaces) {
+      fetchSpaces();
     }
   }, [showPosts]);
 
@@ -135,38 +146,43 @@ const Explore = () => {
                 {
                   resolve: slidesToShowPlugin,
                   options: {
-                    numberOfSlides: 2
+                    numberOfSlides: 1
                   }
                 },
                 {
                   resolve: arrowsPlugin,
                   options: {
                     arrowLeft: (
-                      <ArrowLeftOutlined style={{ cursor: "pointer" }} />
+                      <ArrowLeftOutlined className={styles.space_arrow} />
                     ),
                     arrowLeftDisabled: (
-                      <ArrowLeftOutlined style={{ cursor: "pointer" }} />
+                      <ArrowLeftOutlined className={styles.space_arrow} />
                     ),
                     arrowRight: (
-                      <ArrowRightOutlined style={{ cursor: "pointer" }} />
+                      <ArrowRightOutlined className={styles.space_arrow} />
                     ),
                     arrowRightDisabled: (
-                      <ArrowRightOutlined style={{ cursor: "pointer" }} />
+                      <ArrowRightOutlined className={styles.space_arrow} />
                     ),
                     addArrowClickHandler: true
                   }
                 }
               ]}
             >
-              <div className={styles.space_card}>
-                <SpaceDetails />
-              </div>
-              <div className={styles.space_card}>
-                <SpaceDetails />
-              </div>
-              <div className={styles.space_card}>
-                <SpaceDetails />
-              </div>
+              {spaces.length > 0 ? (
+                spaces.map(space => (
+                  <div className={styles.space_card}>
+                    <SpaceDetails dbId={space} />
+                  </div>
+                ))
+              ) : (
+                <>
+                  <Skeleton active />
+                  <Skeleton active />
+                </>
+              )}
+
+              <div className={styles.space_card}> </div>
             </Carousel>
           </div>
         </div>

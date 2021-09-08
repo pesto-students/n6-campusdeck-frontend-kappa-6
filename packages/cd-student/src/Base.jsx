@@ -59,10 +59,10 @@ const Base = ({ children, isSpacePage }) => {
   });
   const [prefChoices, setPrefChoices] = useState([
     "Technology",
-    "Jobs",
+    "Job",
     "Freelancing",
-    "Fests",
-    "Movies",
+    "Fest",
+    "Food",
     "Travelling"
   ]);
   const [selectedPref, setSelectedPref] = useState([]);

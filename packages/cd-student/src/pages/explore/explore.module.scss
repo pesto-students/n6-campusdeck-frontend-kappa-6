@@ -67,6 +67,11 @@
     .space_list {
       padding: 0.5rem 0;
 
+      .space_arrow {
+        cursor: pointer;
+        font-size: 1.4rem;
+      }
+
       .space_card {
         padding: 0.5rem;
       }
