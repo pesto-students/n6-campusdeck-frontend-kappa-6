@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Divider, Badge } from "antd";
+import { Divider, Skeleton } from "antd";
 import Carousel, {
   slidesToShowPlugin,
   arrowsPlugin
@@ -12,79 +12,23 @@ import {
   FilterOutlined,
   XCircle
 } from "@cd/components";
+
 import SpaceDetails from "../../organisms/spaceDetails";
 import Post from "../../organisms/post/Post";
+import * as api from "../../api/index";
 
 // style
 import styles from "./explore.module.scss";
 
 const Explore = () => {
-  const [posts, setPosts] = useState([
-    {
-      title: "Lorem ipsum dolor sit amet?",
-      label: "Question",
-      rawContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
-      points: "4723",
-      time: "2 days ago",
-      totalComments: "100+",
-      authorName: "Pushpak Bhattacharya",
-      size: "compact",
-      comments: [
-        {
-          author: "Sai Chaitanya",
-          content:
-            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-          datetime: "2021-08-27 14:48:00",
-          replies: [
-            {
-              author: "Pushpak Bhattacharya",
-              content:
-                "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-              datetime: "2021-08-27 14:48:00"
-            },
-            {
-              author: "Sai Chaitanya",
-              content:
-                "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
-              datetime: "2021-08-27 14:48:00"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      title: "Lorem ipsum dolor sit amet?",
-      label: "Question",
-      rawContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
-      points: "4723",
-      time: "2 days ago",
-      totalComments: "100+",
-      authorName: "Pushpak Bhattacharya",
-      size: "compact"
-    },
-    {
-      title: "Lorem ipsum dolor sit amet?",
-      label: "Question",
-      rawContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus.Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat lorem et nunc aliquet, et vestibulum risus mollis. Donec sed pulvinar turpis. Praesent eget lacus pellentesque, feugiat sapien quis, tincidunt ante. Integer tincidunt, dui a egestas luctus, lacus magna fermentum diam, ac fringilla eros ipsum sit amet risus. Vestibulum aliquet ante aliquam odio eleifend laoreet. Donec mattis posuere elit, vitae viverra felis ornare et. Suspendisse id accumsan nulla, ac porta lectus.",
-      points: "4723",
-      time: "2 days ago",
-      totalComments: "100+",
-      authorName: "Pushpak Bhattacharya",
-      size: "compact"
-    }
-  ]);
+  const [posts, setPosts] = useState([]);
   const [spaces, setSpaces] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [showPosts, setShowPosts] = useState(true);
   const [showSpaces, setShowSpaces] = useState(true);
 
   // get user id from the token
-  const {
-    result: { _id: userId }
-  } = JSON.parse(localStorage.getItem("profile"));
+  const { result } = JSON.parse(localStorage.getItem("profile"));
 
   const addFilter = filter => {
     setSelectedFilters([...selectedFilters, filter]);
@@ -112,6 +56,20 @@ const Explore = () => {
     }
   };
 
+  const fetchPosts = async () => {
+    // get the campus details from the name of the campus
+    const {
+      data: { data: campus }
+    } = await api.getCampusByName(result.campus);
+
+    // get the posts from the campus
+    const {
+      data: { data: postsFromCampus }
+    } = await api.getPostsFromCampus(campus[0]._id);
+
+    setPosts(postsFromCampus);
+  };
+
   useEffect(() => {
     const includesPosts = selectedFilters.includes("Posts");
     const includesSpaces = selectedFilters.includes("Spaces");
@@ -130,6 +88,12 @@ const Explore = () => {
       setShowSpaces(false);
     }
   }, [selectedFilters]);
+
+  useEffect(() => {
+    if (showPosts) {
+      fetchPosts();
+    }
+  }, [showPosts]);
 
   return (
     <div className={styles.container}>
@@ -212,21 +176,30 @@ const Explore = () => {
         <div className={styles.campus_post_section}>
           <div className={styles.title}>Posts from your campus</div>
           <Divider style={{ margin: "1rem 0" }} />
-          <div className={styles.post_container}>
-            {posts.length > 0 &&
-              posts.map(post => (
-                <Post
-                  title={post.title}
-                  label={post.label}
-                  rawContent={post.rawContent}
-                  points={post.points}
-                  time={post.time}
-                  authorName={post.authorName}
-                  size='compact'
-                  comments={post.comments}
-                />
-              ))}
-          </div>
+          <Skeleton loading={!posts.length} active />
+          <Skeleton loading={!posts.length} active>
+            <div className={styles.post_container}>
+              {posts.length > 0 &&
+                posts.map(post => (
+                  <div key={post._id} className={styles.post}>
+                    <Post
+                      id={post._id}
+                      title={post.title}
+                      tag={post.tag}
+                      type={post.type}
+                      likes={post?.likes}
+                      content={post.body}
+                      time={post.createdAt}
+                      totalComments={post.comments?.length}
+                      creator={post.creator}
+                      spaceId={post.space}
+                      comments={post.comments}
+                      campusId={post.campus}
+                    />
+                  </div>
+                ))}
+            </div>
+          </Skeleton>
         </div>
       )}
     </div>

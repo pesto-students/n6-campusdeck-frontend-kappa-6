@@ -36,9 +36,9 @@ const Home = () => {
           <Skeleton loading={!posts.length} active />
         </div>
         <Skeleton loading={!posts.length} active>
-          {posts.map(post => (
-            <div key={post._id} className={styles.post_container}>
-              <div className={styles.post}>
+          <div className={styles.post_container}>
+            {posts.map(post => (
+              <div key={post._id} className={styles.post}>
                 <Post
                   id={post._id}
                   title={post.title}
@@ -54,8 +54,8 @@ const Home = () => {
                   campusId={post.campus}
                 />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </Skeleton>
       </div>
     </>
