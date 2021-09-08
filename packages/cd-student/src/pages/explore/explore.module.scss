@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
-  width: 47rem;
+  width: 50rem;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: $normal-border-radius;
@@ -65,7 +65,7 @@
     }
 
     .space_list {
-      padding: 0.5rem 0;
+      padding: 0.35rem 0;
 
       .space_arrow {
         cursor: pointer;

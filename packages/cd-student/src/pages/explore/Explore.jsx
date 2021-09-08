@@ -140,9 +140,6 @@ const Explore = () => {
           <div className={styles.space_list}>
             <Carousel
               plugins={[
-                "centered",
-                "infinite",
-                "fastSwipe",
                 {
                   resolve: slidesToShowPlugin,
                   options: {
@@ -156,13 +153,19 @@ const Explore = () => {
                       <ArrowLeftOutlined className={styles.space_arrow} />
                     ),
                     arrowLeftDisabled: (
-                      <ArrowLeftOutlined className={styles.space_arrow} />
+                      <ArrowLeftOutlined
+                        className={styles.space_arrow}
+                        style={{ color: "grey" }}
+                      />
                     ),
                     arrowRight: (
                       <ArrowRightOutlined className={styles.space_arrow} />
                     ),
                     arrowRightDisabled: (
-                      <ArrowRightOutlined className={styles.space_arrow} />
+                      <ArrowRightOutlined
+                        className={styles.space_arrow}
+                        style={{ color: "grey" }}
+                      />
                     ),
                     addArrowClickHandler: true
                   }
@@ -181,8 +184,7 @@ const Explore = () => {
                   <Skeleton active />
                 </>
               )}
-
-              <div className={styles.space_card}> </div>
+              <div />
             </Carousel>
           </div>
         </div>
