@@ -71,11 +71,14 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     // if it is used in the space page, use id from params
     // otherwise use the one provided as a prop.
     const idToUse = isSpacePage ? id : dbId;
-    dispatch(getSpace(idToUse));
 
-    getPostsCount(idToUse).then(len => {
-      setPostCount(len);
-    });
+    if (idToUse) {
+      dispatch(getSpace(idToUse));
+
+      getPostsCount(idToUse).then(len => {
+        setPostCount(len);
+      });
+    }
 
     getCreatorDetails(space?.creator);
   }, []);

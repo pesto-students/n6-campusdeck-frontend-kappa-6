@@ -21,5 +21,7 @@ export {
   LikeOutlined,
   DislikeFilled,
   LikeFilled,
-  CloudUploadOutlined
+  CloudUploadOutlined,
+  FilterOutlined,
+  XCircle
 } from "./Icon";
