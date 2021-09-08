@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Divider, Skeleton } from "antd";
 import Carousel, {
   slidesToShowPlugin,
@@ -20,12 +22,16 @@ import * as api from "../../api/index";
 // style
 import styles from "./explore.module.scss";
 
-const Explore = () => {
+const Explore = ({ isSearchPage }) => {
   const [posts, setPosts] = useState([]);
   const [spaces, setSpaces] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [showPosts, setShowPosts] = useState(true);
   const [showSpaces, setShowSpaces] = useState(true);
+
+  // fetching the query params
+  const { search } = useLocation();
+  const searchTerm = new URLSearchParams(search).get("q");
 
   // get user id from the token
   const { result } = JSON.parse(localStorage.getItem("profile"));
@@ -70,6 +76,34 @@ const Explore = () => {
     setPosts(postsFromCampus);
   };
 
+  const fetchSpaces = async () => {
+    const {
+      data: { data: preferredSpaces }
+    } = await api.getPreferredSpaces();
+
+    setSpaces(preferredSpaces);
+  };
+
+  const searchPosts = async term => {
+    const {
+      data: { data: matchingPosts }
+    } = await api.searchPosts(term);
+
+    setPosts(matchingPosts);
+  };
+
+  const searchSpaces = async term => {
+    const {
+      data: { data: matchingSpaces }
+    } = await api.searchSpaces(term);
+
+    matchingSpaces?.forEach(matchingSpace => {
+      const id = matchingSpace._id;
+
+      setSpaces([...spaces, id]);
+    });
+  };
+
   useEffect(() => {
     const includesPosts = selectedFilters.includes("Posts");
     const includesSpaces = selectedFilters.includes("Spaces");
@@ -90,14 +124,33 @@ const Explore = () => {
   }, [selectedFilters]);
 
   useEffect(() => {
-    if (showPosts) {
-      fetchPosts();
+    if (!isSearchPage) {
+      if (showPosts) {
+        fetchPosts();
+      }
+      if (showSpaces) {
+        fetchSpaces();
+      }
     }
-  }, [showPosts]);
+  }, [showPosts, showSpaces]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      searchPosts(searchTerm);
+      searchSpaces(searchTerm);
+    }
+  }, [searchTerm]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>Explore</div>
+      <div className={styles.header}>
+        {isSearchPage ? `Results for '${searchTerm}'` : "Explore"}
+        {isSearchPage && (
+          <div className={styles.results_found}>
+            {posts.length + spaces.length} results found
+          </div>
+        )}
+      </div>
       <div className={styles.filter_section}>
         <div>
           <ContextMenu items={["Spaces", "Posts"]} handler={applyFilterOption}>
@@ -124,49 +177,59 @@ const Explore = () => {
       </div>
       {showSpaces && (
         <div className={styles.preferences_section}>
-          <div className={styles.title}>Spaces based on your preferences</div>
+          <div className={styles.title}>
+            Spaces{" "}
+            {isSearchPage ? `(${spaces.length})` : "based on your preferences"}
+          </div>
           <Divider style={{ margin: "1rem 0" }} />
           <div className={styles.space_list}>
             <Carousel
               plugins={[
-                "centered",
-                "infinite",
-                "fastSwipe",
                 {
                   resolve: slidesToShowPlugin,
                   options: {
-                    numberOfSlides: 2
+                    numberOfSlides: 1
                   }
                 },
                 {
                   resolve: arrowsPlugin,
                   options: {
                     arrowLeft: (
-                      <ArrowLeftOutlined style={{ cursor: "pointer" }} />
+                      <ArrowLeftOutlined className={styles.space_arrow} />
                     ),
                     arrowLeftDisabled: (
-                      <ArrowLeftOutlined style={{ cursor: "pointer" }} />
+                      <ArrowLeftOutlined
+                        className={styles.space_arrow}
+                        style={{ color: "grey" }}
+                      />
                     ),
                     arrowRight: (
-                      <ArrowRightOutlined style={{ cursor: "pointer" }} />
+                      <ArrowRightOutlined className={styles.space_arrow} />
                     ),
                     arrowRightDisabled: (
-                      <ArrowRightOutlined style={{ cursor: "pointer" }} />
+                      <ArrowRightOutlined
+                        className={styles.space_arrow}
+                        style={{ color: "grey" }}
+                      />
                     ),
                     addArrowClickHandler: true
                   }
                 }
               ]}
             >
-              <div className={styles.space_card}>
-                <SpaceDetails />
-              </div>
-              <div className={styles.space_card}>
-                <SpaceDetails />
-              </div>
-              <div className={styles.space_card}>
-                <SpaceDetails />
-              </div>
+              {spaces.length > 0 ? (
+                spaces.map(space => (
+                  <div className={styles.space_card}>
+                    <SpaceDetails dbId={space} />
+                  </div>
+                ))
+              ) : (
+                <>
+                  <Skeleton active />
+                  <Skeleton active />
+                </>
+              )}
+              <div />
             </Carousel>
           </div>
         </div>
@@ -174,7 +237,9 @@ const Explore = () => {
 
       {showPosts && (
         <div className={styles.campus_post_section}>
-          <div className={styles.title}>Posts from your campus</div>
+          <div className={styles.title}>
+            Posts {isSearchPage ? `(${posts.length})` : "from your campus"}
+          </div>
           <Divider style={{ margin: "1rem 0" }} />
           <Skeleton loading={!posts.length} active />
           <Skeleton loading={!posts.length} active>
@@ -204,6 +269,14 @@ const Explore = () => {
       )}
     </div>
   );
+};
+
+Explore.propTypes = {
+  isSearchPage: PropTypes.bool
+};
+
+Explore.defaultProps = {
+  isSearchPage: false
 };
 
 export default Explore;

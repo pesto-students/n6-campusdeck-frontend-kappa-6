@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { Modal, Button as AntButton } from "antd";
+import { Modal, Button as AntButton, Tag, message } from "antd";
 import decode from "jwt-decode";
 import cx from "classnames";
 
@@ -31,11 +31,15 @@ import * as api from "./api/index";
 // styles
 import styles from "./Base.module.scss";
 
+const { CheckableTag } = Tag;
+
 const Base = ({ children, isSpacePage }) => {
   const [postModalVisible, setPostModalVisible] = useState(false);
   const [spaceModalVisible, setSpaceModalVisible] = useState(false);
+  const [prefModalVisible, setPrefModalVisible] = useState(false);
   const [createPostLoading, setCreatePostLoading] = useState(false);
   const [createSpaceLoading, setCreateSpaceLoading] = useState(false);
+  const [prefSaveLoading, setPrefSaveLoading] = useState(false);
   const [spaceData, setSpaceData] = useState({
     name: "",
     desc: "",
@@ -53,6 +57,15 @@ const Base = ({ children, isSpacePage }) => {
     campus: "",
     isPublic: true
   });
+  const [prefChoices, setPrefChoices] = useState([
+    "Technology",
+    "Job",
+    "Freelancing",
+    "Fest",
+    "Food",
+    "Travelling"
+  ]);
+  const [selectedPref, setSelectedPref] = useState([]);
   const [allTrendingSpaces, setAllTrendingSpaces] = useState([]);
   const [popularCampus, setPopularCampus] = useState([]);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -88,6 +101,34 @@ const Base = ({ children, isSpacePage }) => {
     // make the below lines async
     setSpaceModalVisible(false);
     setCreateSpaceLoading(false);
+  };
+
+  // function tha will save user preferences
+  const handleSavePref = async () => {
+    if (selectedPref.length < 1) {
+      message.error("Please select at least one tag");
+    } else {
+      setPrefSaveLoading(true);
+      // dispatch action to save preferences
+      const { data } = await api.saveUserPref(user?.result?._id, {
+        preferences: selectedPref
+      });
+      if (data.status === "success") {
+        message.success("Preferences saved successfully");
+      } else {
+        message.error("Please try again");
+      }
+      setPrefSaveLoading(false);
+      setPrefModalVisible(false);
+    }
+  };
+
+  const handlePrefTagSelect = (tag, checked) => {
+    if (checked) {
+      setSelectedPref([...selectedPref, tag]);
+    } else {
+      setSelectedPref(selectedPref.filter(item => item !== tag));
+    }
   };
 
   // function to logout the user
@@ -141,6 +182,10 @@ const Base = ({ children, isSpacePage }) => {
     return data;
   };
 
+  const search = term => {
+    history.push(`/explore/search?q=${term}`);
+  };
+
   useEffect(() => {
     getTrendingSpaces().then(spaces => {
       spaces.forEach(space => {
@@ -171,12 +216,23 @@ const Base = ({ children, isSpacePage }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      const arePrefSaved = user.result?.preferences.length > 0;
+
+      if (!arePrefSaved) {
+        setPrefModalVisible(true);
+      }
+    }
+  }, []);
+
   return (
     <>
       <Navbar
         userName={user?.result.name}
         userImg={user?.result.profileImg}
         logout={logout}
+        onKeyUp={search}
       />
       <div className={styles.container}>
         <div className={styles.content}>
@@ -355,6 +411,57 @@ const Base = ({ children, isSpacePage }) => {
             <div className={styles.footer}>
               <Footer />
             </div>
+            <Modal
+              title='Choose topics that you are interested in'
+              visible={prefModalVisible}
+              onOk={handleSavePref}
+              confirmLoading={prefSaveLoading}
+              onCancel={() => setPrefModalVisible(false)}
+              width={670}
+              centered
+              footer={[
+                <AntButton
+                  key='cancel'
+                  onClick={() => setPrefModalVisible(false)}
+                  style={{
+                    borderRadius: "5px",
+                    border: "0.55px solid rgb(61, 110, 240)",
+                    fontWeight: "bold",
+                    color: "rgb(61, 110, 240)"
+                  }}
+                >
+                  Skip
+                </AntButton>,
+                <AntButton
+                  key='create'
+                  type='primary'
+                  loading={prefSaveLoading}
+                  onClick={handleSavePref}
+                  style={{
+                    borderRadius: "5px",
+                    backgroundColor: "rgb(61, 110, 240)",
+                    border: "none",
+                    fontWeight: "bold"
+                  }}
+                >
+                  Save
+                </AntButton>
+              ]}
+            >
+              <div className={styles.pref_container}>
+                {prefChoices.length > 0 &&
+                  prefChoices.map(tag => (
+                    <CheckableTag
+                      className={styles.pref_tag}
+                      key={tag}
+                      checked={selectedPref.includes(tag)}
+                      onChange={checked => handlePrefTagSelect(tag, checked)}
+                    >
+                      {tag}
+                    </CheckableTag>
+                  ))}
+              </div>
+            </Modal>
           </div>
         </div>
       </div>

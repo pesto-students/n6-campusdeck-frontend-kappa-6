@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
-  width: 47rem;
+  width: 50rem;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: $normal-border-radius;
@@ -16,6 +16,12 @@
     font-weight: 600;
     color: $dark-grey;
     margin: 1.2rem 1.8rem;
+
+    .results_found {
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+      color: #a4a4a4;
+    }
   }
 
   .filter_section {
@@ -60,12 +66,17 @@
 
     .title {
       color: $dark-grey;
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       font-weight: 600;
     }
 
     .space_list {
-      padding: 0.5rem 0;
+      padding: 0.35rem 0;
+
+      .space_arrow {
+        cursor: pointer;
+        font-size: 1.4rem;
+      }
 
       .space_card {
         padding: 0.5rem;
@@ -82,7 +93,7 @@
 
     .title {
       color: $dark-grey;
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       font-weight: 600;
     }
 

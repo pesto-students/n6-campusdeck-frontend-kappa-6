@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import moment from "moment";
-import { Tooltip, Skeleton } from "antd";
+import { Tooltip } from "antd";
 
 import {
   Button,
@@ -14,21 +14,21 @@ import {
   CheckOutlined,
   PlusOutlined
 } from "@cd/components";
-import { getSpace, joinASpace } from "../../actions/space";
+import { joinASpace } from "../../actions/space";
 import * as api from "../../api/index";
 
 // styles
 import styles from "./spaceDetails.module.scss";
 
 const SpaceDetails = ({ isSpacePage, dbId }) => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const { space } = useSelector(state => state.space);
+  const [space, setSpace] = useState([]);
   const [postCount, setPostCount] = useState(0);
   const [author, setAuthor] = useState({
     authorName: "",
     authorImg: ""
   });
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
 
   const getPostsCount = async spaceId => {
@@ -67,13 +67,21 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     return false;
   };
 
+  const fetchSpace = async idToUse => {
+    const {
+      data: { data }
+    } = await api.getSpace(idToUse);
+
+    setSpace(data);
+  };
+
   useEffect(() => {
     // if it is used in the space page, use id from params
     // otherwise use the one provided as a prop.
     const idToUse = isSpacePage ? id : dbId;
 
     if (idToUse) {
-      dispatch(getSpace(idToUse));
+      fetchSpace(idToUse);
 
       getPostsCount(idToUse).then(len => {
         setPostCount(len);

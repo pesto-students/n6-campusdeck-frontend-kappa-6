@@ -40,6 +40,8 @@ export const signUp = formData => USER_API.post("/users/signup", formData);
 export const signIn = formData => USER_API.post("/users/signin", formData);
 export const getUser = id => USER_API.get(`/users/${id}`);
 export const getUserSpaces = id => USER_API.get(`/users/space/${id}`);
+export const saveUserPref = (userId, preferences) =>
+  USER_API.patch(`/users/${userId}/addPreference`, preferences);
 
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");
@@ -55,6 +57,9 @@ export const getAllSpacesByCampus = campusId =>
   SPACE_API.get(`/space/campus/${campusId}`);
 export const joinSpace = spaceId => SPACE_API.patch(`/space/${spaceId}/join`);
 export const fetchTrendingSpaces = () => SPACE_API.get("/space/trending");
+export const getPreferredSpaces = () => SPACE_API.get("/space/explore");
+export const searchSpaces = searchTerm =>
+  SPACE_API.get(`/space/search?q=${searchTerm}`);
 
 // post related
 export const createPost = formData => POST_API.post("/post", formData);
@@ -66,3 +71,5 @@ export const likePost = id => POST_API.patch(`/post/${id}/likePost`);
 export const getSpaceFeed = id => POST_API.get(`/post/space/${id}`);
 export const getPostsFromSpace = id => POST_API.get(`/post/space/${id}`);
 export const getPostsFromCampus = id => POST_API.get(`/post/campus/${id}`);
+export const searchPosts = searchTerm =>
+  POST_API.get(`/post/search?q=${searchTerm}`);

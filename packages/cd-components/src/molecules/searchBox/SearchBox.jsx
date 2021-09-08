@@ -4,11 +4,15 @@ import { SearchOutlined } from "../../atoms/icon";
 // styles
 import styles from "./searchBox.module.scss";
 
-const SearchBox = () => {
+const SearchBox = ({ onKeyUp }) => {
   return (
     <div className={styles.container}>
       <SearchOutlined className={styles.search} />
-      <Input size='medium' placeholder='Search posts or space...' />
+      <Input
+        size='medium'
+        placeholder='Search posts or space...'
+        onKeyUp={onKeyUp}
+      />
     </div>
   );
 };

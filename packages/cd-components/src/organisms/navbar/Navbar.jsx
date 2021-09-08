@@ -8,11 +8,11 @@ import { Button } from "@cd/components";
 // styles
 import styles from "./navbar.module.scss";
 
-const Navbar = ({ userName, userImg, logout }) => {
+const Navbar = ({ userName, userImg, logout, onKeyUp }) => {
   return (
     <nav className={styles.navbar}>
       <Logo />
-      <SearchBox />
+      <SearchBox onKeyUp={onKeyUp} />
       <ActionIcons />
       {userName ? (
         <>
