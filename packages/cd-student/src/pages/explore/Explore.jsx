@@ -84,6 +84,26 @@ const Explore = ({ isSearchPage }) => {
     setSpaces(preferredSpaces);
   };
 
+  const searchPosts = async term => {
+    const {
+      data: { data: matchingPosts }
+    } = await api.searchPosts(term);
+
+    setPosts(matchingPosts);
+  };
+
+  const searchSpaces = async term => {
+    const {
+      data: { data: matchingSpaces }
+    } = await api.searchSpaces(term);
+
+    matchingSpaces?.forEach(matchingSpace => {
+      const id = matchingSpace._id;
+
+      setSpaces([...spaces, id]);
+    });
+  };
+
   useEffect(() => {
     const includesPosts = selectedFilters.includes("Posts");
     const includesSpaces = selectedFilters.includes("Spaces");
@@ -104,17 +124,20 @@ const Explore = ({ isSearchPage }) => {
   }, [selectedFilters]);
 
   useEffect(() => {
-    if (showPosts) {
-      fetchPosts();
-    }
-    if (showSpaces) {
-      fetchSpaces();
+    if (!isSearchPage) {
+      if (showPosts) {
+        fetchPosts();
+      }
+      if (showSpaces) {
+        fetchSpaces();
+      }
     }
   }, [showPosts, showSpaces]);
 
   useEffect(() => {
     if (searchTerm) {
-      // fetch spaces and posts
+      searchPosts(searchTerm);
+      searchSpaces(searchTerm);
     }
   }, [searchTerm]);
 
@@ -123,7 +146,9 @@ const Explore = ({ isSearchPage }) => {
       <div className={styles.header}>
         {isSearchPage ? `Results for '${searchTerm}'` : "Explore"}
         {isSearchPage && (
-          <div className={styles.results_found}>50 results found</div>
+          <div className={styles.results_found}>
+            {posts.length + spaces.length} results found
+          </div>
         )}
       </div>
       <div className={styles.filter_section}>
@@ -153,7 +178,8 @@ const Explore = ({ isSearchPage }) => {
       {showSpaces && (
         <div className={styles.preferences_section}>
           <div className={styles.title}>
-            Spaces {isSearchPage ? "(5)" : "based on your preferences"}
+            Spaces{" "}
+            {isSearchPage ? `(${spaces.length})` : "based on your preferences"}
           </div>
           <Divider style={{ margin: "1rem 0" }} />
           <div className={styles.space_list}>
@@ -212,7 +238,7 @@ const Explore = ({ isSearchPage }) => {
       {showPosts && (
         <div className={styles.campus_post_section}>
           <div className={styles.title}>
-            Posts {isSearchPage ? "(45)" : "from your campus"}
+            Posts {isSearchPage ? `(${posts.length})` : "from your campus"}
           </div>
           <Divider style={{ margin: "1rem 0" }} />
           <Skeleton loading={!posts.length} active />
