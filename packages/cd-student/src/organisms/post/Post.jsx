@@ -194,7 +194,7 @@ const Post = ({
           ) : (
             <PostDetails
               time={time}
-              totalComments={compactNumber(totalComments)}
+              totalComments={comments.length}
               toggleBody={toggleBody}
             />
           )}

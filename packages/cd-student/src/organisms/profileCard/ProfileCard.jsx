@@ -125,13 +125,18 @@ const ProfileCard = ({ postList, savedList, isLoggedInUser, userId }) => {
                   {savedList.length > 0 &&
                     savedList.map(post => (
                       <Post
+                        id={post._id}
                         title={post.title}
-                        label={post.label}
-                        rawContent={post.rawContent}
-                        points={post.points}
-                        time={post.time}
-                        totalComments={post.totalComments}
-                        authorName={post.authorName}
+                        tag={post.tag}
+                        type={post.type}
+                        likes={post?.likes}
+                        content={post.body}
+                        time={post.createdAt}
+                        totalComments={post.comments?.length}
+                        creator={post.creator}
+                        spaceId={post.space}
+                        comments={post.comments}
+                        campusId={post.campus}
                         size='compact'
                       />
                     ))}
