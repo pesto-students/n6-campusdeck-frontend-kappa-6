@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import _truncate from "lodash/truncate";
 import cx from "classnames";
-import { Tooltip } from "antd";
+import { message, Tooltip } from "antd";
 
 import {
   MoreOutlined,
@@ -50,6 +50,7 @@ const Post = ({
   const [postSpace, setPostSpace] = useState("");
   const [postCampus, setPostCampus] = useState("");
   const [allComments, setAllComments] = useState([]);
+  const [ctxMenuOpts, setCtxMenuOpts] = useState([]);
   const { singleCampus } = useSelector(state => state.campus);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -149,6 +150,33 @@ const Post = ({
     return api.getCommentById(commentId);
   };
 
+  const handlePostOpts = async ({ key }) => {
+    if (key === "Save" || key === "Unsave") {
+      const { data } = await api.savePost(loggedInUser?.result?._id, id);
+
+      if (data.status === "success" && data.type === "added") {
+        const newOpts = ctxMenuOpts.filter(opt => {
+          return opt === "Save" ? "Unsave" : "Save";
+        });
+        setCtxMenuOpts(newOpts);
+        message.success("Post saved to your favorites");
+      } else if (data.status === "success" && data.type === "removed") {
+        const newOpts = ctxMenuOpts.filter(opt => {
+          return opt === "Unsave" ? "Save" : "Unsave";
+        });
+        setCtxMenuOpts(newOpts);
+        message.success("Post removed from your favorites");
+      }
+    }
+  };
+
+  const getLoggedInUserDetails = async userId => {
+    const {
+      data: { data }
+    } = await api.getUser(userId);
+    return data;
+  };
+
   useEffect(() => {
     const promiseArr = [];
 
@@ -169,6 +197,23 @@ const Post = ({
     }
   }, []);
 
+  useEffect(() => {
+    const menuOpts = ["Report"];
+
+    if (loggedInUser?.result?._id === creator) {
+      menuOpts.push("Delete");
+    }
+
+    getLoggedInUserDetails(loggedInUser?.result?._id).then(user => {
+      if (user.savedPosts.includes(id)) {
+        menuOpts.push("Unsave");
+      } else {
+        menuOpts.push("Save");
+      }
+      setCtxMenuOpts(menuOpts);
+    });
+  }, []);
+
   return (
     <div className={containerClassName}>
       <div className={styles.points}>
@@ -185,18 +230,20 @@ const Post = ({
             {tag}
           </Button>
           {size === "full" ? (
-            <ContextMenu items={["Save", "Report", "Delete"]}>
+            <ContextMenu items={ctxMenuOpts} handler={handlePostOpts}>
               <MoreOutlined
                 className={styles.more}
                 style={{ fontSize: "1.2rem" }}
               />
             </ContextMenu>
           ) : (
-            <PostDetails
-              time={time}
-              totalComments={comments.length}
-              toggleBody={toggleBody}
-            />
+            <div className={styles.post_details}>
+              <PostDetails
+                time={time}
+                totalComments={comments.length}
+                toggleBody={toggleBody}
+              />
+            </div>
           )}
         </div>
         <div className={styles.content}>
