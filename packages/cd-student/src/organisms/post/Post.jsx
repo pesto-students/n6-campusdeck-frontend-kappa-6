@@ -43,6 +43,7 @@ const Post = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [author, setAuthor] = useState({
+    authorId: "",
     authorName: "",
     authorImg: ""
   });
@@ -65,6 +66,11 @@ const Post = ({
   // navigate to the space page
   const navigateToSpace = () => {
     history.push(`/space/${spaceId}`);
+  };
+
+  // navigate to the user profile page
+  const navigateToUserProfile = userId => {
+    history.push(`/profile/${userId}`);
   };
 
   const handleCommentSave = comment => {
@@ -113,6 +119,7 @@ const Post = ({
       data: { data }
     } = await api.getUser(creatorId);
     setAuthor({
+      authorId: data._id,
       authorName: data.name,
       authorImg: data.profileImg
     });
@@ -203,8 +210,10 @@ const Post = ({
             })}
           >
             <AuthorDetails
+              authorId={author.authorId}
               authorName={author.authorName}
-              authorPic={author.authorPic}
+              authorPic={author.authorImg}
+              onClick={navigateToUserProfile}
             />
             <div className={styles.space_details}>
               <span className={styles.link} onClick={navigateToSpace}>

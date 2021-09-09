@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import ProfileCard from "../../organisms/profileCard/ProfileCard";
 
 // styles
@@ -29,7 +30,6 @@ const UserProfile = () => {
       size: "compact"
     }
   ]);
-  const [comments] = useState([]);
   const [savedItems] = useState([
     {
       title: "Lorem ipsum dolor sit amet?",
@@ -43,12 +43,16 @@ const UserProfile = () => {
       size: "compact"
     }
   ]);
+  const [loggedInUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const { id } = useParams();
+
   return (
     <div className={styles.container}>
       <ProfileCard
         postList={posts}
-        commentList={comments}
         savedList={savedItems}
+        isLoggedInUser={loggedInUser?.result?._id === id}
+        userId={id}
       />
     </div>
   );
