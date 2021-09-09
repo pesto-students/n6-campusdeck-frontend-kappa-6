@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import { Avatar } from "antd";
@@ -10,7 +11,8 @@ import {
   MapPin,
   Users as UsersIcon,
   TabMenu,
-  Button
+  Button,
+  ProfilePic
 } from "@cd/components";
 
 import Post from "../post/Post";
@@ -29,6 +31,7 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
   });
   const [savedPostList, setSavedPostList] = useState([]);
   const [savedPostIds, setSavedPostIds] = useState([]);
+  const history = useHistory();
 
   // this function will fetch posts/saved of user based on the key
   const fetchContents = key => {
@@ -48,7 +51,9 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
       numFollowers: 0
     });
 
-    setSavedPostIds(user.savedPosts);
+    if (isLoggedInUser) {
+      setSavedPostIds(user.savedPosts);
+    }
   };
 
   const fetchPostDetails = async savedPost => {
@@ -73,16 +78,81 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
     }
   }, [userId]);
 
+  // tabs to display
+  const tabMenuOpts = [
+    {
+      label: "Posts",
+      disabled: false,
+      content: (
+        <div style={{ marginLeft: "-1.5rem" }}>
+          {postList.length > 0 &&
+            postList.map(post => (
+              <Post
+                key={post._id}
+                id={post._id}
+                title={post.title}
+                tag={post.tag}
+                type={post.type}
+                likes={post?.likes}
+                content={post.body}
+                time={post.createdAt}
+                totalComments={post.comments?.length}
+                creator={post.creator}
+                spaceId={post.space}
+                comments={post.comments}
+                campusId={post.campus}
+                size='compact'
+              />
+            ))}
+        </div>
+      )
+    }
+  ];
+
+  // only show the saved posts tab if we are on the profile of logged in user
+  if (isLoggedInUser) {
+    tabMenuOpts.push({
+      label: "Saved",
+      disabled: false,
+      content: (
+        <div style={{ marginLeft: "-1.5rem" }}>
+          {savedPostList?.length > 0 &&
+            savedPostList?.map(post => (
+              <Post
+                key={post._id}
+                id={post._id}
+                title={post.title}
+                tag={post.tag}
+                type={post.type}
+                likes={post?.likes}
+                content={post.body}
+                time={post.createdAt}
+                totalComments={post.comments?.length}
+                creator={post.creator}
+                spaceId={post.space}
+                comments={post.comments}
+                campusId={post.campus}
+                size='compact'
+              />
+            ))}
+        </div>
+      )
+    });
+  }
+
   return (
     <div className={styles.container}>
-      <ArrowLeftOutlined className={cx(styles.icon, styles.back_icon)} />
+      <ArrowLeftOutlined
+        className={cx(styles.icon, styles.back_icon)}
+        onClick={() => history.goBack()}
+      />
       {isLoggedInUser && (
         <EditFilled className={cx(styles.icon, styles.edit_icon)} />
       )}
 
       <div className={styles.user}>
         {/* ant design avatar would be replaced later by cloudinary's component */}
-        <Avatar size={128} icon={<UserOutlined />} className={styles.avatar} />
+        <Avatar size={150} src={ProfilePic} className={styles.avatar} />
         <div className={styles.user_info}>
           <span className={styles.user_name}>{userDetails.name}</span>
           <span className={styles.user_campus}>{userDetails.campus}</span>
@@ -111,62 +181,7 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
 
       <div className={styles.user_content}>
         <TabMenu
-          tabs={[
-            {
-              label: "Posts",
-              disabled: false,
-              content: (
-                <div style={{ marginLeft: "-1.5rem" }}>
-                  {postList.length > 0 &&
-                    postList.map(post => (
-                      <Post
-                        key={post._id}
-                        id={post._id}
-                        title={post.title}
-                        tag={post.tag}
-                        type={post.type}
-                        likes={post?.likes}
-                        content={post.body}
-                        time={post.createdAt}
-                        totalComments={post.comments?.length}
-                        creator={post.creator}
-                        spaceId={post.space}
-                        comments={post.comments}
-                        campusId={post.campus}
-                        size='compact'
-                      />
-                    ))}
-                </div>
-              )
-            },
-            {
-              label: "Saved",
-              disabled: false,
-              content: (
-                <div style={{ marginLeft: "-1.5rem" }}>
-                  {savedPostList?.length > 0 &&
-                    savedPostList?.map(post => (
-                      <Post
-                        key={post._id}
-                        id={post._id}
-                        title={post.title}
-                        tag={post.tag}
-                        type={post.type}
-                        likes={post?.likes}
-                        content={post.body}
-                        time={post.createdAt}
-                        totalComments={post.comments?.length}
-                        creator={post.creator}
-                        spaceId={post.space}
-                        comments={post.comments}
-                        campusId={post.campus}
-                        size='compact'
-                      />
-                    ))}
-                </div>
-              )
-            }
-          ]}
+          tabs={tabMenuOpts}
           callback={fetchContents}
           extraContent={{
             enabled: true,
