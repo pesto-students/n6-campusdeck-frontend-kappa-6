@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import cx from "classnames";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Avatar, message } from "antd";
 import {
   BUTTON_TYPE,
   ArrowLeftOutlined,
@@ -12,7 +11,9 @@ import {
   Users as UsersIcon,
   TabMenu,
   Button,
-  ProfilePic
+  ProfilePic,
+  PlusOutlined,
+  CheckOutlined
 } from "@cd/components";
 
 import Post from "../post/Post";
@@ -27,10 +28,11 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
     campus: "",
     location: "",
     profileImg: "",
-    numFollowers: 0
+    followers: []
   });
   const [savedPostList, setSavedPostList] = useState([]);
   const [savedPostIds, setSavedPostIds] = useState([]);
+  const loggedInUser = JSON.parse(localStorage.getItem("profile"));
   const history = useHistory();
 
   // this function will fetch posts/saved of user based on the key
@@ -48,7 +50,7 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
       campus: user.campus,
       location: user.location,
       profileImg: user.profileImg,
-      numFollowers: 0
+      followers: user.followers
     });
 
     if (isLoggedInUser) {
@@ -140,6 +142,54 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
     });
   }
 
+  const followUser = async () => {
+    const { data } = await api.followUser(userId);
+
+    if (data.status === "success" && data.operationType === "follow") {
+      setUserDetails({
+        ...userDetails,
+        followers: [...userDetails.followers, loggedInUser?.result?._id]
+      });
+      message.success(`You are now following ${userDetails.name}!`);
+    } else if (data.status === "success" && data.operationType === "unfollow") {
+      message.success(`You are no longer following ${userDetails.name}!`);
+      const newFollowersList = userDetails.followers.filter(
+        followerId => followerId !== loggedInUser?.result?._id
+      );
+      setUserDetails({
+        ...userDetails,
+        followers: newFollowersList
+      });
+    }
+  };
+
+  console.log(userDetails);
+
+  const FollowBtn = () => {
+    // properties when user is not following this profile
+    let btnType = BUTTON_TYPE.SKELETON;
+    let btnText = "Follow";
+    let icon = <PlusOutlined style={{ marginRight: "0.25rem" }} />;
+
+    // user is follwing this person
+    if (userDetails.followers.includes(loggedInUser?.result?._id)) {
+      btnType = BUTTON_TYPE.REGULAR;
+      btnText = "Following";
+      icon = <CheckOutlined style={{ marginRight: "0.25rem" }} />;
+    }
+
+    return (
+      <Button className={styles.follow_btn} type={btnType} onClick={followUser}>
+        {icon}
+        {btnText}
+      </Button>
+    );
+  };
+
+  useEffect(() => {
+    FollowBtn();
+  }, [userDetails.followers]);
+
   return (
     <div className={styles.container}>
       <ArrowLeftOutlined
@@ -171,9 +221,10 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
               <Button className={styles.msg_btn} type={BUTTON_TYPE.REGULAR}>
                 Send message
               </Button>
-              <Button className={styles.follow_btn} type={BUTTON_TYPE.SKELETON}>
+              {/* <Button className={styles.follow_btn} type={BUTTON_TYPE.SKELETON}>
                 Follow
-              </Button>
+              </Button> */}
+              <FollowBtn />
             </div>
           )}
         </div>
