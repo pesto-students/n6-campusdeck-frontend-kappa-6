@@ -73,3 +73,4 @@ export const getPostsFromSpace = id => POST_API.get(`/post/space/${id}`);
 export const getPostsFromCampus = id => POST_API.get(`/post/campus/${id}`);
 export const searchPosts = searchTerm =>
   POST_API.get(`/post/search?q=${searchTerm}`);
+export const getPostsByUser = id => POST_API.get(`/post/byUser/${id}`);

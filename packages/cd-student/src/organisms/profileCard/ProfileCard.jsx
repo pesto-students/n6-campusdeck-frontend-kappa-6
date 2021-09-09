@@ -25,6 +25,7 @@ const ProfileCard = ({ postList, savedList, isLoggedInUser, userId }) => {
     campus: "",
     location: "",
     profileImg: "",
+    savedPosts: [],
     numFollowers: 0
   });
   // this function will fetch posts/saved of user based on the key
