@@ -19,15 +19,17 @@ import * as api from "../../api/index";
 // style
 import styles from "./profileCard.module.scss";
 
-const ProfileCard = ({ postList, savedList, isLoggedInUser, userId }) => {
+const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
   const [userDetails, setUserDetails] = useState({
     name: "",
     campus: "",
     location: "",
     profileImg: "",
-    savedPosts: [],
     numFollowers: 0
   });
+  const [savedPostList, setSavedPostList] = useState([]);
+  const [savedPostIds, setSavedPostIds] = useState([]);
+
   // this function will fetch posts/saved of user based on the key
   const fetchContents = key => {
     console.log(key);
@@ -45,7 +47,25 @@ const ProfileCard = ({ postList, savedList, isLoggedInUser, userId }) => {
       profileImg: user.profileImg,
       numFollowers: 0
     });
+
+    setSavedPostIds(user.savedPosts);
   };
+
+  const fetchPostDetails = async savedPost => {
+    const {
+      data: { data: post }
+    } = await api.getPostById(savedPost);
+
+    setSavedPostList([...savedPostList, post]);
+  };
+
+  useEffect(() => {
+    if (savedPostIds) {
+      savedPostIds.forEach(savedPost => {
+        fetchPostDetails(savedPost);
+      });
+    }
+  }, [savedPostIds]);
 
   useEffect(() => {
     if (userId) {
@@ -100,6 +120,7 @@ const ProfileCard = ({ postList, savedList, isLoggedInUser, userId }) => {
                   {postList.length > 0 &&
                     postList.map(post => (
                       <Post
+                        key={post._id}
                         id={post._id}
                         title={post.title}
                         tag={post.tag}
@@ -123,9 +144,10 @@ const ProfileCard = ({ postList, savedList, isLoggedInUser, userId }) => {
               disabled: false,
               content: (
                 <div style={{ marginLeft: "-1.5rem" }}>
-                  {savedList.length > 0 &&
-                    savedList.map(post => (
+                  {savedPostList?.length > 0 &&
+                    savedPostList?.map(post => (
                       <Post
+                        key={post._id}
                         id={post._id}
                         title={post.title}
                         tag={post.tag}
@@ -160,7 +182,6 @@ const ProfileCard = ({ postList, savedList, isLoggedInUser, userId }) => {
 
 ProfileCard.propTypes = {
   postList: PropTypes.array.isRequired,
-  savedList: PropTypes.array.isRequired,
   isLoggedInUser: PropTypes.bool.isRequired,
   userId: PropTypes.string.isRequired
 };

@@ -63,6 +63,7 @@ export const searchSpaces = searchTerm =>
 
 // post related
 export const createPost = formData => POST_API.post("/post", formData);
+export const getPostById = id => POST_API.get(`/post/${id}`);
 export const getHomeFeed = () => POST_API.get("/post/feed");
 export const createComment = newComment =>
   POST_API.post(`/comment/${newComment.parent}`, newComment);
