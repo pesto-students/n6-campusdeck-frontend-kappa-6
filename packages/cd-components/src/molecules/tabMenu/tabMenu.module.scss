@@ -1,0 +1,11 @@
+.context_menu {
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(61, 91, 240, 0.15);
+  }
+}

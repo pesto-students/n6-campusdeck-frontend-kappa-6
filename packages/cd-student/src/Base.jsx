@@ -255,7 +255,8 @@ const Base = ({ children, isSpacePage }) => {
                 {
                   label: "My Profile",
                   destination: `/profile/${user?.result?._id}`,
-                  isActive: location.pathname === "/profile",
+                  isActive:
+                    location.pathname === `/profile/${user?.result?._id}`,
                   icon: <UserOutlined />
                 },
                 {

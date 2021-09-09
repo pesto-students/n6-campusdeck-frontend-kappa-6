@@ -19,7 +19,7 @@ const TabMenu = ({ tabs, callback, centered, extraContent }) => {
             items={extraContent.menuItems}
             handler={extraContent.handler}
           >
-            <div>{extraContent.text}</div>
+            <div className={styles.context_menu}>{extraContent.text}</div>
           </ContextMenu>
         ) : null
       }
