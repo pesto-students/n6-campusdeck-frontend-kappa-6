@@ -4,7 +4,6 @@
 .compact_container {
   display: flex;
   width: 100%;
-
   height: max-content;
   background: white;
   margin: 0.5rem 0;
@@ -16,20 +15,27 @@
 
     .header {
       display: flex;
-      justify-content: space-between;
+      position: relative;
       align-items: center;
-      width: 96%;
+      width: 44rem;
 
       .post_title {
         font-size: 1.1rem;
         font-weight: 600;
         color: rgba(0, 0, 0, 0.75);
-        margin-top: 0.2rem;
+        margin-top: 0.85rem;
         margin-left: 1rem;
       }
 
       .label {
         cursor: default;
+        margin-left: 1.75rem;
+      }
+
+      .post_details {
+        width: 100%;
+        position: absolute;
+        left: 75%;
       }
     }
 
@@ -37,7 +43,7 @@
       margin-top: 1rem;
 
       .post_body {
-        width: 88%;
+        width: 98%;
         margin-left: 1rem;
         margin-bottom: 1rem;
         font-size: 0.9rem;
