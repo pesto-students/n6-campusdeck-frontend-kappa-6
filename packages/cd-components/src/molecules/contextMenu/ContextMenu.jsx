@@ -4,8 +4,7 @@ import { Menu, Dropdown } from "antd";
 const ContextMenu = ({ children, items, handler }) => {
   const MenuComponent = (
     <Menu onClick={handler}>
-      {items &&
-        items.map((item, idx) => <Menu.Item key={idx + 1}>{item}</Menu.Item>)}
+      {items && items.map(item => <Menu.Item key={item}>{item}</Menu.Item>)}
     </Menu>
   );
 

@@ -53,7 +53,7 @@ function App() {
               <UserProfile />
             </Base>
           )}
-          path='/profile'
+          path='/profile/:id'
           exact
         />
         <Route
