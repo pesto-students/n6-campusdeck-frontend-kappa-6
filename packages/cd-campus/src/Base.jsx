@@ -53,11 +53,12 @@ const Base = ({ children }) => {
             onClick={onClick}
             links={[
               {
-                label: "Insights",
-                destination: "/insights",
-                isActive: location.pathname === "/insights",
-                icon: <BarChart2 size={20} />
+                label: "Students",
+                destination: "/students",
+                isActive: location.pathname === "/students",
+                icon: <Users size={20} />
               },
+
               {
                 label: "Spaces",
                 destination: "/spaces",
@@ -65,10 +66,10 @@ const Base = ({ children }) => {
                 icon: <GlobalOutlined />
               },
               {
-                label: "Students",
-                destination: "/students",
-                isActive: location.pathname === "/students",
-                icon: <Users size={20} />
+                label: "Insights",
+                destination: "/insights",
+                isActive: location.pathname === "/insights",
+                icon: <BarChart2 size={20} />
               }
             ]}
           />
