@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import cx from "classnames";
-import { Avatar, message } from "antd";
+import { Avatar, message, Tooltip, Upload, Button as AntdButton } from "antd";
+import { UploadOutlined, LoadingOutlined } from "@ant-design/icons";
+import axios from "axios";
+
 import {
   BUTTON_TYPE,
   ArrowLeftOutlined,
@@ -13,7 +16,8 @@ import {
   Button,
   ProfilePic,
   PlusOutlined,
-  CheckOutlined
+  CheckOutlined,
+  SaveFilled
 } from "@cd/components";
 
 import Post from "../post/Post";
@@ -32,6 +36,9 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
   });
   const [savedPostList, setSavedPostList] = useState([]);
   const [savedPostIds, setSavedPostIds] = useState([]);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [newProfileImg, setNewProfileImg] = useState();
+  const [imgUploading, setImgUploading] = useState(false);
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
   const history = useHistory();
 
@@ -52,6 +59,8 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
       profileImg: user.profileImg,
       followers: user.followers
     });
+
+    setNewProfileImg(user.profileImg ? user.profileImg : ProfilePic);
 
     if (isLoggedInUser) {
       setSavedPostIds(user.savedPosts);
@@ -163,8 +172,6 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
     }
   };
 
-  console.log(userDetails);
-
   const FollowBtn = () => {
     // properties when user is not following this profile
     let btnType = BUTTON_TYPE.SKELETON;
@@ -186,9 +193,64 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
     );
   };
 
-  useEffect(() => {
-    FollowBtn();
-  }, [userDetails.followers]);
+  const UploadBtn = () => {
+    let uploadBtnIcon = <UploadOutlined />;
+
+    if (imgUploading === true) {
+      uploadBtnIcon = <LoadingOutlined />;
+    }
+
+    return uploadBtnIcon;
+  };
+
+  const toggleEditMode = () => {
+    setIsEditMode(prevEditMode => !prevEditMode);
+  };
+
+  const profileUploadProps = {
+    action: "",
+    async onChange(info) {
+      const { status } = info.file;
+      if (status === "uploading") {
+        setImgUploading(true);
+      } else if (status !== "removed" && status !== "uploading") {
+        const imageData = new FormData();
+        imageData.append("file", info.file.originFileObj);
+        imageData.append(
+          "upload_preset",
+          process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+        );
+        const response = await axios.post(
+          process.env.REACT_APP_CLOUDINARY_UPLOAD_URL,
+          imageData
+        );
+        if (response.status === 200) {
+          setNewProfileImg(response.data.secure_url);
+          message.success(`File uploaded successfully.`);
+        } else {
+          message.error(`File upload failed.`);
+        }
+        setImgUploading(false);
+      }
+    },
+    multiple: false,
+    showUploadList: false
+  };
+
+  const saveDetails = async () => {
+    const { data } = await api.updateProfileImg({ image: newProfileImg });
+
+    if (data.status === "success") {
+      message.success(`Profile updated successfully.`);
+      setUserDetails({
+        ...userDetails,
+        profileImg: data.data?.profileImg
+      });
+      setIsEditMode(false);
+    } else {
+      message.error("Something went wrong while updating your profile");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -197,12 +259,44 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
         onClick={() => history.goBack()}
       />
       {isLoggedInUser && (
-        <EditFilled className={cx(styles.icon, styles.edit_icon)} />
+        <>
+          {isEditMode ? (
+            <SaveFilled
+              className={cx(styles.icon, styles.edit_icon)}
+              onClick={saveDetails}
+            />
+          ) : (
+            <EditFilled
+              className={cx(styles.icon, styles.edit_icon)}
+              onClick={toggleEditMode}
+            />
+          )}
+        </>
       )}
 
       <div className={styles.user}>
         {/* ant design avatar would be replaced later by cloudinary's component */}
-        <Avatar size={150} src={ProfilePic} className={styles.avatar} />
+        {isEditMode ? (
+          <Avatar size={150} src={newProfileImg} className={styles.avatar} />
+        ) : (
+          <Avatar
+            size={150}
+            src={userDetails.profileImg ? userDetails.profileImg : ProfilePic}
+            className={styles.avatar}
+          />
+        )}
+
+        {isEditMode && (
+          <div className={styles.upload_img_btn}>
+            <Upload {...profileUploadProps}>
+              <AntdButton>
+                <UploadBtn />
+                Upload
+              </AntdButton>
+            </Upload>
+          </div>
+        )}
+
         <div className={styles.user_info}>
           <span className={styles.user_name}>{userDetails.name}</span>
           <span className={styles.user_campus}>{userDetails.campus}</span>
@@ -213,17 +307,17 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
             </span>
             <span className={styles.stat}>
               <UsersIcon className={styles.big_icon} />
-              {userDetails.numFollowers} Followers
+              {userDetails.followers.length} Followers
             </span>
           </div>
           {!isLoggedInUser && (
             <div className={styles.action_btns}>
-              <Button className={styles.msg_btn} type={BUTTON_TYPE.REGULAR}>
-                Send message
-              </Button>
-              {/* <Button className={styles.follow_btn} type={BUTTON_TYPE.SKELETON}>
-                Follow
-              </Button> */}
+              <Tooltip title='Coming soon' placement='bottom'>
+                <Button className={styles.msg_btn} type={BUTTON_TYPE.REGULAR}>
+                  Send message
+                </Button>
+              </Tooltip>
+
               <FollowBtn />
             </div>
           )}

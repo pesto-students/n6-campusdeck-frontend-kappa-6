@@ -45,6 +45,8 @@ export const saveUserPref = (userId, preferences) =>
 export const savePost = (userId, postId) =>
   USER_API.patch(`/users/${userId}/savePost/${postId}`);
 export const followUser = userId => USER_API.patch(`/users/${userId}/follow`);
+export const updateProfileImg = image =>
+  USER_API.patch(`/users/updateProfileImg`, image);
 
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");

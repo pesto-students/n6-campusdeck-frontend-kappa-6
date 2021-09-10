@@ -43,6 +43,12 @@
     left: 3.5rem;
     width: 80%;
 
+    .upload_img_btn {
+      position: absolute;
+      top: 10rem;
+      left: 1.5rem;
+    }
+
     .user_info {
       display: flex;
       flex-direction: column;
@@ -97,5 +103,6 @@
     top: 14rem;
     left: 2.25rem;
     width: 90%;
+    margin-top: 1rem;
   }
 }
