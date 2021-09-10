@@ -41,3 +41,7 @@ export const signIn = formData => USER_API.post("/admin/signin", formData);
 
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");
+export const getCampusByName = name =>
+  CAMPUS_API.get(`/campus/getByName/${name}`);
+export const getAllSpacesByCampus = campusId =>
+  SPACE_API.get(`/space/campus/${campusId}`);

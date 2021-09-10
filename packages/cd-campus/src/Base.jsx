@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -40,6 +40,7 @@ const Base = ({ children }) => {
       return null;
     });
   };
+
   return (
     <>
       <Navbar
