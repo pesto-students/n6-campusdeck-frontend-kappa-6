@@ -12,8 +12,76 @@ import DefaultSpace from "../../assets/default_space.png";
 const { Meta } = Card;
 
 const Spaces = () => {
-  const [spaces, setSpaces] = useState([]);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [spaces, setSpaces] = useState([
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises2",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises 2",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises 2",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises 2",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // },
+    // {
+    //   title: "React Best Practises 2",
+    //   desc: "Designed for folks who want to be better at React. Designed for folks who want to be better at React",
+    //   img: DefaultSpace
+    // }
+  ]);
+  const [currentPageNum, setCurrentPageNum] = useState(1);
+  const [spacesPerPage] = useState(8);
+  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
 
   // function that will sort the list of spaces
   const sortSpaces = ({ key }) => {};
@@ -34,11 +102,19 @@ const Spaces = () => {
     }
   };
 
+  const changePageNum = number => {
+    setCurrentPageNum(number);
+  };
+
   useEffect(() => {
     if (user) {
       fetchSpaces();
     }
   }, []);
+
+  const end = spacesPerPage * currentPageNum;
+  const start = end - spacesPerPage;
+  const paginatedSpaces = spaces.slice(start, end);
 
   return (
     <div className={styles.container}>
@@ -48,8 +124,8 @@ const Spaces = () => {
         </ContextMenu>
       </div>
       <div className={styles.content}>
-        {spaces.length > 0 ? (
-          spaces.map(space => (
+        {paginatedSpaces.length > 0 ? (
+          paginatedSpaces.map(space => (
             <Card
               key={space.id}
               hoverable
@@ -124,9 +200,10 @@ const Spaces = () => {
       </div>
       <div className={styles.footer}>
         <Pagination
-          current={1}
-          onChange={page => alert(`page changed: ${page}`)}
-          total={50}
+          current={currentPageNum}
+          onChange={changePageNum}
+          total={spaces.length}
+          hideOnSinglePage
         />
       </div>
     </div>
