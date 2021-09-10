@@ -36,7 +36,8 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  userName: ""
+  userName: "",
+  userImg: ""
 };
 
 export default Navbar;
