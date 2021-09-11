@@ -103,7 +103,7 @@ const Spaces = () => {
   const [isSpaceEditMode, setIsSpaceEditMode] = useState(false);
   const [currentlyEditingSpace, setCurrentlyEditingSpace] = useState("");
   const [spaceData, setSpaceData] = useState(initialSpaceFormData);
-  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [user] = useState(JSON.parse(localStorage.getItem("admin")));
 
   // function that will sort the list of spaces
   const sortSpaces = ({ key }) => {};
@@ -124,6 +124,12 @@ const Spaces = () => {
     }
   };
 
+  const hideModal = () => {
+    setSpaceData(initialSpaceFormData);
+    setSpaceModalVisible(false);
+    setIsSpaceEditMode(false);
+  };
+
   // function that will execute when the ok button is pressed in modal
   const handleSpaceUpdate = async () => {
     setUpdateSpaceLoading(true);
@@ -135,25 +141,27 @@ const Spaces = () => {
 
       if (updatedSpace) {
         message.success("Space updated successfully");
+        hideModal();
+        setUpdateSpaceLoading(false);
+      } else {
+        message.error("There was a problem updating the space");
       }
       const newSpaceList = spaces.map(s => {
         return s._id === updatedSpace._id ? updatedSpace : s;
       });
       setSpaces(newSpaceList);
     } else {
-      // dispatch to create space
-      // dispatch(createSpace(spaceData));
+      const { data } = await api.createSpace(spaceData);
+
+      if (data.status === "success") {
+        message.success("Space created successfully");
+        hideModal();
+        setUpdateSpaceLoading(false);
+      } else {
+        message.error("There was a problem creating the space");
+      }
+      setSpaces([...spaces, data.data]);
     }
-
-    // make the below lines async
-    setSpaceModalVisible(false);
-    setUpdateSpaceLoading(false);
-  };
-
-  const hideModal = () => {
-    setSpaceData(initialSpaceFormData);
-    setSpaceModalVisible(false);
-    setIsSpaceEditMode(false);
   };
 
   const changePageNum = number => {
@@ -180,7 +188,6 @@ const Spaces = () => {
       fetchSpaces();
     }
   }, []);
-
   const end = spacesPerPage * currentPageNum;
   const start = end - spacesPerPage;
   const paginatedSpaces = spaces.slice(start, end);
@@ -209,7 +216,7 @@ const Spaces = () => {
               cover={
                 <img
                   className={styles.card_img}
-                  alt={space.title}
+                  alt={space.name}
                   src={space.img === "" ? DefaultSpace : space?.img}
                 />
               }
@@ -223,7 +230,7 @@ const Spaces = () => {
                 </ContextMenu>
               ]}
             >
-              <Meta title={space.title} description={space.desc} />
+              <Meta title={space.name} description={space.desc} />
             </Card>
           ))
         ) : (

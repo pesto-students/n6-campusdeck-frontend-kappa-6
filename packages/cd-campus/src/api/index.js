@@ -19,7 +19,7 @@ const POST_API = axios.create({
 
 // interceptor function that will add token in auth header of each request
 const addToken = req => {
-  const profile = JSON.parse(localStorage.getItem("profile"));
+  const profile = JSON.parse(localStorage.getItem("admin"));
   const token = profile?.token;
 
   if (token) {
@@ -51,3 +51,4 @@ export const getAllSpacesByCampus = campusId =>
   SPACE_API.get(`/space/campus/${campusId}`);
 export const editSpace = (spaceId, newSpaceData) =>
   SPACE_API.put(`/space/${spaceId}`, newSpaceData);
+export const createSpace = formData => SPACE_API.post("/space", formData);

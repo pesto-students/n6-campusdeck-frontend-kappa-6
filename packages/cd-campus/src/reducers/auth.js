@@ -4,11 +4,11 @@ const authReducer = (state = { authData: null }, action) => {
   switch (action.type) {
     case AUTH:
       // save user info in local storage
-      localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
+      localStorage.setItem("admin", JSON.stringify({ ...action?.data }));
       return { ...state, authData: action?.data };
     case LOGOUT:
       // removes user info from local storage
-      localStorage.removeItem("profile");
+      localStorage.removeItem("admin");
       return { ...state, authData: null };
     default:
       return state;

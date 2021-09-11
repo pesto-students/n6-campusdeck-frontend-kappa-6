@@ -5,6 +5,7 @@ import axios from "axios";
 import { CloudUploadOutlined, InfoCircleFilled, Button } from "@cd/components";
 import { SPACE_NAME_LIMIT } from "../../constants/space";
 import EditableTagGroup from "../editableTagGroup/EditableTagGroup";
+import * as api from "../../api";
 
 // styles
 import styles from "./createSpace.module.scss";
@@ -12,9 +13,9 @@ import styles from "./createSpace.module.scss";
 const { Dragger } = Upload;
 
 const CreateSpace = ({ spaceData, setSpaceData }) => {
-  const [campus, setCampus] = useState("");
+  const [campus, setCampus] = useState({});
   const [remainingChars, setRemainingChars] = useState(SPACE_NAME_LIMIT);
-  const loggedInUser = JSON.parse(localStorage.getItem("profile"));
+  const loggedInUser = JSON.parse(localStorage.getItem("admin"));
 
   const handleNameInput = e => {
     const val = e.target.value;
@@ -75,10 +76,19 @@ const CreateSpace = ({ spaceData, setSpaceData }) => {
     }
   };
 
+  const fetchCampusDetails = async adminCampus => {
+    const {
+      data: { data }
+    } = await api.getCampusByName(adminCampus);
+
+    setCampus(data[0]);
+    setSpaceData({ ...spaceData, campus: data[0]._id });
+  };
+
   useEffect(() => {
     const adminCampus = loggedInUser?.result?.campus;
     if (adminCampus) {
-      setCampus(adminCampus);
+      fetchCampusDetails(adminCampus);
     }
   }, []);
 
@@ -90,7 +100,7 @@ const CreateSpace = ({ spaceData, setSpaceData }) => {
           className={styles.selector}
           disabled
         >
-          <option>{campus}</option>
+          <option value={campus._id}>{campus.name}</option>
         </select>
       </div>
       <Divider />

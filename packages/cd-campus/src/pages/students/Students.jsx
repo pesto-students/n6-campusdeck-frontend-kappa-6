@@ -196,7 +196,7 @@ const Students = () => {
   const [inviteModalVisible, setInviteModalVisible] = useState(false);
   const [inviteModalLoading, setInviteModalLoading] = useState(false);
   const [inviteEmails, setInviteEmails] = useState([]);
-  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [user] = useState(JSON.parse(localStorage.getItem("admin")));
   const [form] = Form.useForm();
 
   const fetchStudents = async campus => {

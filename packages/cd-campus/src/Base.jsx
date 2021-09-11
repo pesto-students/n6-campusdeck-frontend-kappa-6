@@ -16,7 +16,7 @@ import { LOGOUT } from "./actions/constants/actionTypes";
 import styles from "./base.module.scss";
 
 const Base = ({ children }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("admin")));
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
