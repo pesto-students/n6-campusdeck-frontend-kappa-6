@@ -52,3 +52,4 @@ export const getAllSpacesByCampus = campusId =>
 export const editSpace = (spaceId, newSpaceData) =>
   SPACE_API.put(`/space/${spaceId}`, newSpaceData);
 export const createSpace = formData => SPACE_API.post("/space", formData);
+export const deleteSpace = spaceId => SPACE_API.delete(`/space/${spaceId}`);

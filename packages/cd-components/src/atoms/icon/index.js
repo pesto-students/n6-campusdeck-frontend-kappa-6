@@ -24,5 +24,6 @@ export {
   CloudUploadOutlined,
   FilterOutlined,
   XCircle,
-  SaveFilled
+  SaveFilled,
+  DeleteOutlined
 } from "./Icon";

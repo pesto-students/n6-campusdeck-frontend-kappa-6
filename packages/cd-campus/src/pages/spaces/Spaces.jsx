@@ -5,10 +5,11 @@ import {
   Pagination,
   Modal,
   Button as AntButton,
-  message
+  message,
+  Popconfirm
 } from "antd";
-import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
-import { ContextMenu, Button } from "@cd/components";
+import { EditOutlined } from "@ant-design/icons";
+import { ContextMenu, Button, DeleteOutlined } from "@cd/components";
 
 import CreateSpace from "../../organisms/createSpace/CreateSpace";
 import * as api from "../../api";
@@ -130,6 +131,19 @@ const Spaces = () => {
     setIsSpaceEditMode(false);
   };
 
+  const deleteSpace = async spaceId => {
+    const { data } = await api.deleteSpace(spaceId);
+
+    if (data.status === "success") {
+      message.success("Space deleted successfully");
+      const newSpaceList = spaces.filter(s => s._id !== spaceId);
+
+      setSpaces(newSpaceList);
+    } else {
+      message.error("There was a problem deleting the space");
+    }
+  };
+
   // function that will execute when the ok button is pressed in modal
   const handleSpaceUpdate = async () => {
     setUpdateSpaceLoading(true);
@@ -225,9 +239,18 @@ const Spaces = () => {
                   key='edit'
                   onClick={() => handleEditSpace(space)}
                 />,
-                <ContextMenu items={["Make Private", "Delete"]}>
-                  <EllipsisOutlined key='ellipsis' />
-                </ContextMenu>
+                <Popconfirm
+                  placement='top'
+                  title='Are you sure you want to delete this space?'
+                  onConfirm={() => deleteSpace(space._id)}
+                  okText='Yes'
+                  cancelText='No'
+                >
+                  <DeleteOutlined
+                    key='delete'
+                    style={{ color: "rgba(255,0,0,0.75)" }}
+                  />
+                </Popconfirm>
               ]}
             >
               <Meta title={space.name} description={space.desc} />
