@@ -1,0 +1,3 @@
+const SPACE_NAME_LIMIT = 50;
+
+export { SPACE_NAME_LIMIT };

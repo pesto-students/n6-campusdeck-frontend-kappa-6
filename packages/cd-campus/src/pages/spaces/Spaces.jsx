@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Card, Skeleton, Pagination } from "antd";
+import { Card, Skeleton, Pagination, Modal, Button as AntButton } from "antd";
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
-import { ContextMenu } from "@cd/components";
+import { ContextMenu, Button } from "@cd/components";
 
+import CreateSpace from "../../organisms/createSpace/CreateSpace";
 import * as api from "../../api";
 
 // assets
@@ -81,6 +82,16 @@ const Spaces = () => {
   ]);
   const [currentPageNum, setCurrentPageNum] = useState(1);
   const [spacesPerPage] = useState(8);
+  const [spaceModalVisible, setSpaceModalVisible] = useState(false);
+  const [createSpaceLoading, setCreateSpaceLoading] = useState(false);
+  const [spaceData, setSpaceData] = useState({
+    name: "",
+    desc: "",
+    img: "",
+    campus: "",
+    tags: [],
+    isPublic: true
+  });
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
 
   // function that will sort the list of spaces
@@ -102,6 +113,17 @@ const Spaces = () => {
     }
   };
 
+  // function that will execute when a space is created
+  const handleSaveSpace = () => {
+    setCreateSpaceLoading(true);
+
+    // dispatch(createSpace(spaceData));
+
+    // make the below lines async
+    setSpaceModalVisible(false);
+    setCreateSpaceLoading(false);
+  };
+
   const changePageNum = number => {
     setCurrentPageNum(number);
   };
@@ -119,6 +141,12 @@ const Spaces = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+        <Button
+          className={styles.create_space_btn}
+          onClick={() => setSpaceModalVisible(true)}
+        >
+          Create Space
+        </Button>
         <ContextMenu items={["Popular", "New"]} handler={sortSpaces}>
           <span className={styles.sort_option}>Sort by: </span>
         </ContextMenu>
@@ -206,6 +234,47 @@ const Spaces = () => {
           hideOnSinglePage
         />
       </div>
+
+      {/* create space modal */}
+      <Modal
+        title='Create Space'
+        visible={spaceModalVisible}
+        onOk={handleSaveSpace}
+        confirmLoading={createSpaceLoading}
+        onCancel={() => setSpaceModalVisible(false)}
+        width={670}
+        centered
+        footer={[
+          <AntButton
+            key='cancel'
+            onClick={() => setSpaceModalVisible(false)}
+            style={{
+              borderRadius: "5px",
+              border: "0.55px solid rgb(61, 110, 240)",
+              fontWeight: "bold",
+              color: "rgb(61, 110, 240)"
+            }}
+          >
+            Cancel
+          </AntButton>,
+          <AntButton
+            key='create'
+            type='primary'
+            loading={createSpaceLoading}
+            onClick={handleSaveSpace}
+            style={{
+              borderRadius: "5px",
+              backgroundColor: "rgb(61, 110, 240)",
+              border: "none",
+              fontWeight: "bold"
+            }}
+          >
+            Create
+          </AntButton>
+        ]}
+      >
+        <CreateSpace spaceData={spaceData} setSpaceData={setSpaceData} />
+      </Modal>
     </div>
   );
 };
