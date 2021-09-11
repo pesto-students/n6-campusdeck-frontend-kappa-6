@@ -49,3 +49,5 @@ export const getCampusByName = name =>
 // space related
 export const getAllSpacesByCampus = campusId =>
   SPACE_API.get(`/space/campus/${campusId}`);
+export const editSpace = (spaceId, newSpaceData) =>
+  SPACE_API.put(`/space/${spaceId}`, newSpaceData);

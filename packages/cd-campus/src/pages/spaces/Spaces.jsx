@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Card, Skeleton, Pagination, Modal, Button as AntButton } from "antd";
+import {
+  Card,
+  Skeleton,
+  Pagination,
+  Modal,
+  Button as AntButton,
+  message
+} from "antd";
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
 import { ContextMenu, Button } from "@cd/components";
 
@@ -11,6 +18,15 @@ import styles from "./spaces.module.scss";
 import DefaultSpace from "../../assets/default_space.png";
 
 const { Meta } = Card;
+
+const initialSpaceFormData = {
+  name: "",
+  desc: "",
+  img: "",
+  campus: "",
+  tags: [],
+  isPublic: true
+};
 
 const Spaces = () => {
   const [spaces, setSpaces] = useState([
@@ -83,15 +99,10 @@ const Spaces = () => {
   const [currentPageNum, setCurrentPageNum] = useState(1);
   const [spacesPerPage] = useState(8);
   const [spaceModalVisible, setSpaceModalVisible] = useState(false);
-  const [createSpaceLoading, setCreateSpaceLoading] = useState(false);
-  const [spaceData, setSpaceData] = useState({
-    name: "",
-    desc: "",
-    img: "",
-    campus: "",
-    tags: [],
-    isPublic: true
-  });
+  const [updateSpaceLoading, setUpdateSpaceLoading] = useState(false);
+  const [isSpaceEditMode, setIsSpaceEditMode] = useState(false);
+  const [currentlyEditingSpace, setCurrentlyEditingSpace] = useState("");
+  const [spaceData, setSpaceData] = useState(initialSpaceFormData);
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
 
   // function that will sort the list of spaces
@@ -113,19 +124,55 @@ const Spaces = () => {
     }
   };
 
-  // function that will execute when a space is created
-  const handleSaveSpace = () => {
-    setCreateSpaceLoading(true);
+  // function that will execute when the ok button is pressed in modal
+  const handleSpaceUpdate = async () => {
+    setUpdateSpaceLoading(true);
 
-    // dispatch(createSpace(spaceData));
+    if (isSpaceEditMode) {
+      const {
+        data: { data: updatedSpace }
+      } = await api.editSpace(currentlyEditingSpace, spaceData);
+
+      if (updatedSpace) {
+        message.success("Space updated successfully");
+      }
+      const newSpaceList = spaces.map(s => {
+        return s._id === updatedSpace._id ? updatedSpace : s;
+      });
+      setSpaces(newSpaceList);
+    } else {
+      // dispatch to create space
+      // dispatch(createSpace(spaceData));
+    }
 
     // make the below lines async
     setSpaceModalVisible(false);
-    setCreateSpaceLoading(false);
+    setUpdateSpaceLoading(false);
+  };
+
+  const hideModal = () => {
+    setSpaceData(initialSpaceFormData);
+    setSpaceModalVisible(false);
+    setIsSpaceEditMode(false);
   };
 
   const changePageNum = number => {
     setCurrentPageNum(number);
+  };
+
+  const handleEditSpace = space => {
+    setIsSpaceEditMode(true);
+    setSpaceModalVisible(true);
+
+    setCurrentlyEditingSpace(space._id);
+    setSpaceData({
+      name: space.name,
+      desc: space.desc,
+      img: space.img,
+      campus: space.campus,
+      tags: space.tags,
+      isPublic: space.isPublic
+    });
   };
 
   useEffect(() => {
@@ -167,8 +214,11 @@ const Spaces = () => {
                 />
               }
               actions={[
-                <EditOutlined key='edit' onClick={() => alert(space.title)} />,
-                <ContextMenu items={["Delete", "Make Private"]}>
+                <EditOutlined
+                  key='edit'
+                  onClick={() => handleEditSpace(space)}
+                />,
+                <ContextMenu items={["Make Private", "Delete"]}>
                   <EllipsisOutlined key='ellipsis' />
                 </ContextMenu>
               ]}
@@ -237,17 +287,17 @@ const Spaces = () => {
 
       {/* create space modal */}
       <Modal
-        title='Create Space'
+        title={`${isSpaceEditMode ? "Edit" : "Create"} Space`}
         visible={spaceModalVisible}
-        onOk={handleSaveSpace}
-        confirmLoading={createSpaceLoading}
-        onCancel={() => setSpaceModalVisible(false)}
+        onOk={handleSpaceUpdate}
+        confirmLoading={updateSpaceLoading}
+        onCancel={hideModal}
         width={670}
         centered
         footer={[
           <AntButton
             key='cancel'
-            onClick={() => setSpaceModalVisible(false)}
+            onClick={hideModal}
             style={{
               borderRadius: "5px",
               border: "0.55px solid rgb(61, 110, 240)",
@@ -260,8 +310,8 @@ const Spaces = () => {
           <AntButton
             key='create'
             type='primary'
-            loading={createSpaceLoading}
-            onClick={handleSaveSpace}
+            loading={updateSpaceLoading}
+            onClick={handleSpaceUpdate}
             style={{
               borderRadius: "5px",
               backgroundColor: "rgb(61, 110, 240)",
@@ -269,7 +319,7 @@ const Spaces = () => {
               fontWeight: "bold"
             }}
           >
-            Create
+            {`${isSpaceEditMode ? "Update" : "Create"}`}
           </AntButton>
         ]}
       >

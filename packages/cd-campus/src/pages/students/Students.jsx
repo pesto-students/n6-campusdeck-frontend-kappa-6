@@ -327,7 +327,14 @@ const Students = () => {
       render: tags => (
         <>
           {tags.map(tag => (
-            <Tag color='blue' key={tag} style={{ margin: "0.2rem 0.3rem" }}>
+            <Tag
+              color='blue'
+              key={tag}
+              style={{
+                padding: "1rem 0.15rem !important;",
+                cursor: "default"
+              }}
+            >
               {tag}
             </Tag>
           ))}
@@ -418,7 +425,7 @@ const Students = () => {
             bordered
             pagination={{
               position: ["", "bottomCenter"],
-              pageSize: 5
+              pageSize: 4
             }}
           />
         </Form>
