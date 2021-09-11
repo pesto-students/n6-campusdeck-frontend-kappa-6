@@ -2,6 +2,7 @@
 @import "../../styles/fonts";
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 65%;
@@ -17,5 +18,12 @@
 
   .content {
     margin-top: 3rem;
+
+    .invite_btn {
+      position: absolute;
+      margin-bottom: 1rem;
+      right: 0;
+      top: 0;
+    }
   }
 }

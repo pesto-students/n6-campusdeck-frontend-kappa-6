@@ -1,7 +1,19 @@
 import { useState, useEffect } from "react";
-import { Table, Form, Popconfirm, Typography, Tooltip, Tag } from "antd";
+import {
+  Table,
+  Form,
+  Popconfirm,
+  Typography,
+  Tooltip,
+  Tag,
+  Modal,
+  Button as AntButton
+} from "antd";
+
+import { Button } from "@cd/components";
 
 import EditableCell from "../../organisms/editableCell";
+import InviteModal from "../../organisms/inviteModal";
 import * as api from "../../api";
 
 // assets
@@ -180,9 +192,12 @@ const Students = () => {
       _id: "4"
     }
   ]);
-  const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
+  const [inviteModalVisible, setInviteModalVisible] = useState(false);
+  const [inviteModalLoading, setInviteModalLoading] = useState(false);
+  const [inviteEmails, setInviteEmails] = useState([]);
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [form] = Form.useForm();
 
   const fetchStudents = async campus => {
     const {
@@ -228,6 +243,19 @@ const Students = () => {
 
   const cancel = () => {
     setEditingKey("");
+  };
+
+  const handleSendInvite = () => {
+    if (inviteEmails.length) {
+      inviteEmails.forEach(email => {
+        const inviteObj = {
+          email,
+          campus: user?.result?.campus
+        };
+        const encodedObj = btoa(JSON.stringify(inviteObj, null, 1));
+        // console.log("decodedObj", atob(encodedObj));
+      });
+    }
   };
 
   useEffect(() => {
@@ -358,7 +386,7 @@ const Students = () => {
       ...col,
       onCell: record => ({
         record,
-        inputType: col.dataIndex === "age" ? "text" : "text",
+        inputType: col.dataIndex === "followers" ? "number" : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record)
@@ -370,6 +398,12 @@ const Students = () => {
     <div className={styles.container}>
       <div className={styles.header}>All Students</div>
       <div className={styles.content}>
+        <Button
+          className={styles.invite_btn}
+          onClick={() => setInviteModalVisible(true)}
+        >
+          Invite More
+        </Button>
         <Form form={form} component={false}>
           <Table
             components={{
@@ -388,6 +422,44 @@ const Students = () => {
             }}
           />
         </Form>
+        <Modal
+          title='Invite more students'
+          visible={inviteModalVisible}
+          onOk={setInviteEmails}
+          confirmLoading={inviteModalLoading}
+          onCancel={() => setInviteModalVisible(false)}
+          centered
+          footer={[
+            <AntButton
+              key='cancel'
+              onClick={() => setInviteModalVisible(false)}
+              style={{
+                borderRadius: "5px",
+                border: "0.55px solid rgb(61, 110, 240)",
+                fontWeight: "bold",
+                color: "rgb(61, 110, 240)"
+              }}
+            >
+              Cancel
+            </AntButton>,
+            <AntButton
+              key='create'
+              type='primary'
+              loading={inviteModalLoading}
+              onClick={handleSendInvite}
+              style={{
+                borderRadius: "5px",
+                backgroundColor: "rgb(61, 110, 240)",
+                border: "none",
+                fontWeight: "bold"
+              }}
+            >
+              Invite
+            </AntButton>
+          ]}
+        >
+          <InviteModal setInviteEmails={setInviteEmails} />
+        </Modal>
       </div>
       <div className={styles.footer} />
     </div>
