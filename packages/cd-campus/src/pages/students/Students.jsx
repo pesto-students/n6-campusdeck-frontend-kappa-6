@@ -7,7 +7,8 @@ import {
   Tooltip,
   Tag,
   Modal,
-  Button as AntButton
+  Button as AntButton,
+  message
 } from "antd";
 
 import { Button } from "@cd/components";
@@ -21,176 +22,176 @@ import styles from "./students.module.scss";
 
 const Students = () => {
   const [students, setStudents] = useState([
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: [],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "Pushpak Bhattacharya2",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "PushpakB",
-      _id: "613430a3c2fa981a5f6a2b69"
-    },
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: [],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "Pushpak Bhattacharya",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "PushpakB",
-      _id: "613430a3c2fa981a5f6a2b69"
-    },
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: [],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "Pushpak Bhattacharya",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "PushpakB",
-      _id: "613430a3c2fa981a5f6a2b69"
-    },
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: [],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "Pushpak Bhattacharya",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "PushpakB",
-      _id: "613430a3c2fa981a5f6a2b69"
-    }
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: [],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "Pushpak Bhattacharya2",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "PushpakB",
+    //   _id: "613430a3c2fa981a5f6a2b69"
+    // },
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: [],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "Pushpak Bhattacharya",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "PushpakB",
+    //   _id: "613430a3c2fa981a5f6a2b69"
+    // },
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: [],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "Pushpak Bhattacharya",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "PushpakB",
+    //   _id: "613430a3c2fa981a5f6a2b69"
+    // },
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: [],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "Pushpak Bhattacharya",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "PushpakB",
+    //   _id: "613430a3c2fa981a5f6a2b69"
+    // }
   ]);
   const [studentData, setStudentData] = useState([
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: ["asdasd", "asdasd"],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "APushpak Bhattacharya2",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "APushpakB",
-      _id: "1"
-    },
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: ["asdasd", "asdasd"],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "CPushpak Bhattacharya",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "DPushpakB",
-      _id: "2"
-    },
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: ["asdasd", "asdasd"],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "BPushpak Bhattacharya",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "CPushpakB",
-      _id: "3"
-    },
-    {
-      about: "",
-      email: "rtpushpak@gmail.com",
-      followers: ["asdasd", "asdasd"],
-      location: "BLR",
-      mySpaces: [
-        "61360ffcfd445f61ca2a01a1",
-        "6131924dbd25684edd494539",
-        "6131dccf5581a737d72ad5f1"
-      ],
-      name: "DPushpak Bhattacharya",
-      preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
-      profileImg: "",
-      savedPosts: [
-        "61344e500ccf5d20aa4c7e55",
-        "6134412753f7b8b81f9f62e0",
-        "613496c94244ef7c1026e3e8"
-      ],
-      userName: "BPushpakB",
-      _id: "4"
-    }
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: ["asdasd", "asdasd"],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "APushpak Bhattacharya2",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "APushpakB",
+    //   _id: "1"
+    // },
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: ["asdasd", "asdasd"],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "CPushpak Bhattacharya",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "DPushpakB",
+    //   _id: "2"
+    // },
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: ["asdasd", "asdasd"],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "BPushpak Bhattacharya",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "CPushpakB",
+    //   _id: "3"
+    // },
+    // {
+    //   about: "",
+    //   email: "rtpushpak@gmail.com",
+    //   followers: ["asdasd", "asdasd"],
+    //   location: "BLR",
+    //   mySpaces: [
+    //     "61360ffcfd445f61ca2a01a1",
+    //     "6131924dbd25684edd494539",
+    //     "6131dccf5581a737d72ad5f1"
+    //   ],
+    //   name: "DPushpak Bhattacharya",
+    //   preferences: ["Fests", "Movies", "Travelling", "Help", "Food", "Event"],
+    //   profileImg: "",
+    //   savedPosts: [
+    //     "61344e500ccf5d20aa4c7e55",
+    //     "6134412753f7b8b81f9f62e0",
+    //     "613496c94244ef7c1026e3e8"
+    //   ],
+    //   userName: "BPushpakB",
+    //   _id: "4"
+    // }
   ]);
   const [editingKey, setEditingKey] = useState("");
   const [inviteModalVisible, setInviteModalVisible] = useState(false);
@@ -205,6 +206,8 @@ const Students = () => {
     } = await api.getStudentsInCampus(campus);
     setStudents(data);
   };
+
+  // console.log(students);
 
   const isEditing = record => record._id === editingKey;
 
@@ -223,18 +226,21 @@ const Students = () => {
   const save = async key => {
     try {
       const row = await form.validateFields();
-      const newData = [...studentData];
+      const newData = [...students];
       const index = newData.findIndex(item => key === item._id);
 
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
-        setStudentData(newData);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        setStudentData(newData);
-        setEditingKey("");
+        const { data } = await api.updateStudent(item._id, newData[0]);
+
+        if (data.status === "success") {
+          message.success("Student updated successfully");
+          setStudents(newData);
+          setEditingKey("");
+        } else {
+          message.error("There was a problem updating the student data");
+        }
       }
     } catch (errInfo) {
       console.log("Validate Failed:", errInfo);
@@ -260,7 +266,7 @@ const Students = () => {
 
   useEffect(() => {
     if (user?.result?.campus) {
-      // fetchStudents(user?.result?.campus);
+      fetchStudents(user?.result?.campus);
     }
   }, []);
 
@@ -331,7 +337,7 @@ const Students = () => {
               color='blue'
               key={tag}
               style={{
-                padding: "1rem 0.15rem !important;",
+                padding: "1rem 0.15rem !important",
                 cursor: "default"
               }}
             >
@@ -393,7 +399,7 @@ const Students = () => {
       ...col,
       onCell: record => ({
         record,
-        inputType: col.dataIndex === "followers" ? "number" : "text",
+        inputType: col.dataIndex === "followers" ? "text" : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record)
@@ -418,7 +424,7 @@ const Students = () => {
                 cell: EditableCell
               }
             }}
-            dataSource={studentData}
+            dataSource={students}
             columns={mergedColumns}
             size='small'
             rowClassName='editable-row'

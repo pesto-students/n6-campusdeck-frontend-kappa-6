@@ -40,6 +40,8 @@ export const signUp = formData => USER_API.post("/admin/signup", formData);
 export const signIn = formData => USER_API.post("/admin/signin", formData);
 export const getStudentsInCampus = campus =>
   USER_API.get(`admin/getStudents/${campus}`);
+export const updateStudent = (userId, userData) =>
+  USER_API.put(`/users/${userId}`, userData);
 
 // campus related
 export const fetchAllCampus = () => CAMPUS_API.get("/campus");
