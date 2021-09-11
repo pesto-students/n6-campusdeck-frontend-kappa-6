@@ -37,7 +37,8 @@ export {
   PlusCircleFilled,
   PlusOutlined,
   FilterOutlined,
-  XCircle
+  XCircle,
+  SaveFilled
 } from "./atoms/icon/Icon";
 
 // all molecules

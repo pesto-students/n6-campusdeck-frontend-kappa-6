@@ -29,13 +29,26 @@
     display: grid;
     grid-template-columns: repeat(4, 2fr);
     row-gap: 1.5rem;
+    min-height: 46rem;
+
+    .skeleton {
+      width: 88%;
+    }
 
     .card {
       width: 16.75rem;
+      height: max-content;
     }
 
     .card_img {
       height: 14rem;
     }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }

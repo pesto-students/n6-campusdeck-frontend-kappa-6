@@ -4,6 +4,7 @@ import Base from "./Base";
 
 // pages
 import Spaces from "./pages/spaces";
+import Students from "./pages/students";
 import Login from "./pages/login";
 import ContactUs from "./pages/contactUs";
 
@@ -23,6 +24,15 @@ function App() {
             </Base>
           )}
           path='/spaces'
+          exact
+        />
+        <Route
+          component={() => (
+            <Base>
+              <Students />
+            </Base>
+          )}
+          path='/students'
           exact
         />
       </Switch>

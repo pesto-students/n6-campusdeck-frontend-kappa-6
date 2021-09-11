@@ -21,7 +21,8 @@ import {
   CloudUploadOutlined,
   PlusCircleFilled,
   PlusOutlined,
-  FilterOutlined
+  FilterOutlined,
+  SaveFilled
 } from "@ant-design/icons";
 
 import { Users, MapPin, BarChart2, XCircle } from "react-feather";
@@ -53,5 +54,6 @@ export {
   PlusCircleFilled,
   PlusOutlined,
   FilterOutlined,
-  XCircle
+  XCircle,
+  SaveFilled
 };
