@@ -50,12 +50,6 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     }
   };
 
-  const spaceJoin = () => {
-    const spaceId = isSpacePage ? id : dbId;
-
-    dispatch(joinASpace(spaceId));
-  };
-
   const hasUserJoinedSpace = () => {
     if (
       space?.members?.findIndex(
@@ -66,6 +60,25 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     }
     return false;
   };
+
+  const spaceJoin = () => {
+    const spaceId = isSpacePage ? id : dbId;
+
+    if (!hasUserJoinedSpace()) {
+      setSpace({
+        ...space,
+        members: [...space.members, loggedInUser?.result?._id]
+      });
+    } else {
+      const newMembersList = space.members.filter(
+        memberId => memberId !== loggedInUser?.result?._id
+      );
+      setSpace({ ...space, members: newMembersList });
+    }
+    dispatch(joinASpace(spaceId));
+  };
+
+  console.log(space);
 
   const fetchSpace = async idToUse => {
     const {
