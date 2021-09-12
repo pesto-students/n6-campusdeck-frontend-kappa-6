@@ -337,7 +337,7 @@ const Students = () => {
               color='blue'
               key={tag}
               style={{
-                padding: "1rem 0.15rem !important",
+                margin: "0.2rem",
                 cursor: "default"
               }}
             >

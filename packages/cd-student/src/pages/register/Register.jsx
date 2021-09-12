@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Banner, Button, BUTTON_SIZE } from "@cd/components";
 import { signup } from "../../actions/auth";
 
@@ -21,6 +21,7 @@ const initialFormState = {
 
 const Register = () => {
   const [formData, setFormData] = useState(initialFormState);
+  const { userInfo } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,6 +42,19 @@ const Register = () => {
       [field]: val
     });
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      // get the encoded obj from URL and convert it to JS object after decoding it
+      const decodedInfo = JSON.parse(atob(userInfo));
+
+      setFormData({
+        ...formData,
+        email: decodedInfo.email,
+        campus: decodedInfo.campus
+      });
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -76,6 +90,7 @@ const Register = () => {
               type='email'
               value={formData.email}
               onChange={handleInput}
+              disabled
             />
             <input
               className={styles.input}
@@ -90,6 +105,7 @@ const Register = () => {
               name='campus'
               value={formData.campus}
               onChange={handleInput}
+              disabled
             />
             <input
               className={styles.input}

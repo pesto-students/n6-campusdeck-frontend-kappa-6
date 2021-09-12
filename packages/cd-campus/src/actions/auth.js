@@ -7,7 +7,7 @@ export const signUp = (formData, history) => async dispatch => {
     const { data } = await api.signUp(formData);
 
     if (data.status === "success") {
-      history.push("/");
+      history.push("/students");
     }
 
     dispatch({ type: AUTH, data });
@@ -22,7 +22,7 @@ export const signIn = (formData, history) => async dispatch => {
     const { data } = await api.signIn(formData);
 
     if (data.status === "success") {
-      history.push("/");
+      history.push("/students");
     }
 
     dispatch({ type: AUTH, data });

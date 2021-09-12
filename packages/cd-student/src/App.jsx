@@ -37,7 +37,7 @@ function App() {
           exact
         />
         <Route component={Login} path='/login' exact />
-        <Route component={Register} path='/register' exact />
+        <Route component={Register} path='/register/:userInfo' exact />
         <Route
           component={() => (
             <Base isSpacePage>
