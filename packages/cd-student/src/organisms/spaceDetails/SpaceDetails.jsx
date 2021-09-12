@@ -89,7 +89,7 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     }
 
     getCreatorDetails(space?.creator);
-  }, []);
+  }, [id]);
 
   // subcomponent to render join button
   const JoinButton = () => {
