@@ -220,14 +220,23 @@ const Base = ({ children, isSpacePage }) => {
     });
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      const arePrefSaved = user.result?.preferences.length > 0;
+  const fetchUser = async userId => {
+    const {
+      data: { data }
+    } = await api.getUser(userId);
+    return data;
+  };
 
-      if (!arePrefSaved) {
-        setPrefModalVisible(true);
+  useEffect(() => {
+    fetchUser(user?.result?._id).then(loggedInUser => {
+      if (loggedInUser) {
+        const arePrefSaved = loggedInUser?.preferences?.length > 0;
+
+        if (!arePrefSaved) {
+          setPrefModalVisible(true);
+        }
       }
-    }
+    });
   }, []);
 
   return (
