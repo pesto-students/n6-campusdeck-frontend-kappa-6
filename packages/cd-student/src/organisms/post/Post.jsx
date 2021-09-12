@@ -49,6 +49,7 @@ const Post = ({
   });
   const [postSpace, setPostSpace] = useState("");
   const [postCampus, setPostCampus] = useState("");
+  const [postLikes, setPostLikes] = useState([]);
   const [allComments, setAllComments] = useState([]);
   const [ctxMenuOpts, setCtxMenuOpts] = useState([]);
   const { singleCampus } = useSelector(state => state.campus);
@@ -58,7 +59,18 @@ const Post = ({
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
   const finalComments = [];
 
+  const hasUserLiked =
+    postLikes?.findIndex(likeId => likeId === loggedInUser?.result?._id) > -1;
+
   const likeThisPost = () => {
+    if (hasUserLiked) {
+      const newPostLikes = postLikes.filter(
+        postLikeId => postLikeId !== loggedInUser?.result?._id
+      );
+      setPostLikes(newPostLikes);
+    } else {
+      setPostLikes([...postLikes, loggedInUser?.result?._id]);
+    }
     dispatch(likePost(id));
   };
 
@@ -137,6 +149,10 @@ const Post = ({
 
     if (spaceId) {
       getSpaceDetails(spaceId);
+    }
+
+    if (likes.length) {
+      setPostLikes(likes);
     }
   }, []);
 
@@ -217,7 +233,12 @@ const Post = ({
   return (
     <div className={containerClassName}>
       <div className={styles.points}>
-        <Points likePost={likeThisPost} onDislike={dislikePost} likes={likes} />
+        <Points
+          likePost={likeThisPost}
+          onDislike={dislikePost}
+          likes={postLikes}
+          hasUserLiked={hasUserLiked}
+        />
       </div>
       <div className={styles.body}>
         <div className={styles.header}>

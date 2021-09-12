@@ -7,14 +7,7 @@ import { ArrowUpOutlined, ArrowDownOutlined } from "../icon";
 // styles
 import styles from "./points.module.scss";
 
-const Points = ({ likes, likePost }) => {
-  const loggedInUser = JSON.parse(localStorage.getItem("profile"));
-
-  const hasUserLiked =
-    likes?.findIndex(id => id === loggedInUser?.result?._id) === -1
-      ? false
-      : true;
-
+const Points = ({ likes, likePost, hasUserLiked }) => {
   return (
     <div className={styles.container}>
       <ArrowUpOutlined
