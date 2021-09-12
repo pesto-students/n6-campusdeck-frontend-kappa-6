@@ -21,8 +21,6 @@ const Login = () => {
   const submitForm = e => {
     e.preventDefault();
 
-    console.log(formData);
-
     dispatch(signIn(formData, history));
   };
 

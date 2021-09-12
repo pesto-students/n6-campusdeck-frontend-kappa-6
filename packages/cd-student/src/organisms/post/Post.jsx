@@ -49,6 +49,8 @@ const Post = ({
   });
   const [postSpace, setPostSpace] = useState("");
   const [postCampus, setPostCampus] = useState("");
+  const [postLikes, setPostLikes] = useState([]);
+  const [postComments, setPostComments] = useState([]);
   const [allComments, setAllComments] = useState([]);
   const [ctxMenuOpts, setCtxMenuOpts] = useState([]);
   const { singleCampus } = useSelector(state => state.campus);
@@ -58,7 +60,18 @@ const Post = ({
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
   const finalComments = [];
 
+  const hasUserLiked =
+    postLikes?.findIndex(likeId => likeId === loggedInUser?.result?._id) > -1;
+
   const likeThisPost = () => {
+    if (hasUserLiked) {
+      const newPostLikes = postLikes.filter(
+        postLikeId => postLikeId !== loggedInUser?.result?._id
+      );
+      setPostLikes(newPostLikes);
+    } else {
+      setPostLikes([...postLikes, loggedInUser?.result?._id]);
+    }
     dispatch(likePost(id));
   };
 
@@ -81,7 +94,8 @@ const Post = ({
       author: loggedInUser?.result?.name,
       authorImg: loggedInUser?.result?.profileImg
     };
-    dispatch(createComment(newComment));
+
+    dispatch(createComment(newComment, postComments, setPostComments));
   };
 
   // function to toggle between post expanded and collapsed state
@@ -106,7 +120,7 @@ const Post = ({
   });
 
   // recursively count all the comments
-  const totalComments = countTotalComments(comments);
+  const totalComments = countTotalComments(postComments);
 
   const getSpaceDetails = async spaceIdDb => {
     const {
@@ -137,6 +151,14 @@ const Post = ({
 
     if (spaceId) {
       getSpaceDetails(spaceId);
+    }
+
+    if (likes.length) {
+      setPostLikes(likes);
+    }
+
+    if (comments.length) {
+      setPostComments(comments);
     }
   }, []);
 
@@ -180,8 +202,8 @@ const Post = ({
   useEffect(() => {
     const promiseArr = [];
 
-    if (comments) {
-      comments.forEach(comment => {
+    if (postComments) {
+      postComments.forEach(comment => {
         promiseArr.push(getCommentFromId(comment));
       });
 
@@ -195,7 +217,7 @@ const Post = ({
           setAllComments(finalComments);
         });
     }
-  }, []);
+  }, [postComments]);
 
   useEffect(() => {
     const menuOpts = ["Report"];
@@ -217,7 +239,12 @@ const Post = ({
   return (
     <div className={containerClassName}>
       <div className={styles.points}>
-        <Points likePost={likeThisPost} onDislike={dislikePost} likes={likes} />
+        <Points
+          likePost={likeThisPost}
+          onDislike={dislikePost}
+          likes={postLikes}
+          hasUserLiked={hasUserLiked}
+        />
       </div>
       <div className={styles.body}>
         <div className={styles.header}>
@@ -240,7 +267,7 @@ const Post = ({
             <div className={styles.post_details}>
               <PostDetails
                 time={time}
-                totalComments={comments.length}
+                totalComments={postComments.length}
                 toggleBody={toggleBody}
               />
             </div>
@@ -274,7 +301,7 @@ const Post = ({
             <PostDetails
               toggleBody={toggleBody}
               time={time}
-              totalComments={comments.length}
+              totalComments={postComments.length}
             />
           </div>
           {isExpanded && (

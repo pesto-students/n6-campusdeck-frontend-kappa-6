@@ -50,12 +50,6 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     }
   };
 
-  const spaceJoin = () => {
-    const spaceId = isSpacePage ? id : dbId;
-
-    dispatch(joinASpace(spaceId));
-  };
-
   const hasUserJoinedSpace = () => {
     if (
       space?.members?.findIndex(
@@ -65,6 +59,23 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
       return true;
     }
     return false;
+  };
+
+  const spaceJoin = () => {
+    const spaceId = isSpacePage ? id : dbId;
+
+    if (!hasUserJoinedSpace()) {
+      setSpace({
+        ...space,
+        members: [...space.members, loggedInUser?.result?._id]
+      });
+    } else {
+      const newMembersList = space.members.filter(
+        memberId => memberId !== loggedInUser?.result?._id
+      );
+      setSpace({ ...space, members: newMembersList });
+    }
+    dispatch(joinASpace(spaceId));
   };
 
   const fetchSpace = async idToUse => {
@@ -89,7 +100,7 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     }
 
     getCreatorDetails(space?.creator);
-  }, []);
+  }, [id]);
 
   // subcomponent to render join button
   const JoinButton = () => {

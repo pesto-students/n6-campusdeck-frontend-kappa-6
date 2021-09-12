@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Tooltip, Tag } from "antd";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,23 +14,28 @@ import styles from "./textPost.module.scss";
 const { CheckableTag } = Tag;
 
 const TextPost = ({ postData, setPostData, handleTagSelect }) => {
+  const [bodyData, setBodyData] = useState("");
   const dispatch = useDispatch();
   const { space } = useSelector(state => state.space);
 
   // fetch new space details when the space changes
   useEffect(() => {
-    dispatch(getSpace(postData.space));
+    if (postData.space) {
+      dispatch(getSpace(postData.space));
+    }
   }, [postData.space]);
+
+  useEffect(() => {
+    if (bodyData) {
+      setPostData({ ...postData, body: bodyData });
+    }
+  }, [bodyData]);
 
   return (
     <div className={styles.container}>
       <TitleInput postData={postData} setPostData={setPostData} />
       <div className={styles.body}>
-        <QuillEditor
-          className={styles.body_editor}
-          postData={postData}
-          setPostData={setPostData}
-        />
+        <QuillEditor className={styles.body_editor} setBodyData={setBodyData} />
       </div>
 
       <div className={styles.post_labels}>
@@ -75,7 +80,6 @@ const TextPost = ({ postData, setPostData, handleTagSelect }) => {
 TextPost.propTypes = {
   postData: PropTypes.object.isRequired,
   setPostData: PropTypes.func.isRequired,
-  space: PropTypes.object.isRequired,
   handleTagSelect: PropTypes.func.isRequired
 };
 

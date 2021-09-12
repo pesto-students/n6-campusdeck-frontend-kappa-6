@@ -26,6 +26,7 @@ const Comments = ({
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [newComment, setNewComment] = useState("");
+  const [allComments, setAllComments] = useState(comments);
 
   // opens the comment modal
   const showModal = () => {
@@ -67,6 +68,10 @@ const Comments = ({
     return false;
   };
 
+  useEffect(() => {
+    setAllComments(comments);
+  }, [comments]);
+
   // TODO: actions need to dynamic for a particular comment
   // actions available for a comment
   const actions = [
@@ -104,7 +109,7 @@ const Comments = ({
           </div>
         }
         itemLayout='horizontal'
-        dataSource={comments}
+        dataSource={allComments}
         renderItem={comment => (
           <Comment
             actions={actions}
@@ -126,7 +131,7 @@ const Comments = ({
                 ) : null}
               </>
             }
-            avatar={comment.authorImg ?? ProfilePic}
+            avatar={comment.authorImg ? comment.authorImg : ProfilePic}
             content={comment.content}
             datetime={
               <>

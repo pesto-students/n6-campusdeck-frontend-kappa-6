@@ -61,7 +61,6 @@ export const joinASpace = spaceId => async dispatch => {
       data: { data }
     } = await api.joinSpace(spaceId);
 
-    console.log(data);
     // dispatch action that sets the space received to the store
     dispatch({
       type: JOIN_SPACE,

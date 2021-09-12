@@ -124,7 +124,7 @@ const MediaPost = ({ postData, setPostData, space, handleTagSelect }) => {
 MediaPost.propTypes = {
   postData: PropTypes.object.isRequired,
   setPostData: PropTypes.func.isRequired,
-  space: PropTypes.object.isRequired,
+  space: PropTypes.string.isRequired,
   handleTagSelect: PropTypes.func.isRequired
 };
 
