@@ -72,18 +72,28 @@ export const getSpaceFeed = id => async dispatch => {
   }
 };
 
-export const createComment = newComment => async dispatch => {
-  try {
-    const { data } = await api.createComment(newComment);
+export const createComment =
+  (newComment, postComments, setPostComments) => async dispatch => {
+    try {
+      const { data } = await api.createComment(newComment);
 
-    dispatch({
-      type: CREATE_COMMENT,
-      payload: data
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
+      // getting comment id from the newly created comment
+      const {
+        data: {
+          comment: { _id: newCommentId }
+        }
+      } = data;
+
+      setPostComments([...postComments, newCommentId]);
+
+      dispatch({
+        type: CREATE_COMMENT,
+        payload: data
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 export const getCommentById = id => async dispatch => {
   try {

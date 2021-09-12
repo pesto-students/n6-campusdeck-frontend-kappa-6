@@ -78,8 +78,6 @@ const SpaceDetails = ({ isSpacePage, dbId }) => {
     dispatch(joinASpace(spaceId));
   };
 
-  console.log(space);
-
   const fetchSpace = async idToUse => {
     const {
       data: { data }
