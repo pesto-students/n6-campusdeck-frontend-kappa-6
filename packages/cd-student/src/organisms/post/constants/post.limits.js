@@ -1,0 +1,9 @@
+const FULL = 500;
+const COMPACT = 300;
+
+const POST_LIMITS_BODY_TRUNCATE = {
+  FULL,
+  COMPACT
+};
+
+export default POST_LIMITS_BODY_TRUNCATE;

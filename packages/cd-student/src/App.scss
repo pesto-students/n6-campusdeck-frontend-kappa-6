@@ -1,0 +1,36 @@
+@import "~antd/dist/antd.css";
+@import "@brainhubeu/react-carousel/lib/style.css";
+@import "./styles/variables/colors";
+
+/* styles related to Quill */
+
+.ql-editor {
+  min-height: 14rem;
+}
+
+.ql-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+/* styles related to antd*/
+
+.ant-tag-checkable-checked {
+  background-color: $primary-blue;
+}
+
+.ant-tag {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  &.edit-tag {
+    background-color: $light-blue;
+    color: white;
+  }
+}
+
+.ant-input {
+  // width: 6.5rem;
+  // padding: 0.25rem 0.5rem;
+}

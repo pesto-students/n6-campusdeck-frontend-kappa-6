@@ -1,0 +1,29 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  height: 52rem;
+  margin-top: 2.4rem;
+
+  .header {
+    display: flex;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: $dark-grey;
+  }
+
+  .content {
+    margin-top: 3rem;
+
+    .invite_btn {
+      position: absolute;
+      margin-bottom: 1rem;
+      right: 0;
+      top: 0;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import "../../styles/variables/colors";
+@import "../../styles/variables/fonts";
+
+.container {
+  padding: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 24px;
+
+  .arrow {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+
+  .arrow:first-of-type {
+    margin-top: 0.7rem;
+  }
+
+  .points {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: calc($medium + 0.36rem);
+    width: 65%;
+    padding: 0.25rem 0;
+    display: flex;
+    justify-content: center;
+  }
+}

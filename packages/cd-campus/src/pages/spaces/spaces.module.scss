@@ -1,0 +1,54 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+
+  .header {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    .sort_option {
+      border-radius: 0.25rem;
+      padding: 0 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: $dark-grey;
+
+      &:hover {
+        background-color: $primary-hover;
+      }
+    }
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    row-gap: 1.5rem;
+    min-height: 46rem;
+
+    .skeleton {
+      width: 88%;
+    }
+
+    .card {
+      width: 16.75rem;
+      height: max-content;
+    }
+
+    .card_img {
+      height: 14rem;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}

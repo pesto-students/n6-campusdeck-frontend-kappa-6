@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-left: 13rem;
+}
+
+.search {
+  background: rgba(196, 196, 196, 0.35);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-left: 0.55rem;
+  padding-top: 0.65rem;
+  height: 36px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 0.7rem;
+}

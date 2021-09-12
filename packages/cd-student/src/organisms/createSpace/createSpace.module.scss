@@ -1,0 +1,86 @@
+@import "./src/styles/variables/colors";
+@import "./src/styles/variables/general";
+@import "./src/styles/variables/font";
+
+.container {
+  .header {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 0.85rem;
+
+    .selector {
+      padding: 0.2rem;
+      width: 40%;
+      background-color: $light-grey;
+      border: 5px solid transparent;
+      outline: none;
+      border-radius: $normal-border-radius;
+    }
+  }
+
+  .content {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 39.4rem;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 0.28rem;
+    padding: 0 0.8rem;
+
+    .name_section {
+      display: flex;
+      justify-content: center;
+      margin: 0.75rem 0;
+
+      .name_input {
+        border: none;
+        outline: none;
+        width: 28rem;
+        font-size: $medium;
+        background: $light-grey;
+        color: $dark-grey;
+        padding: 0.4rem 0.7rem;
+        border-top-left-radius: $normal-border-radius;
+        border-bottom-left-radius: $normal-border-radius;
+      }
+
+      .remaining_chars {
+        width: fit-content;
+        padding: 0.4rem 0.55rem;
+        background: $light-grey;
+        color: $dark-grey;
+        border-top-right-radius: $normal-border-radius;
+        border-bottom-right-radius: $normal-border-radius;
+      }
+    }
+
+    .description_section {
+      .description {
+        height: 10rem;
+        width: 31.2rem;
+        margin: 0.75rem;
+        padding: 0.3rem 0.7rem;
+        font-size: $medium;
+        color: $dark-grey;
+        outline: none;
+        background: $light-grey;
+        border: none;
+        border-radius: $normal-border-radius;
+        resize: none;
+      }
+    }
+
+    .tags_section {
+      display: flex;
+      justify-content: flex-start;
+      border: 1px solid black;
+    }
+
+    .img {
+      width: 31.2rem;
+      max-height: 21rem;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "name": "@cd/campus",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^4.6.4",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "antd": "^4.16.13",
+    "classnames": "^2.3.1",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.1",
+    "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
+    "redux-thunk": "^2.3.0",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "eject": "craco eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "airbnb"
+    ],
+    "rules": {
+      "no-unused-vars": 1,
+      "no-console": 1,
+      "quotes": 0,
+      "jsx-quotes": 0,
+      "react/jsx-indent": 0,
+      "indent": 0,
+      "max-len": 0,
+      "react/jsx-wrap-multilines": 0,
+      "comma-dangle": 0,
+      "jsx-a11y/anchor-is-valid": 0,
+      "react/prop-types": 0,
+      "no-script-url": 0,
+      "arrow-parens": 0,
+      "react/jsx-props-no-spreading": 0,
+      "no-restricted-globals": 0,
+      "no-underscore-dangle": 0,
+      "implicit-arrow-linebreak": 0,
+      "arrow-body-style": 0,
+      "object-curly-newline": 0,
+      "operator-linebreak": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/prefer-default-export": 0,
+      "react/jsx-boolean-value": 1,
+      "react/react-in-jsx-scope": 0,
+      "react/jsx-one-expression-per-line": 0,
+      "react/jsx-filename-extension": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-curly-newline": 0,
+      "react/destructuring-assignment": 0
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.2.1"
+  }
+}
