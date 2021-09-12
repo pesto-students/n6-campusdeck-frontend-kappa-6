@@ -15,7 +15,7 @@ const toolbarOptions = [
   ["blockquote", "code-block"]
 ];
 
-const QuillEditor = ({ postData, setPostData }) => {
+const QuillEditor = ({ setBodyData }) => {
   const [quill, setQuill] = useState(null);
   const wrapper = useRef();
 
@@ -42,7 +42,7 @@ const QuillEditor = ({ postData, setPostData }) => {
         const bodyText = quill.getText();
         // remove all newline characters
         bodyText.replace(/\n/, "");
-        setPostData({ ...postData, body: bodyText });
+        setBodyData(bodyText);
       });
     }
   }, [quill]);
@@ -51,13 +51,7 @@ const QuillEditor = ({ postData, setPostData }) => {
 };
 
 QuillEditor.propTypes = {
-  postData: PropTypes.object,
-  setPostData: PropTypes.func
-};
-
-QuillEditor.defaultProps = {
-  postData: {},
-  setPostData: () => {}
+  setBodyData: PropTypes.string.isRequired
 };
 
 export default QuillEditor;
