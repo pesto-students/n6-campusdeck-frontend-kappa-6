@@ -39,22 +39,6 @@ const MediaPost = ({ postData, setPostData, space, handleTagSelect }) => {
           message.error(`${info.file.name} file upload failed.`);
         }
       }
-
-      //   const formData = new FormData();
-      //   formData.append("file", info.file.originFileObj);
-      //   formData.append(
-      //     "upload_preset",
-      //     process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
-      //   );
-      //   const response = await axios.post(
-      //     process.env.REACT_APP_CLOUDINARY_UPLOAD_URL,
-      //     formData
-      //   );
-      //   if (response.status === 200) {
-      //     message.success(`${info.file.name} file uploaded successfully.`);
-      //   } else {
-      //     message.error(`${info.file.name} file upload failed.`);
-      //   }
     },
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);
@@ -68,12 +52,12 @@ const MediaPost = ({ postData, setPostData, space, handleTagSelect }) => {
       message.error("You can only upload JPG/PNG file!");
     }
 
-    // // file size should be less than 5mb
-    // const sizeInRange = file.size / 1024 / 1024 < 5;
+    // file size should be less than 5mb
+    const sizeInRange = file.size / 1024 / 1024 < 5;
 
-    // if (!sizeInRange) {
-    //   message.error("Image must smaller than 5MB!");
-    // }
+    if (!sizeInRange) {
+      message.error("Image must smaller than 5MB!");
+    }
 
     return isJpgOrPng;
   };
@@ -114,7 +98,14 @@ const MediaPost = ({ postData, setPostData, space, handleTagSelect }) => {
       </div>
       <div className={styles.options}>
         <label htmlFor='accessibility'>
-          <input type='checkbox' id='accessibility' />
+          <input
+            type='checkbox'
+            id='accessibility'
+            checked={postData.isPublic}
+            onChange={() => {
+              setPostData({ ...postData, isPublic: !postData.isPublic });
+            }}
+          />
           <span style={{ marginLeft: "0.5rem" }}>Make this a public post?</span>
         </label>
         <Tooltip

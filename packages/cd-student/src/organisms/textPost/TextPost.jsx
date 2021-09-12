@@ -54,7 +54,7 @@ const TextPost = ({ postData, setPostData, handleTagSelect }) => {
             type='checkbox'
             id='accessibility'
             checked={postData.isPublic}
-            onChange={e => {
+            onChange={() => {
               setPostData({ ...postData, isPublic: !postData.isPublic });
             }}
           />

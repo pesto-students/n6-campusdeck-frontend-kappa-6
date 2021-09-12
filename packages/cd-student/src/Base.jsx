@@ -33,6 +33,25 @@ import styles from "./Base.module.scss";
 
 const { CheckableTag } = Tag;
 
+const initialPostDataVal = {
+  title: "",
+  type: "TEXT",
+  body: "",
+  tag: "",
+  space: "",
+  campus: "",
+  isPublic: true
+};
+
+const initialSpaceDataVal = {
+  name: "",
+  desc: "",
+  img: "",
+  campus: "",
+  tags: [],
+  isPublic: true
+};
+
 const Base = ({ children, isSpacePage }) => {
   const [postModalVisible, setPostModalVisible] = useState(false);
   const [spaceModalVisible, setSpaceModalVisible] = useState(false);
@@ -40,23 +59,8 @@ const Base = ({ children, isSpacePage }) => {
   const [createPostLoading, setCreatePostLoading] = useState(false);
   const [createSpaceLoading, setCreateSpaceLoading] = useState(false);
   const [prefSaveLoading, setPrefSaveLoading] = useState(false);
-  const [spaceData, setSpaceData] = useState({
-    name: "",
-    desc: "",
-    img: "",
-    campus: "",
-    tags: [],
-    isPublic: true
-  });
-  const [postData, setPostData] = useState({
-    title: "",
-    type: "TEXT",
-    body: "",
-    tag: "",
-    space: "",
-    campus: "",
-    isPublic: true
-  });
+  const [spaceData, setSpaceData] = useState(initialSpaceDataVal);
+  const [postData, setPostData] = useState(initialPostDataVal);
   const [prefChoices, setPrefChoices] = useState([
     "Technology",
     "Job",

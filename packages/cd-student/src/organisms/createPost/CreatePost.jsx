@@ -11,6 +11,16 @@ import { getAllSpacesByCampus } from "../../actions/space";
 // styles
 import styles from "./createPost.module.scss";
 
+const initialPostDataVal = {
+  title: "",
+  type: "TEXT",
+  body: "",
+  tag: "",
+  space: "",
+  campus: "",
+  isPublic: true
+};
+
 const CreatePost = ({ postData, setPostData }) => {
   const [selectedCampus, setSelectedCampus] = useState("");
   // fetch list of campus from the global store
@@ -29,6 +39,10 @@ const CreatePost = ({ postData, setPostData }) => {
       ...postData,
       tag
     });
+  };
+
+  const clearPostData = () => {
+    setPostData(initialPostDataVal);
   };
 
   useEffect(() => {
@@ -113,6 +127,8 @@ const CreatePost = ({ postData, setPostData }) => {
             }
           ]}
           centered
+          // clear the post data fileds when the tab menu is switched
+          callback={clearPostData}
         />
       </div>
     </div>
