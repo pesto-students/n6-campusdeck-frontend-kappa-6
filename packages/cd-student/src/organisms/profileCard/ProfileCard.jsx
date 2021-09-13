@@ -42,6 +42,8 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
   const loggedInUser = JSON.parse(localStorage.getItem("profile"));
   const history = useHistory();
 
+  const finalSavedPosts = [];
+
   // this function will fetch posts/saved of user based on the key
   const fetchContents = key => {
     console.log(key);
@@ -68,18 +70,26 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
   };
 
   const fetchPostDetails = async savedPost => {
-    const {
-      data: { data: post }
-    } = await api.getPostById(savedPost);
-
-    setSavedPostList([...savedPostList, post]);
+    return api.getPostById(savedPost);
   };
 
   useEffect(() => {
+    const promiseArr = [];
+
     if (savedPostIds) {
       savedPostIds.forEach(savedPost => {
-        fetchPostDetails(savedPost);
+        promiseArr.push(fetchPostDetails(savedPost));
       });
+
+      Promise.all(promiseArr)
+        .then(results => {
+          results.forEach(result => {
+            finalSavedPosts.push(result.data.data);
+          });
+        })
+        .then(() => {
+          setSavedPostList(finalSavedPosts);
+        });
     }
   }, [savedPostIds]);
 
@@ -172,6 +182,7 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
     }
   };
 
+  // sub component to display follow button
   const FollowBtn = () => {
     // properties when user is not following this profile
     let btnType = BUTTON_TYPE.SKELETON;
@@ -193,6 +204,7 @@ const ProfileCard = ({ postList, isLoggedInUser, userId }) => {
     );
   };
 
+  // sub component to display upload button
   const UploadBtn = () => {
     let uploadBtnIcon = <UploadOutlined />;
 
